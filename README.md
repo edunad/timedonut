@@ -1,2 +1,2 @@
-# timedenial
-Game jam
+# DonutTime
+The quest for donuts
