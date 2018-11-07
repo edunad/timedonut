@@ -13,14 +13,17 @@ public class logic_target : MonoBehaviour {
 		_boxCollider = GetComponent<BoxCollider2D>();
 		_boxCollider.isTrigger = true;
 
-	}
-	
-	// Update is called once per frame
-	public void Update () {
-		
+        this.gameObject.layer = 12;
+
 	}
 
-	public void OnDrawGizmos() {
+    // Update is called once per frame
+    public void OnTriggerEnter2D(Collider2D collision) {
+        if (collision == null) return;
+        Debug.Log("DEAD");
+    }
+
+    public void OnDrawGizmos() {
 		Gizmos.color = new Color(255, 0, 0, 100);
 
 		// Draw PIT
