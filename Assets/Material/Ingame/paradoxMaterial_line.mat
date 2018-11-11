@@ -8,7 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: paradoxMaterial_line
   m_Shader: {fileID: 4800000, guid: 5706f2fb6ffcccf4384a902979f5cf10, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -60,8 +60,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - Vector1_170C4164: 0.6
-    - Vector1_50BA6A7A: 0.41
-    - Vector1_66B0E668: -0.54
+    - Vector1_50BA6A7A: 0.5
+    - Vector1_66B0E668: -0.2
+    - Vector1_FE407469: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -82,9 +83,13 @@ Material:
     - _UVSec: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
+    - _material_blend: 0.4
+    - _paradox_glich: 0
+    - _particle_alpha: -0.2
     m_Colors:
-    - Color_7C1A6020: {r: 0, g: 0, b: 0, a: 0}
+    - Color_7C1A6020: {r: 0, g: 0, b: 0, a: 1}
     - Color_8FD6802E: {r: 1, g: 1, b: 1, a: 0}
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _paradox_color: {r: 1, g: 1, b: 1, a: 0}
