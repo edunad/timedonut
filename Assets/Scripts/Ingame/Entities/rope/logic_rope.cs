@@ -61,7 +61,7 @@ public class logic_rope : MonoBehaviour {
         int index = Convert.ToInt32(node.name.Replace("rope_node_", ""));
 
         logic_rope_node rope_node = this._ropeNodes[index];
-        if (rope_node == null) return;
+        if (rope_node == null || rope_node.joint == null) return;
 
         // Fix prev node
         if (index - 1 > 0) {
