@@ -3,47 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class logic_nailer_nail : MonoBehaviour {
-
     private Rigidbody2D _body;
-    private List<Collider2D> _colliders;
-
-
-    public bool canNail = true;
-
+    private BoxCollider2D _collision;
+    private bool isAttached;
 
     public void Awake() {
-        this._colliders = new List<Collider2D>();
         this._body = GetComponent<Rigidbody2D>();
+        this._collision = GetComponent<BoxCollider2D>();
     }
 
-    public void OnTriggerExit2D(Collider2D collider) {
-        if (!this._colliders.Contains(collider)) return;
-        this._colliders.Remove(collider);
-    }
-    
     public void OnTriggerEnter2D(Collider2D collider) {
-        if (!this.canShoot() || !canNail) return;
+        if (this._body == null || this._collision == null || this.isAttached) return;
 
-        logic_rope rope = collider.GetComponentInParent<logic_rope>();
-        if (rope == null) return;
+        logic_rope_node rope_node = collider.GetComponent<logic_rope_node>();
+        if (rope_node == null || rope_node.ropeController == null) return;
 
-        this.canNail = false;
+        // Temp attachment to get the hit position (locally)
+        this.isAttached = true;
 
-        /* === HACK ZONE */
-        this.transform.parent = rope.gameObject.transform;
-        Vector3 point = this.transform.localPosition; // There is prob a better way
-        this.transform.parent = null;
-        /* === HACK ZONE */
+        this.transform.parent = rope_node.transform;
+        this._body.bodyType = RigidbodyType2D.Static;
 
-        this._body.bodyType = RigidbodyType2D.Static; // DEBUG
-        rope.onRopeCut(this.gameObject, collider.gameObject, point);
+        // Alert the rope
+        rope_node.ropeController.onRopeCut(this.gameObject, rope_node, this.transform.position);
+        
+        /* == ATTACH THE NAIL == */
+        GameObject.Destroy(this._body);
+        GameObject.Destroy(this._collision);
 
-        if (!this._colliders.Contains(collider)) {
-            this._colliders.Add(collider);
-        }
-    }
-
-    private bool canShoot() {
-        return this._colliders.Count <= 0;
+        this.transform.position = Vector3.zero;
+        this.transform.localPosition = Vector3.zero;
+        this.transform.rotation = Quaternion.Euler(0, 0, 165);
     }
 }

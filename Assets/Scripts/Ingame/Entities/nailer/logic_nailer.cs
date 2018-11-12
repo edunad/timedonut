@@ -23,9 +23,6 @@ public class logic_nailer : MonoBehaviour {
         nail.transform.rotation = this.transform.rotation;
         nail.layer = 11;
 
-        /*logic_nailer_nail nailScript = nail.GetComponent<logic_nailer_nail>();
-        nailScript.nailer()*/
-
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();
         nailBody.AddForce(this.transform.right * 80, ForceMode2D.Impulse);
     }
