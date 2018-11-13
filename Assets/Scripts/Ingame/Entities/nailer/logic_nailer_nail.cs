@@ -25,7 +25,7 @@ public class logic_nailer_nail : MonoBehaviour {
         this._body.bodyType = RigidbodyType2D.Static;
 
         // Alert the rope
-        rope_node.ropeController.onRopeCut(this.gameObject, rope_node, this.transform.position);
+        rope_node.ropeController.onRopeCut(rope_node, this.transform.localPosition, this.transform.position);
         
         /* == ATTACH THE NAIL == */
         GameObject.Destroy(this._body);

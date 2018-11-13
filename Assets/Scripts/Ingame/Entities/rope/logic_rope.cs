@@ -43,37 +43,35 @@ public class logic_rope : MonoBehaviour {
         }
     }
     
-    public void onRopeCut(GameObject cutter, logic_rope_node rope_node, Vector3 cutPoint) {
+    public void onRopeCut(logic_rope_node rope_node, Vector3 localCutPoint, Vector3 worldCutPoint) {
         if (rope_node == null || rope_node.joint == null) return;
 
         logic_rope_node next_rope_node = rope_node.nextNode;
         if (next_rope_node == null) return;
-
-        // === DEBUG
-        /*rope_node.body.bodyType = RigidbodyType2D.Static;
-        next_rope_node.body.bodyType = RigidbodyType2D.Static;*/
-        // === DEBUG
-
+        
         // Update the current rope with the cut position
-        rope_node.transform.position = cutPoint;
-        Vector3 oldPos = cutPoint - rope_node.gameObject.transform.position;
-        rope_node.joint.anchor = new Vector2(0, oldPos.y);
+        rope_node.transform.position = worldCutPoint;
+        rope_node.joint.anchor -= new Vector2(0, localCutPoint.y);
+        rope_node.body.bodyType = RigidbodyType2D.Dynamic;
 
         rope_node.updateNode();
 
         // Create a new rope
         logic_rope_node ropeStart = this.createStartNode(rope_node.gameObject, RigidbodyType2D.Dynamic);
-        ropeStart.transform.position = cutPoint;
+        ropeStart.transform.localPosition = new Vector3(localCutPoint.x, localCutPoint.y, this.transform.position.z); // Fix Z
+        ropeStart.transform.position = new Vector3(worldCutPoint.x, worldCutPoint.y, this.transform.position.z); // Fix Z
 
         // Create a new rope node
-        logic_rope_node newNode = this.createRopeNode(ropeStart, next_rope_node.transform.position);
+        logic_rope_node newNode = this.createRopeNode(ropeStart, worldCutPoint - localCutPoint);
         newNode.body.bodyType = RigidbodyType2D.Dynamic;
+
 
         next_rope_node.joint.connectedBody = newNode.body;
         next_rope_node.updateNode();
         
         ropeStart.nextNode = newNode;
         newNode.nextNode = next_rope_node;
+        rope_node.nextNode = null;
 
         this._ropeNodes.Add(ropeStart);
         this._ropeNodes.Add(newNode);
@@ -90,8 +88,9 @@ public class logic_rope : MonoBehaviour {
         GameObject temp = new GameObject();
         temp.name = "rope_node_START_" + index;
         temp.transform.parent = this.gameObject.transform;
-        temp.transform.position = originalNode.transform.position;
 
+        Vector3 pos = originalNode.transform.position;
+        temp.transform.position = new Vector3(pos.x, pos.y, this.transform.position.z); // Fix Z
         temp.layer = 13;
 
         Rigidbody2D tempBody = temp.AddComponent<Rigidbody2D>();
@@ -148,7 +147,7 @@ public class logic_rope : MonoBehaviour {
         GameObject node = new GameObject();
         node.name = "rope_node_" + index;
         node.transform.parent = this.gameObject.transform;
-        node.transform.position = nodePos;
+        node.transform.position = new Vector3(nodePos.x, nodePos.y, this.transform.position.z); // Fix Z
         node.layer = 13;
 
         Rigidbody2D body = node.AddComponent<Rigidbody2D>();
