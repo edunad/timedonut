@@ -12,11 +12,18 @@ public class network_data {
 public class logic_and : MonoBehaviour {
     public GameObject reciever;
 
-    private Dictionary<string, network_data> networkData;
-    private int maxSenders = 2;
+    private Animator _animator;
+    private logic_cable _cable;
+
+    private Dictionary<string, network_data> _networkData;
+    private int _maxSenders = 2;
 
     public void Awake() {
-        this.networkData = new Dictionary<string, network_data>();
+        this._cable = GetComponent<logic_cable>();
+        this._animator = GetComponent<Animator>();
+        this._animator.SetInteger("status", 0);
+
+        this._networkData = new Dictionary<string, network_data>();
     }
 
     /* ************* 
@@ -31,7 +38,8 @@ public class logic_and : MonoBehaviour {
     }
 
     public void setTimeStatus(bool running) {
-        if (!running) this.networkData.Clear();
+        this._networkData.Clear();
+        this._animator.SetInteger("status", 0);
     }
 
     /* ************* 
@@ -46,29 +54,32 @@ public class logic_and : MonoBehaviour {
 
         string id = sender.GetInstanceID().ToString();
 
-        if (!this.networkData.ContainsKey(id.ToString())) {
-            if (this.networkData.Count > maxSenders) return;
-            this.networkData.Add(id, new network_data() { sender = sender, data = data });
+        if (!this._networkData.ContainsKey(id.ToString())) {
+            if (this._networkData.Count > this._maxSenders) return;
+            this._networkData.Add(id, new network_data() { sender = sender, data = data });
             this.updateStatus();
         } else {
-            this.networkData[id].data = data; // Update data
+            this._networkData[id].data = data; // Update data
             this.updateStatus();
         }
     }
     
 
     private void updateStatus() {
-        if (this.networkData.Count < maxSenders) {
+        if (this._networkData.Count < this._maxSenders) {
             this.alertLogic(false);
             return;
         }
 
-        List<string> keys = this.networkData.Keys.ToList();
-        this.alertLogic(this.networkData[keys[0]].data == 1 && this.networkData[keys[1]].data == 1);
+        List<string> keys = this._networkData.Keys.ToList();
+        this.alertLogic(this._networkData[keys[0]].data == 1 && this._networkData[keys[1]].data == 1);
     }
 
     private void alertLogic(bool isEnabled) {
         if (this.reciever == null) return;
+
+        if (this._cable != null) this._cable.setCableColor(isEnabled ? Color.green: Color.red);
+        this._animator.SetInteger("status", isEnabled ? 1 : 0);
         this.reciever.BroadcastMessage("onDataRecieved", new object[] { this.gameObject, isEnabled }, SendMessageOptions.DontRequireReceiver);
     }
 }

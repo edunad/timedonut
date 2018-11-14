@@ -59,7 +59,7 @@ public class logic_tape : MonoBehaviour {
 
         // Set material
         this._paradoxMaterial = GetComponent<util_material>();
-        this._paradoxMaterial.setMaterial(new Material(Shader.Find("Paradox_outline")));
+        this._paradoxMaterial.setMaterial(new Material(Shader.Find("Paradox_outline_shader")));
 
         // Setup object
         this.tag = "paradox_object";
@@ -155,6 +155,7 @@ public class logic_tape : MonoBehaviour {
             if (!this._enabledStickingTags.Contains(col.tag)) return false;
         }
 
+        if (this._colliders[0].tag == "static_object" && this._colliders[1].tag == "static_object") return false;
         return true;
     }
 

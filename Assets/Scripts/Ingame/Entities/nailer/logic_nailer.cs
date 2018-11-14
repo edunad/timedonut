@@ -9,18 +9,25 @@ public class logic_nailer : MonoBehaviour {
 
     private List<Collider2D> _colliders;
     private List<GameObject> _nails;
+    private List<string> _allowedColliders;
+
     private bool _timeRunning = false;
 
     public void Awake() {
         this._colliders = new List<Collider2D>();
         this._nails = new List<GameObject>();
+
+        this._allowedColliders = new List<string>() {
+            "paradox_object",
+            "timed_object"
+        };
     }
 
     /* ************* 
      * COLLISION
      ===============*/
     public void OnTriggerEnter2D(Collider2D collider) {
-        if (collider.tag == "particle_object") return;
+        if (!this._allowedColliders.Contains(collider.tag)) return;
         if (!this._timeRunning || this._colliders.Count > 0) return;
 
         if (this._colliders.Contains(collider)) return;
@@ -30,7 +37,9 @@ public class logic_nailer : MonoBehaviour {
     }
 
     public void OnTriggerExit2D(Collider2D collider) {
+        if (!this._allowedColliders.Contains(collider.tag)) return;
         if (!this._colliders.Contains(collider)) return;
+
         this._colliders.Remove(collider);
     }
 

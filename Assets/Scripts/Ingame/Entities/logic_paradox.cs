@@ -30,7 +30,7 @@ public class logic_paradox : MonoBehaviour {
 
         // Set material
         this._paradoxMaterial = GetComponent<util_material>();
-        this._paradoxMaterial.setMaterial(new Material(Shader.Find("Paradox_outline")));
+        this._paradoxMaterial.setMaterial(new Material(Shader.Find("Paradox_outline_shader")));
 
         // Setup RESET
         this._reset = GetComponent<util_resetable>();

@@ -8,7 +8,7 @@ public class logic_light : MonoBehaviour {
 
     public void Awake() {
         this._animator = GetComponent<Animator>();
-        this._animator.SetFloat("Blend", 0f);
+        this._animator.SetInteger("status", 0);
     }
 
     /* ************* 
@@ -23,7 +23,7 @@ public class logic_light : MonoBehaviour {
     }
 
     public void setTimeStatus(bool running) {
-        if (!running) this._animator.SetFloat("Blend", 0f); // Reset
+        this._animator.SetInteger("status", 0); // Reset
     }
 
     /* ************* 
@@ -36,6 +36,6 @@ public class logic_light : MonoBehaviour {
         if (sender == null) return;
         int data = Convert.ToInt32(msg[1]);
 
-        this._animator.SetFloat("Blend", data > 0 ? 1f : 0f);
+        this._animator.SetInteger("status", data);
     }
 }
