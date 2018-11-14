@@ -17,6 +17,13 @@ TextureImporter:
     21300024: rope_texture
     21300026: dev_nailer_2000
     21300028: dev_nailer_2000_nail
+    21300030: dev_ducktape
+    21300032: dev_ducktape_tape
+    21300034: dev_button
+    21300036: dev_gate_and
+    21300038: dev_button_pressure
+    21300040: dev_light_on
+    21300042: dev_light_off
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -396,6 +403,126 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 84bb7ad0a15f5b646a876b970e34009f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_ducktape
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 1864
+        width: 26
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 71c074ca2511e464297a2b22d0dfaa43
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_ducktape_tape
+      rect:
+        serializedVersion: 2
+        x: 281
+        y: 1891
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5c7e6583405d3542952ce86df9b2cb9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_button
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1920
+        width: 21
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1a951bb1ff7fb745af3700ce8665cdd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_button_pressure
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 1930
+        width: 40
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a9de3b9998e0bf4392030bb55aa6519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_light_on
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1878
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83e2b776c0a2e0948ad9adc8c31fcb02
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_light_off
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 1856
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1994ceee33e3fb64daf020f7bb5a6ffa
       vertices: []
       indices: 
       edges: []

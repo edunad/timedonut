@@ -6,6 +6,8 @@ TagManager:
   tags:
   - timed_object
   - paradox_object
+  - particle_object
+  - static_object
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - TimeObjects
   - ParadoxObjects
   - TimeTarget
-  - NoCollision
+  - ParticleCollision
   - 
   - 
   - 

@@ -4,98 +4,110 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(util_material))]
+[RequireComponent(typeof(util_resetable))]
 public class logic_paradox : MonoBehaviour {
-    private Rigidbody2D _body;
-    private Camera _camera;
 
-    // TIME VARS
-    private Vector3 _originalPosition;
-    private Vector3 _originalAngle;
+    public util_drag drag;
+
+    private Rigidbody2D _body;
 
     // DRAGGING
-    private Vector3 _dragOffset;
-    private bool _isDragging;
-
     private List<Collider2D> _colliders;
 
     // TIME
     private bool _timeEnabled;
 
-    // EFFECT
-    private Material _paradoxMaterial;
+    // UTIL
+    private util_material _paradoxMaterial;
+    private util_resetable _reset;
+
+    private readonly Color _defaultColor = new Color(0.4f, 0.4f, 0.4f);
+    private readonly Color _hoverColor = new Color(1f, 1f, 1f);
+    private readonly Color _errorColor = new Color(0.75f, 0.22f, 0.16f);
 
     public void Awake() {
-        this._originalPosition = this.transform.position;
-        this._originalAngle = this.transform.eulerAngles;
 
-        this._camera = GameObject.Find("Camera").GetComponent<Camera>();
+        // Set material
+        this._paradoxMaterial = GetComponent<util_material>();
+        this._paradoxMaterial.setMaterial(new Material(Shader.Find("Paradox_outline")));
+
+        // Setup RESET
+        this._reset = GetComponent<util_resetable>();
+        this._reset.saveObject();
+
         this._body = GetComponent<Rigidbody2D>();
 
         this._colliders = new List<Collider2D>();
 
-        // Disable movement by default
-        this._body.bodyType = RigidbodyType2D.Static;
+        // Set default movement
+        this._body.bodyType = RigidbodyType2D.Kinematic;
+        this._body.useFullKinematicContacts = true;
 
-        // SETUP
+        // Setup drag util
+        this.drag = ScriptableObject.CreateInstance<util_drag>();
+        this.drag.setup(this._body);
+
+        // SETUP game object
         this.tag = "paradox_object";
         this.gameObject.layer = 11;
-
-        // Set material
-        this.setParadoxMaterial();
     }
 
     /* ************* 
      * Core
      ===============*/
     public void Update() {
-        if (this._body == null || !this.canControlObject()) return;
+        if (!this.canControlObject()) return;
 
-        if (!this._isDragging) {
-            if (this.isMouseOnObject()) {
-                this.setMaterialColor(Color.green);
+        if (!this.drag.isDragging) {
+            if (this.drag.isMouseOnObject()) {
+                this.setMaterialColor(this._hoverColor);
             } else {
-                this.setMaterialColor(Color.white);
+                this.setMaterialColor(this._defaultColor);
             }
 
         } else {
-            if (this.canPlaceObject()) {
-                this.setMaterialColor(Color.green);
-                this.displayGlich(false);
-            } else {
-                this.setMaterialColor(Color.red);
-                this.displayGlich(true);
+
+            // ROTATION
+            float speed = 15f;
+            if (Input.GetKey(KeyCode.LeftShift)) speed = 35f;
+
+            if (Input.GetKey(KeyCode.A)) {
+                this.transform.Rotate(new Vector3(0, 0, 8) * Time.deltaTime * speed);
+            } else if (Input.GetKey(KeyCode.D)) {
+                this.transform.Rotate(new Vector3(0, 0, -8) * Time.deltaTime * speed);
             }
         }
+
     }
 
     /* ************* 
      * Mouse Dragging
      ===============*/
+    public void onDrag() {
+        if (this.canPlaceObject()) {
+            this.setMaterialColor(this._hoverColor);
+            this.displayGlich(false);
+        } else {
+            this.setMaterialColor(this._errorColor);
+            this.displayGlich(true);
+        }
+    }
+
     public void OnMouseDown() {
-        if (!this.canControlObject() || !this.isMouseOnObject()) return;
-
-        // Set draggin start
-        Vector3 objsPos = this.transform.position;
-        this._dragOffset = objsPos - this._camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, objsPos.z));
-
-        this._isDragging = true;
-
-        // Enable movement but freeze rotation //
-        this._body.bodyType = RigidbodyType2D.Kinematic;
+        if (!this.canControlObject() || !this.drag.onMouseDown(this.transform)) return;
+        // Freeze rotation //
         this._body.freezeRotation = true;
-        this._body.useFullKinematicContacts = true;
-        this._body.collisionDetectionMode = CollisionDetectionMode2D.Continuous; // Improve detection
 
         // Trigger paradox visibility
         CoreController.AntiParaController.setVisibility(true);
     }
 
     public void OnMouseUp() {
-        if (!this._isDragging) return;
-        this._isDragging = false;
+        if (!this.drag.onMouseUp()) return;
 
+        // Unfreeze rotation //
         this._body.freezeRotation = false;
-        this._body.bodyType = RigidbodyType2D.Dynamic;
 
         // Trigger paradox visibility
         CoreController.AntiParaController.setVisibility(false);
@@ -103,26 +115,18 @@ public class logic_paradox : MonoBehaviour {
         // Hide Glich
         this.displayGlich(false);
 
-        if (!this.canPlaceObject()) this.resetPosition();
+        if (!this.canPlaceObject()) {
+            this.resetPosition();
+        } else {
+            this._reset.saveObject();
+        }
     }
 
     public void OnMouseDrag() {
-        if (!this.canControlObject() || !this._isDragging) return;
+        if (!this.canControlObject()) return;
+        if (!this.drag.onMouseDrag(this.transform)) return;
 
-        Vector3 curPosition = this._camera.ScreenToWorldPoint(Input.mousePosition) + this._dragOffset;
-        this.transform.position = curPosition;
-
-        // Reset applied physics //
-        this._body.velocity = Vector3.zero;
-    }
-
-
-    private bool isMouseOnObject() {
-        Vector3 mousePos = Input.mousePosition - new Vector3(1f, 1f, 0);
-        RaycastHit2D screenRay = Physics2D.Raycast(this._camera.ScreenToWorldPoint(mousePos), Vector2.zero);
-        if (screenRay.rigidbody == null || screenRay.rigidbody != this._body) return false;
-
-        return true;
+        this._body.velocity = Vector3.zero; // Reset applied physics
     }
 
     /* ************* 
@@ -130,47 +134,25 @@ public class logic_paradox : MonoBehaviour {
      ===============*/
     private void setMaterialColor(Color color) {
         if (this._paradoxMaterial == null) return;
-        this._paradoxMaterial.SetColor("_paradox_color", color);
+        this._paradoxMaterial.setMaterialColor("_paradox_color", color);
     }
 
     private void displayParadox(bool visible) {
         if (this._paradoxMaterial == null) return;
-        this._paradoxMaterial.SetFloat("_material_blend", visible ? 0.05f : 0f);
+        this._paradoxMaterial.setMaterialFloat("_material_blend", visible ? 0.05f : 0f);
     }
 
     private void displayGlich(bool visible) {
         if (this._paradoxMaterial == null) return;
-        this._paradoxMaterial.SetFloat("_paradox_glich", visible ? 0.25f : 0f);
+        this._paradoxMaterial.setMaterialFloat("_paradox_glich", visible ? 0.25f : 0f);
     }
-
-    private SpriteRenderer[] getRenderSprites() {
-        return this.GetComponentsInChildren<SpriteRenderer>();
-    }
-
-    private void setParadoxMaterial() {
-        _paradoxMaterial = new Material(Shader.Find("Paradox_outline"));
-
-        SpriteRenderer[] renderers = this.getRenderSprites();
-        if (renderers == null || renderers.Length <= 0) return;
-
-        foreach (SpriteRenderer spr in renderers) {
-            if (spr == null) continue;
-            spr.material = this._paradoxMaterial;
-        }
-    }
-
 
     /* ************* 
      * Physics
      ===============*/
-    public void enableMovement() {
-        this._body.bodyType = RigidbodyType2D.Dynamic;
-    }
 
     public void OnCollisionEnter2D(Collision2D collision) {
         Collider2D col = collision.collider;
-        if (col.tag.IndexOf("paradox_object") != -1) return; // Ignore other paradox items
-
         if (this._colliders.Contains(col)) return;
         this._colliders.Add(col);
     }
@@ -186,31 +168,39 @@ public class logic_paradox : MonoBehaviour {
     }
 
     /* ************* 
-     * Time related
+     * EVENTS + TIME
      ===============*/
+    public void OnEnable() {
+        TimeController.OnTimeChange += this.setTimeStatus;
+        this.drag.OnDrag += this.onDrag;
+    }
 
-    public void setTimeStatus(bool started) {
-        if (started) {
-            this.enableMovement();
-            this.saveParadoxPosition();
-        } else {
+    public void OnDisable() {
+        TimeController.OnTimeChange -= this.setTimeStatus;
+        this.drag.OnDrag -= this.onDrag;
+    }
+
+    private void setMovement(bool enabled) {
+        this._body.bodyType = enabled ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+        this._body.velocity = Vector3.zero;
+        this._body.angularVelocity = 0;
+        this._body.freezeRotation = false;
+    }
+
+    private void setTimeStatus(bool started) {
+        if (!started) {
             this.resetPosition();
         }
 
         this._timeEnabled = started;
+
+        this.setMovement(started);
         this.displayParadox(!started);
     }
 
     private void resetPosition() {
-        this.transform.position = this._originalPosition;
-        this.transform.eulerAngles = this._originalAngle;
+        this._reset.resetObject();
     }
-
-    private void saveParadoxPosition() {
-        this._originalPosition = this.transform.position;
-        this._originalAngle = this.transform.eulerAngles;
-    }
-
 
     private bool canControlObject() {
         return !this._timeEnabled;

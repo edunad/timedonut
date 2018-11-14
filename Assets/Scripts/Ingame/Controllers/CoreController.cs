@@ -10,9 +10,7 @@ public class CoreController : MonoBehaviour {
     public void Awake() {
         AntiParaController = ScriptableObject.CreateInstance<AntiParadoxController>();
         TimeController = ScriptableObject.CreateInstance<TimeController>();
-
         AntiParaController.init();
-        TimeController.init();
     }
 }
 

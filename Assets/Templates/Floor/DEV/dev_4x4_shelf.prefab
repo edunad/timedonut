@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4694405820680516}
   - component: {fileID: 212332457158739838}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4519711250740076}
   - component: {fileID: 212107710854343238}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tile (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,7 +52,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4924450065382524}
   - component: {fileID: 212380748906008934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tile (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,9 +68,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4488463446959124}
   - component: {fileID: 61064149256605538}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dev_4x4_shelf
-  m_TagString: Untagged
+  m_TagString: static_object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,7 +84,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4969440126879574}
   - component: {fileID: 212477137388432740}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: tile (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,8 +97,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1575802185835000}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.5, y: 0.49, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2.5, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4694405820680516}

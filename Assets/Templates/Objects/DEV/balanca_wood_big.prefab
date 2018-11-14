@@ -37,6 +37,8 @@ GameObject:
   - component: {fileID: 4933876623056824}
   - component: {fileID: 61192333183055090}
   - component: {fileID: 50850183954290064}
+  - component: {fileID: 114126574432374512}
+  - component: {fileID: 114641352111001196}
   m_Layer: 0
   m_Name: balanca_wood_big
   m_TagString: Untagged
@@ -121,8 +123,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1765931661670472}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.7375337, y: 2.0493562, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -0.40955997, y: 2.7168806, z: 0.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4687635747435940}
@@ -130,7 +132,7 @@ Transform:
   - {fileID: 4197019635012188}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!50 &50850183954290064
 Rigidbody2D:
   serializedVersion: 4
@@ -176,6 +178,28 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3, y: 0.08}
   m_EdgeRadius: 0
+--- !u!114 &114126574432374512
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765931661670472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d66eb822d2ad954382dc827901ce586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114641352111001196
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1765931661670472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8de86e26f72ae341bb75964205a142c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212093215877701738
 SpriteRenderer:
   m_ObjectHideFlags: 1

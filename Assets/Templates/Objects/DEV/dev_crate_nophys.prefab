@@ -21,12 +21,12 @@ GameObject:
   - component: {fileID: 4053397364640446}
   - component: {fileID: 212174764195913768}
   - component: {fileID: 61555090008917616}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: dev_crate_nophys
-  m_TagString: Untagged
+  m_TagString: static_object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4053397364640446
 Transform:
@@ -34,8 +34,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1274320612549396}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.43, y: 0.5349648, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.01044, y: 0.9918453, z: -0.005859375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

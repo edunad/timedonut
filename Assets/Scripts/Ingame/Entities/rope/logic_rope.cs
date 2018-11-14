@@ -17,9 +17,15 @@ public class logic_rope : MonoBehaviour {
     private logic_rope_node _endNode;
     private Rigidbody2D _endBody;
 
+    // TIME VARS
+    private Vector3 _end_originalPosition;
+    private Vector3 _end_originalLocalPosition;
+    private Quaternion _end_originalAngle;
+    private bool _timeRunning;
+
     // LIST
     private List<logic_rope_node> _ropeNodes;
-
+   
     public void Awake() {
         this._ropeNodes = new List<logic_rope_node>();
         this._endBody = this.end.GetComponent<Rigidbody2D>();
@@ -27,24 +33,60 @@ public class logic_rope : MonoBehaviour {
         this._endNode = this.end.AddComponent<logic_rope_node>();
         this._endNode.setRopeController(this);
 
+        // Store original pos
+        this._end_originalPosition = this.end.transform.position;
+        this._end_originalLocalPosition = this.end.transform.localPosition;
+        this._end_originalAngle = this.end.transform.rotation;
+
         this.generateRope();
     }
-    
+
     /* ************* 
-     * Time related
-     ===============*/
-    public void enableMovement(bool enable) {
+   * EVENTS + TIME
+   ===============*/
+    public void OnEnable() {
+        TimeController.OnTimeChange += this.setTimeStatus;
+    }
+
+    public void OnDisable() {
+        TimeController.OnTimeChange -= this.setTimeStatus;
+    }
+
+    private void setTimeStatus(bool running) {
         for (int i = 1; i < this._ropeNodes.Count - 1; i++) {
             logic_rope_node node = this._ropeNodes[i];
             if (node == null) continue;
-            if (!enable) this.generateRope();
 
-            node.body.bodyType = enable ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
+            if (!running) this.resetRope();
+            else node.body.bodyType = RigidbodyType2D.Dynamic;
+        }
+
+        this._timeRunning = running;
+    }
+
+    private void resetRope() {
+        this.end.transform.position = this._end_originalPosition;
+        this.end.transform.localPosition = this._end_originalLocalPosition;
+        this.end.transform.rotation = this._end_originalAngle;
+
+        for (int i = 0; i < this._ropeNodes.Count; i++) {
+            logic_rope_node node = this._ropeNodes[i];
+            if (node == null) continue;
+            if (node.isTEMP) {
+                this._ropeNodes.Remove(node);
+                Destroy(node.gameObject);
+            } else {
+                node.resetNode();
+            }
         }
     }
-    
+
+    /* ************* 
+     * Rope cutting
+     ===============*/
     public void onRopeCut(logic_rope_node rope_node, Vector3 localCutPoint, Vector3 worldCutPoint) {
         if (rope_node == null || rope_node.joint == null) return;
+        if (!this._timeRunning) return;
 
         logic_rope_node next_rope_node = rope_node.nextNode;
         if (next_rope_node == null) return;
@@ -60,11 +102,12 @@ public class logic_rope : MonoBehaviour {
         logic_rope_node ropeStart = this.createStartNode(rope_node.gameObject, RigidbodyType2D.Dynamic);
         ropeStart.transform.localPosition = new Vector3(localCutPoint.x, localCutPoint.y, this.transform.position.z); // Fix Z
         ropeStart.transform.position = new Vector3(worldCutPoint.x, worldCutPoint.y, this.transform.position.z); // Fix Z
+        ropeStart.isTEMP = true;
 
         // Create a new rope node
         logic_rope_node newNode = this.createRopeNode(ropeStart, worldCutPoint - localCutPoint);
         newNode.body.bodyType = RigidbodyType2D.Dynamic;
-
+        newNode.isTEMP = true;
 
         next_rope_node.joint.connectedBody = newNode.body;
         next_rope_node.updateNode();
@@ -88,6 +131,7 @@ public class logic_rope : MonoBehaviour {
         GameObject temp = new GameObject();
         temp.name = "rope_node_START_" + index;
         temp.transform.parent = this.gameObject.transform;
+        temp.tag = "particle_object";
 
         Vector3 pos = originalNode.transform.position;
         temp.transform.position = new Vector3(pos.x, pos.y, this.transform.position.z); // Fix Z
@@ -109,11 +153,6 @@ public class logic_rope : MonoBehaviour {
         // GET TOTAL NODES
         int totalNodes = this.getTotalNodes();
 
-        // CLEANUP
-        for (int i = 1; i < this._ropeNodes.Count - 1; i++) {
-            GameObject.Destroy(this._ropeNodes[i]);
-        }
-
         // GENERATE NODES
         this._ropeNodes.Clear();
         this._ropeNodes.Add(this.createStartNode(this.gameObject, RigidbodyType2D.Kinematic)); // Add start
@@ -128,6 +167,7 @@ public class logic_rope : MonoBehaviour {
 
         // Fix last node
         logic_rope_node lastNode = this._ropeNodes[totalNodes];
+
         HingeJoint2D joint = this.createJoint(lastNode.body, end);
         joint.anchor = joint.anchor - new Vector2(0, ropeOffset.y);
 
@@ -137,8 +177,9 @@ public class logic_rope : MonoBehaviour {
 
         // Add end body
         this._ropeNodes.Add(this._endNode); // Add start
-        this.assignNextNode();
+        this.saveAndAssignNodes();
     }
+    
 
     private logic_rope_node createRopeNode(logic_rope_node prevNode, Vector3 nodePos) {
         int index = this._ropeNodes.Count;
@@ -149,6 +190,7 @@ public class logic_rope : MonoBehaviour {
         node.transform.parent = this.gameObject.transform;
         node.transform.position = new Vector3(nodePos.x, nodePos.y, this.transform.position.z); // Fix Z
         node.layer = 13;
+        node.tag = "particle_object";
 
         Rigidbody2D body = node.AddComponent<Rigidbody2D>();
         body.bodyType = RigidbodyType2D.Kinematic;
@@ -200,10 +242,14 @@ public class logic_rope : MonoBehaviour {
         return joint;
     }
 
-    public void assignNextNode() {
+    public void saveAndAssignNodes() {
         for (int i = 0; i < this._ropeNodes.Count; i++) {
             if (i + 1 >= this._ropeNodes.Count) break;
             this._ropeNodes[i].nextNode = this._ropeNodes[i + 1];
+        }
+
+        for (int i = 0; i < this._ropeNodes.Count; i++) {
+            this._ropeNodes[i].saveNode();
         }
     }
 

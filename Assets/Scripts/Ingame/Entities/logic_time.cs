@@ -1,23 +1,20 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(util_resetable))]
 public class logic_time : MonoBehaviour {
     private Rigidbody2D _body;
-
-    // TIME VARS
-    private Vector3 _originalPosition;
-    private Vector3 _originalAngle;
-
+    private util_resetable _reset;
+    
     public void Awake() {
-        this._originalPosition = this.transform.position;
-        this._originalAngle = this.transform.eulerAngles;
-        
         this._body = GetComponent<Rigidbody2D>();
-        
+
+        // Setup reset
+        this._reset = GetComponent<util_resetable>();
+        this._reset.saveObject();
+
         // Disable movement by default
         this._body.bodyType = RigidbodyType2D.Static;
 
@@ -29,25 +26,23 @@ public class logic_time : MonoBehaviour {
     /* ************* 
      * Physics
      ===============*/
-    public void enableMovement() {
-        this._body.bodyType = RigidbodyType2D.Dynamic;
+    public void setMovement(bool enabled) {
+        this._body.bodyType = enabled ? RigidbodyType2D.Dynamic : RigidbodyType2D.Static;
     }
-    
+
     /* ************* 
-     * Time related
-     ===============*/
-
-    public void setTimeStatus(bool started) {
-        if (started) {
-            this.enableMovement();
-        } else {
-            this.resetPosition();
-        }
+       * EVENTS + TIME
+       ===============*/
+    public void OnEnable() {
+        TimeController.OnTimeChange += this.setTimeStatus;
     }
 
-    private void resetPosition() {
-        this.transform.position = this._originalPosition;
-        this.transform.eulerAngles = this._originalAngle;
-        this._body.bodyType = RigidbodyType2D.Static;
+    public void OnDisable() {
+        TimeController.OnTimeChange -= this.setTimeStatus;
+    }
+
+    private void setTimeStatus(bool started) {
+        this.setMovement(started);
+        if (!started) this._reset.resetObject();
     }
 }
