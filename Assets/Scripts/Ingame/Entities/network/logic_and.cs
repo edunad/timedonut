@@ -39,7 +39,9 @@ public class logic_and : MonoBehaviour {
 
     public void setTimeStatus(bool running) {
         this._networkData.Clear();
+
         this._animator.SetInteger("status", 0);
+        this._cable.setCableColor(Color.red);
     }
 
     /* ************* 
@@ -75,10 +77,15 @@ public class logic_and : MonoBehaviour {
         this.alertLogic(this._networkData[keys[0]].data == 1 && this._networkData[keys[1]].data == 1);
     }
 
+    private void setCableColor(Color col) {
+        if (this._cable == null) return;
+        this._cable.setCableColor(col);
+    }
+
     private void alertLogic(bool isEnabled) {
         if (this.reciever == null) return;
 
-        if (this._cable != null) this._cable.setCableColor(isEnabled ? Color.green: Color.red);
+        this._cable.setCableColor(isEnabled ? Color.green: Color.red);
         this._animator.SetInteger("status", isEnabled ? 1 : 0);
         this.reciever.BroadcastMessage("onDataRecieved", new object[] { this.gameObject, isEnabled }, SendMessageOptions.DontRequireReceiver);
     }

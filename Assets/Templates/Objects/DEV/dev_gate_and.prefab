@@ -86,7 +86,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 0}
-  cableSize: 0.1
+  cableSize: 0.06
   cableOffset:
   - {x: 0, y: 0.54, z: 0}
 --- !u!120 &120770837262121634

@@ -6,11 +6,26 @@ using UnityEngine;
 public class CoreController : MonoBehaviour {
     public static AntiParadoxController AntiParaController;
     public static TimeController TimeController;
+    public static HUDController HUDController;
 
     public void Awake() {
         AntiParaController = ScriptableObject.CreateInstance<AntiParadoxController>();
         TimeController = ScriptableObject.CreateInstance<TimeController>();
+        HUDController = GameObject.Find("HUD_Camera").GetComponent<HUDController>();
+
         AntiParaController.init();
+    }
+
+    public void Update() {
+        util_timer.Update();
+    }
+
+    public void OnDestroy() {
+        util_timer.Clear();
+    }
+
+    public static void onTimeClick() {
+        TimeController.timeStatus(!TimeController.timeRunning);
     }
 }
 
