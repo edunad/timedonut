@@ -30,11 +30,11 @@ public class logic_button : MonoBehaviour {
      * EVENTS + TIME
      ===============*/
     public void OnEnable() {
-        TimeController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnTimeChange += this.setTimeStatus;
     }
 
     public void OnDisable() {
-        TimeController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnTimeChange -= this.setTimeStatus;
     }
 
     public void setTimeStatus(bool running) {

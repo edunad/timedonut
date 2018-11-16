@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(util_resetable))]
 public class logic_tape : MonoBehaviour {
 
+    private CoreController _core;
+
     private Collider2D _stickStart;
     private Collider2D _stickEnd;
 
@@ -33,6 +35,8 @@ public class logic_tape : MonoBehaviour {
     private bool _isTimeEnabled;
 
     public void Awake() {
+        this._core = GameObject.Find("Core").GetComponent<CoreController>();
+
         this._colliders = new List<Collider2D>();
         this._enabledStickingTags = new List<string>() {
             "static_object",
@@ -117,7 +121,8 @@ public class logic_tape : MonoBehaviour {
         this._body.useFullKinematicContacts = true;
 
         // Trigger paradox visibility
-        CoreController.AntiParaController.setVisibility(true);
+        this._core.AntiParaController.setVisibility(true);
+
         this.setTapeAttach(false); // Reset tape
     }
 
@@ -131,7 +136,7 @@ public class logic_tape : MonoBehaviour {
         if (!this._drag.onMouseUp()) return;
 
         // Trigger paradox visibility
-        CoreController.AntiParaController.setVisibility(false);
+        this._core.AntiParaController.setVisibility(false);
 
         // Unfreeze rotation
         this._body.freezeRotation = false;
@@ -227,12 +232,12 @@ public class logic_tape : MonoBehaviour {
      * EVENTS + TIME
      ===============*/
     public void OnEnable() {
-        TimeController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnTimeChange += this.setTimeStatus;
         this._drag.OnDrag += this.onDrag;
     }
 
     public void OnDisable() {
-        TimeController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnTimeChange -= this.setTimeStatus;
         this._drag.OnDrag -= this.onDrag;
     }
 

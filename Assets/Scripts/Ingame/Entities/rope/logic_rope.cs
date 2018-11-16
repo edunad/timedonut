@@ -45,11 +45,11 @@ public class logic_rope : MonoBehaviour {
    * EVENTS + TIME
    ===============*/
     public void OnEnable() {
-        TimeController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnTimeChange += this.setTimeStatus;
     }
 
     public void OnDisable() {
-        TimeController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnTimeChange -= this.setTimeStatus;
     }
 
     private void setTimeStatus(bool running) {
@@ -139,8 +139,8 @@ public class logic_rope : MonoBehaviour {
 
         Rigidbody2D tempBody = temp.AddComponent<Rigidbody2D>();
         tempBody.bodyType = bodyType;
-        tempBody.mass = 100f;
-        tempBody.angularDrag = 10f;
+        tempBody.mass = 1f;
+        tempBody.angularDrag = 1f;
 
         logic_rope_node node = temp.AddComponent<logic_rope_node>();
         node.setRopeController(this);
@@ -194,8 +194,8 @@ public class logic_rope : MonoBehaviour {
 
         Rigidbody2D body = node.AddComponent<Rigidbody2D>();
         body.bodyType = RigidbodyType2D.Kinematic;
-        body.mass = 100f;
-        body.angularDrag = 10f;
+        body.mass = 1f;
+        body.angularDrag = 1f;
         
         HingeJoint2D joint = this.createJoint(prevNode.body, node);
 

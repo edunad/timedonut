@@ -7,6 +7,8 @@ TextureImporter:
     21300004: UI_TIME_REWIND
     21300006: UI_EMPTY
     21300008: UI_DEATH
+    21300010: UI_TIMELINE
+    21300012: UI_PARADOX
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -195,17 +197,57 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 28
-        y: 118
+        y: 116
         width: 9
-        height: 9
+        height: 11
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 713becc66c154604282601de72814a67
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_TIMELINE
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 109
+        width: 9
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 626bf54e9e9492c4e9de2fa733c19143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_PARADOX
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 109
+        width: 36
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e540bfd8cbf15fd40a4970582763f687
       vertices: []
       indices: 
       edges: []

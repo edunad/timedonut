@@ -34,11 +34,11 @@ public class logic_time : MonoBehaviour {
        * EVENTS + TIME
        ===============*/
     public void OnEnable() {
-        TimeController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnTimeChange += this.setTimeStatus;
     }
 
     public void OnDisable() {
-        TimeController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnTimeChange -= this.setTimeStatus;
     }
 
     private void setTimeStatus(bool started) {

@@ -12,10 +12,12 @@ public class logic_nailer : MonoBehaviour {
     private List<string> _allowedColliders;
 
     private bool _timeRunning = false;
+    private bool _isTimed = false;
 
     public void Awake() {
         this._colliders = new List<Collider2D>();
         this._nails = new List<GameObject>();
+        this._isTimed = this.GetComponent<logic_time>() != null;
 
         this._allowedColliders = new List<string>() {
             "paradox_object",
@@ -47,11 +49,11 @@ public class logic_nailer : MonoBehaviour {
      * EVENTS + TIME
      ===============*/
     public void OnEnable() {
-        TimeController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnTimeChange += this.setTimeStatus;
     }
 
     public void OnDisable() {
-        TimeController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnTimeChange -= this.setTimeStatus;
     }
 
     private void setTimeStatus(bool enabled) {
@@ -77,7 +79,7 @@ public class logic_nailer : MonoBehaviour {
         Vector3 shootPos = this.transform.TransformPoint(Vector3.right * 0.2f) + new Vector3(0.1f, 0.1f, 0);
         nail.transform.position = new Vector3(shootPos.x, shootPos.y, this.transform.position.z);
         nail.transform.rotation = this.transform.rotation;
-        nail.layer = 11;
+        nail.layer = this._isTimed ? 11 : 10;
 
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();
         nailBody.AddForce(this.transform.right * 80, ForceMode2D.Impulse);

@@ -11,6 +11,7 @@ public class logic_paradox : MonoBehaviour {
     public util_drag drag;
 
     private Rigidbody2D _body;
+    private CoreController _core;
 
     // DRAGGING
     private List<Collider2D> _colliders;
@@ -27,6 +28,7 @@ public class logic_paradox : MonoBehaviour {
     private readonly Color _errorColor = new Color(0.75f, 0.22f, 0.16f);
 
     public void Awake() {
+        this._core = GameObject.Find("Core").GetComponent<CoreController>();
 
         // Set material
         this._paradoxMaterial = GetComponent<util_material>();
@@ -100,7 +102,7 @@ public class logic_paradox : MonoBehaviour {
         this._body.freezeRotation = true;
 
         // Trigger paradox visibility
-        CoreController.AntiParaController.setVisibility(true);
+        this._core.AntiParaController.setVisibility(true);
     }
 
     public void OnMouseUp() {
@@ -110,7 +112,7 @@ public class logic_paradox : MonoBehaviour {
         this._body.freezeRotation = false;
 
         // Trigger paradox visibility
-        CoreController.AntiParaController.setVisibility(false);
+        this._core.AntiParaController.setVisibility(false);
 
         // Hide Glich
         this.displayGlich(false);
@@ -171,12 +173,12 @@ public class logic_paradox : MonoBehaviour {
      * EVENTS + TIME
      ===============*/
     public void OnEnable() {
-        TimeController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnTimeChange += this.setTimeStatus;
         this.drag.OnDrag += this.onDrag;
     }
 
     public void OnDisable() {
-        TimeController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnTimeChange -= this.setTimeStatus;
         this.drag.OnDrag -= this.onDrag;
     }
 
