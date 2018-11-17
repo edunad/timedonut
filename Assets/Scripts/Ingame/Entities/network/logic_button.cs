@@ -19,6 +19,8 @@ public class logic_button : MonoBehaviour {
     private AudioSource _audioSource;
     private AudioClip[] _audioClips;
 
+    private bool _hasWon = false;
+
     public void Awake() {
         if (this.reciever == null) throw new UnityException("logic_button missing a reciever");
         this._cable = this.GetComponent<logic_cable>();
@@ -43,15 +45,23 @@ public class logic_button : MonoBehaviour {
     /* ************* 
      * EVENTS + TIME
      ===============*/
+    private void onWin() {
+        this._hasWon = true; // Disable the script
+    }
+
     public void OnEnable() {
         CoreController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnGameWin += this.onWin;
     }
 
     public void OnDisable() {
         CoreController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnGameWin += this.onWin;
     }
 
     public void setTimeStatus(bool running) {
+        if (this._hasWon) return;
+
         this._colliders.Clear();
         this.setPressed(false, true);
 
@@ -59,7 +69,7 @@ public class logic_button : MonoBehaviour {
     }
 
     public void setPressed(bool pressed, bool skipSound = false) {
-        if (this.isPressed == pressed) return;
+        if (this.isPressed == pressed || this._hasWon) return;
         this.isPressed = pressed;
 
         if (!skipSound) {
@@ -84,6 +94,7 @@ public class logic_button : MonoBehaviour {
      ===============*/
 
     public void OnTriggerEnter2D(Collider2D collider) {
+        if (this._hasWon) return;
         if (!this._timeRunning || !this._allowedColliders.Contains(collider.tag)) return;
         if (this._colliders.Contains(collider)) return;
 
@@ -108,7 +119,7 @@ public class logic_button : MonoBehaviour {
      * LOGIC
      ===============*/
     private void alertLogic() {
-        if (this.reciever == null || !this._timeRunning) return;
+        if (this.reciever == null || !this._timeRunning || this._hasWon) return;
         this.reciever.BroadcastMessage("onDataRecieved", new object[]{ this.gameObject, this.isPressed }, SendMessageOptions.DontRequireReceiver);
     }
 

@@ -7,7 +7,9 @@ using UnityEngine;
 public class logic_time : MonoBehaviour {
     private Rigidbody2D _body;
     private util_resetable _reset;
-    
+
+    private bool _hasWon = false;
+
     public void Awake() {
         this._body = GetComponent<Rigidbody2D>();
 
@@ -31,18 +33,27 @@ public class logic_time : MonoBehaviour {
     }
 
     /* ************* 
-       * EVENTS + TIME
-       ===============*/
+     * EVENTS + TIME
+    ===============*/
+    private void onWin() {
+        this._hasWon = true; // Disable the script
+        this.setMovement(false);
+    }
+
     public void OnEnable() {
+        CoreController.OnGameWin += this.onWin;
         CoreController.OnTimeChange += this.setTimeStatus;
     }
 
     public void OnDisable() {
+        CoreController.OnGameWin -= this.onWin;
         CoreController.OnTimeChange -= this.setTimeStatus;
     }
 
     private void setTimeStatus(bool started) {
+        if (this._hasWon) return;
+
+        this._reset.resetObject();
         this.setMovement(started);
-        if (!started) this._reset.resetObject();
     }
 }

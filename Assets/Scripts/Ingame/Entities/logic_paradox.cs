@@ -27,6 +27,8 @@ public class logic_paradox : MonoBehaviour {
     private readonly Color _hoverColor = new Color(1f, 1f, 1f);
     private readonly Color _errorColor = new Color(0.75f, 0.22f, 0.16f);
 
+    private bool _hasWon = false;
+
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
 
@@ -59,7 +61,7 @@ public class logic_paradox : MonoBehaviour {
      * Core
      ===============*/
     public void Update() {
-        if (!this.canControlObject()) return;
+        if (!this.canControlObject() || this._hasWon) return;
 
         if (!this.drag.isDragging) {
             if (this.drag.isMouseOnObject()) {
@@ -97,7 +99,7 @@ public class logic_paradox : MonoBehaviour {
     }
 
     public void OnMouseDown() {
-        if (!this.canControlObject() || !this.drag.onMouseDown(this.transform)) return;
+        if (!this.canControlObject() || !this.drag.onMouseDown(this.transform) || this._hasWon) return;
         // Freeze rotation //
         this._body.freezeRotation = true;
 
@@ -172,16 +174,29 @@ public class logic_paradox : MonoBehaviour {
     /* ************* 
      * EVENTS + TIME
      ===============*/
+    private void onWin() {
+        this._hasWon = true; // Disable the script
+        this.drag.isDisabled = true;
+
+        this.setMovement(false);
+    }
+
     public void OnEnable() {
+        CoreController.OnGameWin += this.onWin;
         CoreController.OnTimeChange += this.setTimeStatus;
         this.drag.OnDrag += this.onDrag;
     }
 
+
     public void OnDisable() {
+        CoreController.OnGameWin -= this.onWin;
         CoreController.OnTimeChange -= this.setTimeStatus;
         this.drag.OnDrag -= this.onDrag;
     }
 
+    /* ************* 
+     * PHYSICS
+     ===============*/
     private void setMovement(bool enabled) {
         this._body.bodyType = enabled ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
         this._body.velocity = Vector3.zero;
@@ -190,9 +205,8 @@ public class logic_paradox : MonoBehaviour {
     }
 
     private void setTimeStatus(bool started) {
-        if (!started) {
-            this.resetPosition();
-        }
+        if (this._hasWon) return;
+        if (!started)  this.resetPosition();
 
         this._timeEnabled = started;
 
@@ -205,6 +219,6 @@ public class logic_paradox : MonoBehaviour {
     }
 
     private bool canControlObject() {
-        return !this._timeEnabled;
+        return !this._timeEnabled && !this._hasWon;
     }
 }

@@ -17,6 +17,7 @@ public class logic_nailer : MonoBehaviour {
 
     private bool _timeRunning = false;
     private bool _isTimed = false;
+    private bool _hasWon = false;
 
     public void Awake() {
         this._colliders = new List<Collider2D>();
@@ -44,6 +45,8 @@ public class logic_nailer : MonoBehaviour {
      * COLLISION
      ===============*/
     public void OnTriggerEnter2D(Collider2D collider) {
+        if (this._hasWon) return;
+
         if (!this._allowedColliders.Contains(collider.tag)) return;
         if (!this._timeRunning || this._colliders.Count > 0) return;
 
@@ -63,15 +66,22 @@ public class logic_nailer : MonoBehaviour {
     /* ************* 
      * EVENTS + TIME
      ===============*/
+    private void onWin() {
+        this._hasWon = true;
+    }
+
     public void OnEnable() {
         CoreController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnGameWin += this.onWin;
     }
 
     public void OnDisable() {
         CoreController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnGameWin += this.onWin;
     }
 
     private void setTimeStatus(bool enabled) {
+        if (this._hasWon) return;
         if (!enabled && this._nails.Count > 0) {
             foreach (GameObject obj in this._nails)
                 Destroy(obj);
@@ -86,6 +96,7 @@ public class logic_nailer : MonoBehaviour {
      * SHOOTING
      ===============*/
     private void shootNail() {
+        if (this._hasWon) return;
         if (this._nails.Count >= shootCount) {
             this._audioSource.pitch = 1f;
             this._audioSource.clip = this._audioClips[this._audioClips.Length - 1];

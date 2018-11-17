@@ -34,6 +34,8 @@ public class logic_tape : MonoBehaviour {
     private bool _isAttached;
     private bool _isTimeEnabled;
 
+    private bool _hasWon = false;
+
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
 
@@ -102,7 +104,7 @@ public class logic_tape : MonoBehaviour {
     }
 
     public void Update() {
-        if (this._isTimeEnabled) return;
+        if (this._isTimeEnabled || this._hasWon) return;
 
         if (!this._drag.isDragging) {
             if (this._drag.isMouseOnObject()) {
@@ -114,7 +116,7 @@ public class logic_tape : MonoBehaviour {
     }
 
     public void OnMouseDown() {
-        if (this._isTimeEnabled) return;
+        if (this._isTimeEnabled || this._hasWon) return;
         if (!this._drag.onMouseDown(this.transform)) return;
 
         this._body.freezeRotation = true; // Freeze rotation
@@ -155,7 +157,7 @@ public class logic_tape : MonoBehaviour {
      ===============*/
 
     private bool canAttachTape() {
-        if (this._colliders.Count != 2) return false;
+        if (this._hasWon || this._colliders.Count != 2) return false;
         foreach (Collider2D col in this._colliders) {
             if (!this._enabledStickingTags.Contains(col.tag)) return false;
         }
@@ -165,7 +167,7 @@ public class logic_tape : MonoBehaviour {
     }
 
     private void setTapeAttach(bool attach) {
-        if (this._isTimeEnabled) return;
+        if (this._isTimeEnabled || this._hasWon) return;
 
         if (attach) {
             this.attachSticker();
@@ -231,16 +233,29 @@ public class logic_tape : MonoBehaviour {
     /* ************* 
      * EVENTS + TIME
      ===============*/
+    private void onWin() {
+        this._hasWon = true; // Disable the script
+        this._drag.isDisabled = true;
+
+        this.setMovement(false);
+    }
+
     public void OnEnable() {
+        CoreController.OnGameWin += this.onWin;
         CoreController.OnTimeChange += this.setTimeStatus;
         this._drag.OnDrag += this.onDrag;
     }
 
+
     public void OnDisable() {
+        CoreController.OnGameWin -= this.onWin;
         CoreController.OnTimeChange -= this.setTimeStatus;
         this._drag.OnDrag -= this.onDrag;
     }
 
+    /* ************* 
+     * PHYSICS
+     ===============*/
     private void setMovement(bool enabled) {
         this._body.bodyType = enabled ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
         this._body.velocity = Vector3.zero;
@@ -249,6 +264,8 @@ public class logic_tape : MonoBehaviour {
     }
 
     private void setTimeStatus(bool started) {
+        if (this._hasWon) return;
+
         if (started) {
             this.gameObject.layer = !this._isAttached ? 11 : 13;
             this._collision.enabled = !this._isAttached;
@@ -269,6 +286,8 @@ public class logic_tape : MonoBehaviour {
      * PHYSICS
      ===============*/
     public void OnCollisionEnter2D(Collision2D collision) {
+        if (this._hasWon) return;
+
         Collider2D collider = collision.collider;
         if (this._colliders.Contains(collider)) return;
         this._colliders.Add(collider);

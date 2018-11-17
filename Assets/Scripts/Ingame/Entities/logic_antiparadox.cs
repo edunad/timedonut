@@ -62,6 +62,10 @@ public class logic_antiparadox : MonoBehaviour {
         this.setParadoxVisibility(false);
     }
 
+    /* ************* 
+     * EVENTS + TIME
+     ===============*/
+
     public void OnEnable() {
         CoreController.OnAntiParadoxVisibility += this.setParadoxVisibility;
     }

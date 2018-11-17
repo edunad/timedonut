@@ -57,3 +57,6 @@ TagManager:
   - name: HUD
     uniqueID: 1431724877
     locked: 0
+  - name: PANEL
+    uniqueID: 2666714797
+    locked: 0

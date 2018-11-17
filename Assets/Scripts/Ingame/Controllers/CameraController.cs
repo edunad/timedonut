@@ -31,7 +31,7 @@ public class CameraController : MonoBehaviour {
         if (this._camera == null) return;
 
         // ZOOM
-        if (Input.GetAxis("Mouse ScrollWheel") != 0) {
+        if (Input.GetAxis("Mouse ScrollWheel") != 0 && this.zoomEnabled && this.canControlCamera) {
             float currZoom = this._camera.orthographicSize + -Input.GetAxis("Mouse ScrollWheel") * sensitivity;
             currZoom = Mathf.Clamp(currZoom, this.minZoom, this.maxZoom);
             this._camera.orthographicSize = currZoom;

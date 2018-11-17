@@ -8,7 +8,7 @@ public class ui_button : MonoBehaviour {
     public GameObject TargetObject;
     public Camera UICamera;
 
-    private float tapCD;
+    private float _tapCD;
     private Camera _uiCamera;
     private bool _isEnabled;
 
@@ -16,9 +16,9 @@ public class ui_button : MonoBehaviour {
         if (UICamera != null) this._uiCamera = UICamera;
         else this._uiCamera = GameObject.Find("HUD_Camera").GetComponent<Camera>();
     }
-
+    
     void Update() {
-        if (!_isEnabled || Application.platform != RuntimePlatform.Android) return;
+        if (!this._isEnabled || Application.platform != RuntimePlatform.Android) return;
         if (TargetObject == null || this._uiCamera == null || Input.touches.Length <= 0)
             return;
         
@@ -30,9 +30,9 @@ public class ui_button : MonoBehaviour {
             TouchPhase phase = touch.phase;
 
             if (phase == TouchPhase.Began) {
-                tapCD = Time.time;
+                this._tapCD = Time.time;
             } else if (phase == TouchPhase.Ended || phase == TouchPhase.Canceled) {
-                if (tapCD > Time.time - 0.3f) {
+                if (this._tapCD > Time.time - 0.3f) {
                     if (pos.x >= startPos.x && pos.x <= endPos.x && pos.y >= startPos.y && pos.y <= endPos.y)
                         TargetObject.SendMessage("OnUIClick", this.name, SendMessageOptions.DontRequireReceiver);
                 }
@@ -42,14 +42,14 @@ public class ui_button : MonoBehaviour {
 
     public void OnMouseUp() {
         if (TargetObject == null) return;
-        if (tapCD > Time.time - 0.3f) return;
+        if (_tapCD > Time.time - 0.3f) return;
 
-        tapCD = Time.time;
+        this._tapCD = Time.time;
         TargetObject.SendMessage("OnUIClick", this.name, SendMessageOptions.DontRequireReceiver);
     }
 
     public void isEnabled(bool enabled) {
-        _isEnabled = enabled;
+        this._isEnabled = enabled;
     }
 
     void OnDrawGizmos() {

@@ -25,7 +25,9 @@ public class logic_rope : MonoBehaviour {
 
     // LIST
     private List<logic_rope_node> _ropeNodes;
-   
+
+    private bool _hasWon = false;
+
     public void Awake() {
         this._ropeNodes = new List<logic_rope_node>();
         this._endBody = this.end.GetComponent<Rigidbody2D>();
@@ -42,17 +44,25 @@ public class logic_rope : MonoBehaviour {
     }
 
     /* ************* 
-   * EVENTS + TIME
-   ===============*/
+     * EVENTS + TIME
+     ===============*/
+    private void onWin() {
+        this._hasWon = true; // Disable the script
+    }
+
     public void OnEnable() {
         CoreController.OnTimeChange += this.setTimeStatus;
+        CoreController.OnGameWin += this.onWin;
     }
 
     public void OnDisable() {
         CoreController.OnTimeChange -= this.setTimeStatus;
+        CoreController.OnGameWin += this.onWin;
     }
 
     private void setTimeStatus(bool running) {
+        if (this._hasWon) return;
+
         for (int i = 1; i < this._ropeNodes.Count - 1; i++) {
             logic_rope_node node = this._ropeNodes[i];
             if (node == null) continue;
@@ -65,6 +75,8 @@ public class logic_rope : MonoBehaviour {
     }
 
     private void resetRope() {
+        if (this._hasWon) return;
+
         this.end.transform.position = this._end_originalPosition;
         this.end.transform.localPosition = this._end_originalLocalPosition;
         this.end.transform.rotation = this._end_originalAngle;
@@ -86,7 +98,7 @@ public class logic_rope : MonoBehaviour {
      ===============*/
     public void onRopeCut(logic_rope_node rope_node, Vector3 localCutPoint, Vector3 worldCutPoint) {
         if (rope_node == null || rope_node.joint == null) return;
-        if (!this._timeRunning) return;
+        if (!this._timeRunning || this._hasWon) return;
 
         logic_rope_node next_rope_node = rope_node.nextNode;
         if (next_rope_node == null) return;
