@@ -13,7 +13,6 @@ public class HUDController : MonoBehaviour {
 
     [Header("HUD MENU Elements")]
     public GameObject winMenuObject;
-    public GameObject winMenuTimeObject;
 
     private readonly float WIDTH = 1024f;
     private readonly float HEIGHT = 768f;
@@ -32,9 +31,6 @@ public class HUDController : MonoBehaviour {
     private float _currentTime;
     private float _deathTimeZone;
     private float _maxTimeZone;
-
-    private float _originalSkullY;
-    private float _originalWinY;
 
     private bool _hasWon;
 
@@ -59,26 +55,14 @@ public class HUDController : MonoBehaviour {
 
     public void Start() {
         if (this._fadeIntro == null) return;
-        this._fadeIntro.triggerFade(true, new Vector3(0.7f, 0, 1f), new Vector3(-2.5f, 0, 1f));
+        this._fadeIntro.triggerFade(true, new Vector3(0.728f, 0, 1f), new Vector3(-2.5f, 0, 1f));
     }
     
     private void Update() {
-        if (!this._hasWon) {
-            if (this.skullObject == null) return;
-            this._currentTime = Mathf.Clamp(this._core.currentTime, 0, this._maxTimeZone);
+        if (this._hasWon) return;
 
-            Vector3 pos = this.skullObject.transform.localPosition;
-            float y = Mathf.Sin(Time.time * 2f) * 0.005f;
-            this.skullObject.transform.localPosition = new Vector3(pos.x, this._originalSkullY + y, pos.z);
-
-            this.setPointerPos();
-        } else {
-            if (this.winMenuTimeObject == null) return;
-
-            Vector3 pos = this.winMenuTimeObject.transform.localPosition;
-            float y = Mathf.Sin(Time.time * 2f) * 0.005f;
-            this.winMenuTimeObject.transform.localPosition = new Vector3(pos.x, this._originalWinY + y, pos.z);
-        }
+        this._currentTime = Mathf.Clamp(this._core.currentTime, 0, this._maxTimeZone);
+        this.setPointerPos();
     }
 
     /* ************* 
@@ -91,8 +75,6 @@ public class HUDController : MonoBehaviour {
         this._glichEffect.scanLineJitter.value = 1f;
 
         this.winMenuObject.SetActive(true);
-        this._originalWinY = this.winMenuTimeObject.transform.localPosition.y;
-
         util_timer.Simple(0.2f, () => {
             this._glichEffect.scanLineJitter.value = 0.03f;
         });
@@ -120,7 +102,6 @@ public class HUDController : MonoBehaviour {
 
         Vector3 pos = this.skullObject.transform.localPosition;
         this.skullObject.transform.localPosition = new Vector3(skullPos, pos.y, pos.z);
-        this._originalSkullY = pos.y;
     }
 
     private float getPercentage(float val) {
