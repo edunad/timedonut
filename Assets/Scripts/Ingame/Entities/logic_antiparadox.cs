@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -15,6 +16,8 @@ public class logic_antiparadox : MonoBehaviour {
 
     [HideInInspector]
     public bool displayParadox;
+
+    private CoreController _core;
 
     private PolygonCollider2D _collider;
     private MeshFilter _filter;
@@ -56,22 +59,21 @@ public class logic_antiparadox : MonoBehaviour {
         this._filter.sharedMesh = paradoxMesh;
 
         this.buildLineRenderer(paradoxMesh);
+        this.setParadoxVisibility(false);
     }
 
+    public void OnEnable() {
+        CoreController.OnAntiParadoxVisibility += this.setParadoxVisibility;
+    }
 
-    public void Start() {
-        if (!Application.isPlaying) this.setParadoxVisibility(true);
-        else this.setParadoxVisibility(false);
-
-        this._lerpTime = 0.9f; // Skip
+    public void OnDisable() {
+        CoreController.OnAntiParadoxVisibility -= this.setParadoxVisibility;
     }
 
     /* ************* 
      * Display Effect
      ===============*/
     public void setParadoxVisibility(bool display) {
-        if (this.displayParadox == display) return;
-
         this.displayParadox = display;
         this._currentAlpha = Mathf.Abs(this.lineMaterial.GetFloat("_particle_alpha")); // Either one, does not matter
         this._lerpTime = 0;
@@ -119,9 +121,8 @@ public class logic_antiparadox : MonoBehaviour {
 
         // Create the Vector3 vertices
         List<Vector3> vertices = new List<Vector3>();
-        for (int i = 0; i < paths.Length; i++) {
+        for (int i = 0; i < paths.Length; i++)
             vertices.Add(new Vector3(paths[i].x, paths[i].y, 0));
-        }
        
         genMesh.SetVertices(vertices);
         genMesh.RecalculateBounds();
@@ -143,7 +144,15 @@ public class logic_antiparadox : MonoBehaviour {
      * EDITOR
      ===============*/
     void OnDrawGizmos() {
+        if (this._collider == null) return;
         Gizmos.color = new Color(0, 255, 0, 255);
-        //Gizmos.DrawIcon(transform.position, "logic_rockjump", true);
+
+        List<Vector2> paths = this._collider.GetPath(0).ToList();
+        paths.Add(paths[0]);
+
+        Vector2 pos = this.transform.position;
+
+        for (int i = 0; i < paths.Count -1; i++)
+            Gizmos.DrawLine(pos + paths[i], pos + paths[i + 1]);
     }
 }

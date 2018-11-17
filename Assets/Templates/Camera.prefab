@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 81932655687972676}
   - component: {fileID: 114800386456883718}
   - component: {fileID: 114274079053977978}
+  - component: {fileID: 114745693257057940}
   m_Layer: 14
   m_Name: Camera
   m_TagString: MainCamera
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1935601120065552}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.7400055, y: -0.23, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -67,7 +68,7 @@ Camera:
   far clip plane: 40
   field of view: 60
   orthographic: 1
-  orthographic size: 3.1954136
+  orthographic size: 4.76
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -79,7 +80,7 @@ Camera:
   m_HDR: 0
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -153,6 +154,31 @@ MonoBehaviour:
       PublicKeyToken=null
   - assemblyQualifiedName: Kino.DigitalGlitch, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114745693257057940
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935601120065552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae55f4dbf85d9cb4cbd09130569749ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoomEnabled: 1
+  sensitivity: 2
+  minZoom: 3
+  maxZoom: 4.76
+  playAreaEnabled: 1
+  playArea:
+    serializedVersion: 2
+    x: -11.76
+    y: -4.96
+    width: 9.9
+    height: 4.68
+  playAreaOffset: {x: -2.13, y: -0.06, z: 0}
+  canControlCamera: 1
+  controlSpeed: 0.1
 --- !u!114 &114800386456883718
 MonoBehaviour:
   m_ObjectHideFlags: 1

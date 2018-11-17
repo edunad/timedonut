@@ -22,6 +22,7 @@ public class logic_rope_node : MonoBehaviour {
     private Rigidbody2D _oldConnectedBody;
     private RigidbodyType2D _oldBody;
     private logic_rope_node _oldNextNode;
+    private float _oldMass;
 
     public void saveNode() {
         this._originalParent = this.transform.parent;
@@ -32,6 +33,7 @@ public class logic_rope_node : MonoBehaviour {
 
         this._oldNextNode = nextNode;
         this._oldBody = this.body.bodyType;
+        this._oldMass = this.body.mass;
 
         if (this.joint != null) {
             this._oldAnchor = this.joint.anchor;
@@ -64,6 +66,7 @@ public class logic_rope_node : MonoBehaviour {
         if (this.body.bodyType != RigidbodyType2D.Static) {
             this.body.velocity = Vector3.zero;
             this.body.angularVelocity = 0f;
+            this.body.mass = this._oldMass;
         }
 
         if (this.joint != null) {

@@ -1,7 +1,8 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class logic_nailer : MonoBehaviour {
 
     public GameObject nailInstance;
@@ -10,6 +11,9 @@ public class logic_nailer : MonoBehaviour {
     private List<Collider2D> _colliders;
     private List<GameObject> _nails;
     private List<string> _allowedColliders;
+    private AudioClip[] _audioClips;
+
+    private AudioSource _audioSource;
 
     private bool _timeRunning = false;
     private bool _isTimed = false;
@@ -17,11 +21,22 @@ public class logic_nailer : MonoBehaviour {
     public void Awake() {
         this._colliders = new List<Collider2D>();
         this._nails = new List<GameObject>();
-        this._isTimed = this.GetComponent<logic_time>() != null;
 
+        this._isTimed = this.GetComponent<logic_time>() != null;
         this._allowedColliders = new List<string>() {
             "paradox_object",
             "timed_object"
+        };
+
+
+        this._audioSource = this.GetComponent<AudioSource>();
+        this._audioSource.playOnAwake = false;
+        this._audioSource.volume = 0.13f;
+
+        this._audioClips = new AudioClip[] {
+            AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_1"),
+            AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_2"),
+            AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_empty"),
         };
     }
 
@@ -63,7 +78,7 @@ public class logic_nailer : MonoBehaviour {
 
             this._nails.Clear();
         }
-
+        
         this._timeRunning = enabled;
     }
 
@@ -71,7 +86,13 @@ public class logic_nailer : MonoBehaviour {
      * SHOOTING
      ===============*/
     private void shootNail() {
-        if (this._nails.Count >= shootCount) return; // Todo play empty nail sound
+        if (this._nails.Count >= shootCount) {
+            this._audioSource.pitch = 1f;
+            this._audioSource.clip = this._audioClips[this._audioClips.Length - 1];
+            this._audioSource.Play();
+
+            return;
+        }
 
         GameObject nail = GameObject.Instantiate(nailInstance);
         nail.name = "nail_instance_" + this._nails.Count;
@@ -84,6 +105,10 @@ public class logic_nailer : MonoBehaviour {
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();
         nailBody.AddForce(this.transform.right * 80, ForceMode2D.Impulse);
         nailBody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        this._audioSource.clip = this._audioClips[Random.Range(0, this._audioClips.Length - 1)];
+        this._audioSource.Play();
+        this._audioSource.pitch = Random.Range(0.9f, 1.2f);
 
         this._nails.Add(nail);
     }

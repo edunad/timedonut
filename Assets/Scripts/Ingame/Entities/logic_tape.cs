@@ -121,7 +121,7 @@ public class logic_tape : MonoBehaviour {
         this._body.useFullKinematicContacts = true;
 
         // Trigger paradox visibility
-        this._core.AntiParaController.setVisibility(true);
+        this._core.setAntiParadoxVisiblity(true);
 
         this.setTapeAttach(false); // Reset tape
     }
@@ -136,7 +136,7 @@ public class logic_tape : MonoBehaviour {
         if (!this._drag.onMouseUp()) return;
 
         // Trigger paradox visibility
-        this._core.AntiParaController.setVisibility(false);
+        this._core.setAntiParadoxVisiblity(false);
 
         // Unfreeze rotation
         this._body.freezeRotation = false;

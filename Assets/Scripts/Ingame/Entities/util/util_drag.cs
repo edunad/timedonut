@@ -2,6 +2,8 @@
 using UnityEngine;
 
 public class util_drag : ScriptableObject {
+    public static bool draggingObject;
+
     public delegate void dragEvent();
     public event dragEvent OnDrag;
 
@@ -26,7 +28,9 @@ public class util_drag : ScriptableObject {
 
         Vector3 pos = obj.transform.position;
         this._dragOffset = pos - this._camera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, pos.z));
+
         this.isDragging = true;
+        util_drag.draggingObject = true;
 
         return true; // If sucessfull
     }
@@ -47,6 +51,7 @@ public class util_drag : ScriptableObject {
         if (!this.isDragging) return false;
 
         this.isDragging = false;
+        util_drag.draggingObject = false;
         return true;
     }
 

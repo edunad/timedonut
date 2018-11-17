@@ -102,7 +102,7 @@ public class logic_paradox : MonoBehaviour {
         this._body.freezeRotation = true;
 
         // Trigger paradox visibility
-        this._core.AntiParaController.setVisibility(true);
+        this._core.setAntiParadoxVisiblity(true);
     }
 
     public void OnMouseUp() {
@@ -112,7 +112,7 @@ public class logic_paradox : MonoBehaviour {
         this._body.freezeRotation = false;
 
         // Trigger paradox visibility
-        this._core.AntiParaController.setVisibility(false);
+        this._core.setAntiParadoxVisiblity(false);
 
         // Hide Glich
         this.displayGlich(false);

@@ -100,7 +100,7 @@ Material:
     - _ZWrite: 1
     - _material_blend: 0.4
     - _paradox_glich: 0
-    - _particle_alpha: -0.2
+    - _particle_alpha: -1
     m_Colors:
     - Color_43C84EDB: {r: 0, g: 0.18433714, b: 1, a: 0}
     - Color_649EC59B: {r: 1, g: 1, b: 1, a: 0}

@@ -21,14 +21,18 @@ public class HUDController : MonoBehaviour {
     private AnalogGlitch _glichEffect = null;
     private CoreController _core;
 
+    private ui_fade _fadeIntro;
     private util_timer _rewindTimer;
 
     private float _currentTime;
     private float _deathTimeZone;
     private float _maxTimeZone;
 
+    private float _originalSkullY;
+
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
+        this._fadeIntro = this.GetComponentInChildren<ui_fade>();
 
         this._processVolume = this.GetComponent<PostProcessVolume>();
         this._processVolume.profile.TryGetSettings(out _glichEffect);
@@ -40,10 +44,14 @@ public class HUDController : MonoBehaviour {
 
         this._deathTimeZone = this._core.sceneDeathTime;
         this._maxTimeZone = this._core.maxSceneTime;
-
-        this._currentTime = 4;
         this.setSkullPos();
+    }
 
+    public void Start() {
+        if (this._fadeIntro == null) return;
+        this._fadeIntro.triggerFade(true, new Vector3(0.7f, 0, 1f), new Vector3(-2.5f, 0, 1f), () => {
+            Debug.Log("Started scene!");
+        });
     }
 
     void OnGUI() {
@@ -53,8 +61,12 @@ public class HUDController : MonoBehaviour {
 
     private void Update() {
         if (this.skullObject == null) return;
-
         this._currentTime = Mathf.Clamp(this._core.currentTime, 0, this._maxTimeZone);
+
+        Vector3 pos = this.skullObject.transform.localPosition;
+        float y = Mathf.Sin(Time.time * 2f) * 0.005f;
+        this.skullObject.transform.localPosition = new Vector3(pos.x, this._originalSkullY + y, pos.z);
+
         this.setPointerPos();
     }
     /* ************* 
@@ -73,12 +85,13 @@ public class HUDController : MonoBehaviour {
 
     private void setSkullPos() {
         if (this.skullObject == null) return;
+
         float posInTime = this.getTimePercentage(this._deathTimeZone);
         float skullPos = this.invertPercentage(posInTime);
-        Vector3 pos = this.skullObject.transform.localPosition;
-        pos.x = skullPos;
 
-        this.skullObject.transform.localPosition = pos;
+        Vector3 pos = this.skullObject.transform.localPosition;
+        this.skullObject.transform.localPosition = new Vector3(skullPos, pos.y, pos.z);
+        this._originalSkullY = pos.y;
     }
 
     private float getPercentage(float val) {
@@ -129,4 +142,7 @@ public class HUDController : MonoBehaviour {
         this._core.onTimeClick();
     }
 
+    public void OnDrawGizmos() {
+        
+    }
 }

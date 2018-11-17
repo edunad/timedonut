@@ -118,6 +118,20 @@ public class logic_rope : MonoBehaviour {
 
         this._ropeNodes.Add(ropeStart);
         this._ropeNodes.Add(newNode);
+
+        // Remove mass
+        this.setRopeMass(ropeStart, 5f);
+    }
+
+    /* ************* 
+     * ROPE UTIL
+     ===============*/
+    public void setRopeMass(logic_rope_node node, float newMass) {
+        if (node == null || node.nextNode == null) return;
+        node.body.mass = newMass;
+
+        // Recursive
+        this.setRopeMass(node.nextNode, newMass);
     }
 
     /* ************* 
@@ -139,7 +153,7 @@ public class logic_rope : MonoBehaviour {
 
         Rigidbody2D tempBody = temp.AddComponent<Rigidbody2D>();
         tempBody.bodyType = bodyType;
-        tempBody.mass = 1f;
+        tempBody.mass = 100f;
         tempBody.angularDrag = 1f;
 
         logic_rope_node node = temp.AddComponent<logic_rope_node>();
@@ -194,7 +208,7 @@ public class logic_rope : MonoBehaviour {
 
         Rigidbody2D body = node.AddComponent<Rigidbody2D>();
         body.bodyType = RigidbodyType2D.Kinematic;
-        body.mass = 1f;
+        body.mass = 100f;
         body.angularDrag = 1f;
         
         HingeJoint2D joint = this.createJoint(prevNode.body, node);

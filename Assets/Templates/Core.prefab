@@ -51,9 +51,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ec247c051ec554aa6b16989081a30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSceneTime: 5
-  sceneDeathTime: 3
+  maxSceneTime: 6
+  sceneDeathTime: 4
   HUDController: {fileID: 0}
-  AntiParaController: {fileID: 0}
   timeRunning: 0
   currentTime: 0
+  paradoxVisible: 0

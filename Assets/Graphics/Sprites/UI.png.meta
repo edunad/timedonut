@@ -9,6 +9,7 @@ TextureImporter:
     21300008: UI_DEATH
     21300010: UI_TIMELINE
     21300012: UI_PARADOX
+    21300014: UI_FADE
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -248,6 +249,26 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: e540bfd8cbf15fd40a4970582763f687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_FADE
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 111
+        width: 52
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01a590fea102f0d49b60a2525ea66132
       vertices: []
       indices: 
       edges: []

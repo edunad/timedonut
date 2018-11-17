@@ -7,12 +7,12 @@ public class CoreController : MonoBehaviour {
     [Header("Scene timing")]
     public float maxSceneTime;
     public float sceneDeathTime;
+    
+    // Controllers
+    public static HUDController HUDController;
 
-    [Header("Controllers")]
-    public HUDController HUDController;
-
-    [HideInInspector]
-    public AntiParadoxController AntiParaController;
+    public delegate void onAntiParadoxVisibility(bool visible);
+    public static event onAntiParadoxVisibility OnAntiParadoxVisibility;
 
     public delegate void onTimeChange(bool start);
     public static event onTimeChange OnTimeChange;
@@ -21,14 +21,17 @@ public class CoreController : MonoBehaviour {
     public bool timeRunning;
     [HideInInspector]
     public float currentTime;
+    [HideInInspector]
+    public bool paradoxVisible;
+
 
     private float _startTime;
 
     public void Awake() {
-        this.AntiParaController = ScriptableObject.CreateInstance<AntiParadoxController>();
-        this.HUDController = GameObject.Find("HUD_Camera").GetComponent<HUDController>();
-
-        this.AntiParaController.init();
+        Application.targetFrameRate = 60;
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
+   
+        CoreController.HUDController = GameObject.Find("HUD_Camera").GetComponent<HUDController>();
     }
 
     public void Update() {
@@ -46,41 +49,16 @@ public class CoreController : MonoBehaviour {
         this.setTimeStatus(!this.timeRunning);
     }
 
-    public void setTimeStatus(bool start) {
-        this.currentTime = 0f;
-        this._startTime = Time.time;
-
-        this.timeRunning = start;
-        if (OnTimeChange != null) OnTimeChange(start);
+    public void setAntiParadoxVisiblity(bool display) {
+        this.paradoxVisible = display;
+        if (OnAntiParadoxVisibility != null) OnAntiParadoxVisibility(display);
     }
-}
 
+    public void setTimeStatus(bool start) {
+        this._startTime = Time.time;
+        this.timeRunning = start;
 
-[CustomEditor(typeof(CoreController))]
-public class CoreControllerEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-        if (!Application.isPlaying) return;
-
-        /* ************* 
-         * DEBUG ZONE
-         ===============*/
-        EditorGUILayout.Space();
-
-        EditorGUILayout.LabelField("Debug");
-        EditorGUILayout.BeginHorizontal();
-
-            CoreController core = (target as CoreController);
-            if (GUILayout.Button("Toggle time")) {
-                core.setTimeStatus(!core.timeRunning);
-            }
-
-            if (GUILayout.Button("Toggle Anti-Paradoxes")) {
-                core.AntiParaController.setVisibility(!core.AntiParaController.isVisible);
-            }
-
-        EditorGUILayout.EndHorizontal();
+        if (start) this.setAntiParadoxVisiblity(false);
+        if (OnTimeChange != null) OnTimeChange(start);
     }
 }
