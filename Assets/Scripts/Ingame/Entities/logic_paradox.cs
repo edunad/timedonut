@@ -121,6 +121,7 @@ public class logic_paradox : MonoBehaviour {
         if (!this.canPlaceObject()) {
             this.resetPosition();
         } else {
+            this._core.onItemMoved(this.gameObject); // Add it to the moved objects for rating
             this._reset.saveObject();
         }
     }

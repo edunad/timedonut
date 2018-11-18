@@ -9,6 +9,7 @@ TagManager:
   - particle_object
   - static_object
   - ducktape_object
+  - conveyor_object
   layers:
   - Default
   - TransparentFX

@@ -1,16 +1,19 @@
-﻿using System;
+﻿using Assets.Scripts.models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class network_data {
-    public GameObject sender;
-    public int data;
-}
 
 public class logic_and : MonoBehaviour {
-    public GameObject reciever;
+    [SerializeField]
+    public List<GameObject> recievers = new List<GameObject>();
 
+    [Header("Network settings")]
+    public string recieveHeader = "active";
+    public string dataHeader = "active";
+
+    // Vars
     private Animator _animator;
     private logic_cable _cable;
 
@@ -47,27 +50,24 @@ public class logic_and : MonoBehaviour {
     /* ************* 
      * LOGIC
      ===============*/
-    public void onDataRecieved(object[] msg) {
-        if (msg == null || msg.Length < 1) return;
+    public void onDataRecieved(network_data msg) {
+        if (msg == null) return;
+        if (msg.header != this.recieveHeader) return;
 
-        GameObject sender = msg[0] as GameObject;
-        if (sender == null) return;
-        int data = Convert.ToInt32(msg[1]);
-
-        string id = sender.GetInstanceID().ToString();
-        
-        if (!this._networkData.ContainsKey(id.ToString())) {
+        string id = msg.sender.GetInstanceID().ToString();
+        if (!this._networkData.ContainsKey(id)) {
             if (this._networkData.Count > this._maxSenders) return;
-            this._networkData.Add(id, new network_data() { sender = sender, data = data }); // Create a new network data
+            this._networkData.Add(id, msg);
         } else {
-            this._networkData[id].data = data; // Update existing data
+            this._networkData[id] = msg; // Update existing data
         }
 
-        this.updateStatus();
+        // Update current status
+        this.logicUpdate();
     }
     
 
-    private void updateStatus() {
+    private void logicUpdate() {
         if (this._networkData.Count < this._maxSenders) {
             this.alertLogic(false);
             return;
@@ -85,10 +85,21 @@ public class logic_and : MonoBehaviour {
     }
 
     private void alertLogic(bool isEnabled) {
-        if (this.reciever == null) return;
+        if (this.recievers == null || this.recievers.Count <= 0) return;
 
         this.setCableColor(isEnabled ? Color.green: Color.red);
         this._animator.SetInteger("status", isEnabled ? 1 : 0);
-        this.reciever.BroadcastMessage("onDataRecieved", new object[] { this.gameObject, isEnabled }, SendMessageOptions.DontRequireReceiver);
+
+        // Broadcast
+        foreach (GameObject obj in recievers) {
+            if (obj == null) continue;
+
+            obj.BroadcastMessage("onDataRecieved",
+                new network_data() {
+                    sender = this.gameObject,
+                    header = this.dataHeader,
+                    data = isEnabled ? 1 : 0
+                }, SendMessageOptions.DontRequireReceiver);
+        }
     }
 }

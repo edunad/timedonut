@@ -169,12 +169,14 @@ public class logic_tape : MonoBehaviour {
         if (attach) {
             this.attachSticker();
             this.disableAttachedDragging(true);
+            this._core.onItemMoved(this.gameObject); // Add it to score
         } else {
             // Destroy prev stick joint
             if (this._stickJoint != null)
                 GameObject.Destroy(_stickJoint);
 
             this.disableAttachedDragging(false);
+            this._core.removeItemMoved(this.gameObject); // Undo score
         }
 
         // Attach

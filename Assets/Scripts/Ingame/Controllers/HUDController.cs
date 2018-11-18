@@ -40,7 +40,6 @@ public class HUDController : MonoBehaviour {
 
         this._processVolume = this.GetComponent<PostProcessVolume>();
         this._processVolume.profile.TryGetSettings(out _glichEffect);
-        this._glichEffect.enabled.overrideState = true;
 
         // Keep aspect ratio
         Camera _hudCamera = this.GetComponent<Camera>();
@@ -69,12 +68,14 @@ public class HUDController : MonoBehaviour {
     * MENU
     ===============*/
     public void displayWinMenu() {
-        if (this.winMenuObject == null) return;
-
+        if (this.winMenuObject == null || this._hasWon) return;
         this._hasWon = true;
+
         this._glichEffect.scanLineJitter.value = 1f;
+        this._glichEffect.enabled.overrideState = true;
 
         this.winMenuObject.SetActive(true);
+
         util_timer.Simple(0.2f, () => {
             this._glichEffect.scanLineJitter.value = 0.03f;
         });

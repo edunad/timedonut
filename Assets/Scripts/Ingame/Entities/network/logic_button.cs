@@ -1,11 +1,16 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.models;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 public class logic_button : MonoBehaviour {
+    [Header("Button settings")]
     public bool isPreasured;
+
+    [Header("Networking settings")]
     public GameObject reciever;
+    public string dataHeader = "active";
 
     [HideInInspector]
     public bool isPressed;
@@ -94,6 +99,8 @@ public class logic_button : MonoBehaviour {
      ===============*/
 
     public void OnTriggerEnter2D(Collider2D collider) {
+        if (collider == null) return;
+
         if (this._hasWon) return;
         if (!this._timeRunning || !this._allowedColliders.Contains(collider.tag)) return;
         if (this._colliders.Contains(collider)) return;
@@ -105,6 +112,8 @@ public class logic_button : MonoBehaviour {
     }
 
     public void OnTriggerExit2D(Collider2D collider) {
+        if (collider == null) return;
+
         if (!this._allowedColliders.Contains(collider.tag)) return;
         if (!this._colliders.Contains(collider)) return;
         this._colliders.Remove(collider);
@@ -120,7 +129,13 @@ public class logic_button : MonoBehaviour {
      ===============*/
     private void alertLogic() {
         if (this.reciever == null || !this._timeRunning || this._hasWon) return;
-        this.reciever.BroadcastMessage("onDataRecieved", new object[]{ this.gameObject, this.isPressed }, SendMessageOptions.DontRequireReceiver);
+        this.reciever.BroadcastMessage("onDataRecieved",
+            new network_data() {
+                sender = this.gameObject,
+                header = this.dataHeader,
+                data = this.isPressed ? 1 : 0
+            }, 
+            SendMessageOptions.DontRequireReceiver);
     }
 
 }

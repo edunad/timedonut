@@ -11,11 +11,12 @@ public class CoreController : MonoBehaviour {
     public float sceneDeathTime;
 
     [Header("Scene settings")]
-    public float goldenDonutMoves;
+    public int goldenDonutMoves;
 
     // Controllers
     public static HUDController HUDController;
     public static CameraController CameraController;
+    public static RatingController RatingController;
 
     public delegate void onAntiParadoxVisibility(bool visible);
     public static event onAntiParadoxVisibility OnAntiParadoxVisibility;
@@ -40,9 +41,11 @@ public class CoreController : MonoBehaviour {
     public float currentTime;
     [HideInInspector]
     public bool paradoxVisible;
+    
 
     // Private vars
     private float _startTime;
+    private List<GameObject> _movedObjects;
 
     /* ************* 
      * CORE
@@ -53,8 +56,13 @@ public class CoreController : MonoBehaviour {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         #endregion
 
+        #region Controllers
         CoreController.HUDController = GameObject.Find("HUD_Camera").GetComponent<HUDController>();
         CoreController.CameraController = GameObject.Find("Camera").GetComponent<CameraController>();
+        CoreController.RatingController = GetComponent<RatingController>();
+        #endregion
+
+        this._movedObjects = new List<GameObject>();
     }
 
     public void Update() {
@@ -101,10 +109,23 @@ public class CoreController : MonoBehaviour {
         // Victory!
         this.hasWon = true;
         CoreController.CameraController.canControlCamera = false; // Disable camera movement
+        CoreController.RatingController.calculateRating(this._movedObjects.Count, this.goldenDonutMoves);
 
         if (OnGameWin != null) OnGameWin(); // Alert entities
     }
 
+    /* ************* 
+     * Rating
+    ===============*/
+    public void onItemMoved(GameObject obj) {
+        if (this._movedObjects.Contains(obj)) return;
+        this._movedObjects.Add(obj); // TODO : Make undo
+    }
+
+    public void removeItemMoved(GameObject obj) {
+        if (!this._movedObjects.Contains(obj)) return;
+        this._movedObjects.Remove(obj);
+    }
     /* ************* 
      * TIME
     ===============*/

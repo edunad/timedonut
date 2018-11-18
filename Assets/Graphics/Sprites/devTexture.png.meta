@@ -26,6 +26,11 @@ TextureImporter:
     21300042: dev_light_off
     21300044: dev_andgate_off
     21300046: dev_andgate_on
+    21300048: dev_conveyor_start
+    21300050: dev_conveyor_middle
+    21300052: dev_conveyor_up
+    21300054: dev_conveyor_holder
+    21300056: dev_door
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -565,6 +570,106 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 707aa1b2b2409e74ca04ad59dc179191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_conveyor_start
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 1792
+        width: 64
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3bf3643f4f82f4b4cae084d1f2cf11fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_conveyor_middle
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 1792
+        width: 64
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f003a3cc9033b0545b7773e7ebddd634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_conveyor_up
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 1792
+        width: 7
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08cee1bd2b3a2e240a4e4f90ba0af065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_conveyor_holder
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 1801
+        width: 18
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c164ab102385e3448ab7495d0002fe7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dev_door
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1792
+        width: 13
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f237fef0fec9945a52139ff4ddd05c
       vertices: []
       indices: 
       edges: []

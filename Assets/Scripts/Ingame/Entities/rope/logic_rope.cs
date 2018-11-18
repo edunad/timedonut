@@ -321,5 +321,6 @@ public class logic_rope : MonoBehaviour {
         Vector3 D = this.end.transform.position + ropeOffset;
 
         Gizmos.DrawLine(A, D);
+        Gizmos.DrawIcon(this.transform.position, "gizmo_rope");
     }
 }

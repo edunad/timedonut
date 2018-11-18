@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomEnabled: 1
   sensitivity: 2
-  minZoom: 2.8
+  minZoom: 2
   maxZoom: 4.3
   playAreaEnabled: 1
   playArea:

@@ -28,6 +28,14 @@ TextureImporter:
     21300046: UI_DEATH_OFF
     21300048: UI_NEXT
     21300050: UI_RETRY
+    21300052: UI_SPARKLE_1
+    21300054: UI_SPARKLE_2
+    21300056: UI_SPARKLE_3
+    21300058: UI_SPARKLE_4
+    21300060: UI_SPARKLE_5
+    21300062: UI_SPARKLE_6
+    21300064: UI_SPARKLE_7
+    21300066: UI_0
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -620,7 +628,7 @@ TextureImporter:
         width: 62
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -640,13 +648,173 @@ TextureImporter:
         width: 62
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 16267a972cf447445932b0047a1dc16f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 178
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b9a3469a1bc14248a4245b4c7466417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_2
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 178
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc6f66769433dc740b7fbaf3b4c2795f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_3
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 178
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2390b26cf63f4045a58f9519f3e9efc
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_4
+      rect:
+        serializedVersion: 2
+        x: 188
+        y: 178
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 510af83d4e8a43b4bac48339abe926eb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 158
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aea0d4517a3938a47a23f6e6a434625a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_6
+      rect:
+        serializedVersion: 2
+        x: 148
+        y: 158
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47cc723e8cb71ed40b6ee5dead6522c7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_SPARKLE_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 158
+        width: 20
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 752360b5743c04e448d7cd5ac9dbffd2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_0
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 74
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c246ca50da56a2d48b0befe3905bcf17
       vertices: []
       indices: 
       edges: []

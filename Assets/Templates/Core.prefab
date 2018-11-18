@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4378259410522420}
   - component: {fileID: 114687344743754278}
+  - component: {fileID: 114593426894113854}
   m_Layer: 0
   m_Name: Core
   m_TagString: GameController
@@ -40,6 +41,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114593426894113854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212651079338752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc98774d2f2e5524aabca560b44a6d74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteDonuts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  donutOK: {fileID: 21300016, guid: 2d0e7aab6054837408fa6fb1b27e31dc, type: 3}
+  donutNOPE: {fileID: 21300018, guid: 2d0e7aab6054837408fa6fb1b27e31dc, type: 3}
 --- !u!114 &114687344743754278
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -53,7 +73,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSceneTime: 6
   sceneDeathTime: 4
-  HUDController: {fileID: 0}
+  goldenDonutMoves: 1
+  hasLost: 0
+  hasWon: 0
   timeRunning: 0
   currentTime: 0
   paradoxVisible: 0
