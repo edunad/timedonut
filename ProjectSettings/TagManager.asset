@@ -8,6 +8,7 @@ TagManager:
   - paradox_object
   - particle_object
   - static_object
+  - ducktape_object
   layers:
   - Default
   - TransparentFX

@@ -159,13 +159,12 @@ public class HUDController : MonoBehaviour {
         }
 
         this._glichEffect.enabled.overrideState = !running;
-
         this.timeSprite.SetInteger("status", running ? 1 : 2);
         this.setSkullSprite(false);
     }
 
     public void OnUIClick(string element) {
         if (element != "ui_button_time" || this._rewindTimer != null || this._hasWon) return;
-        this._core.onTimeClick();
+        this._core.toggleTime();
     }
 }

@@ -68,7 +68,7 @@ Camera:
   far clip plane: 40
   field of view: 60
   orthographic: 1
-  orthographic size: 4.76
+  orthographic size: 4.3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomEnabled: 1
   sensitivity: 2
-  minZoom: 3
-  maxZoom: 4.76
+  minZoom: 2.8
+  maxZoom: 4.3
   playAreaEnabled: 1
   playArea:
     serializedVersion: 2

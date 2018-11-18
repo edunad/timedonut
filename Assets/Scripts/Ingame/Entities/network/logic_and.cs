@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -23,6 +22,7 @@ public class logic_and : MonoBehaviour {
         this._animator = GetComponent<Animator>();
         this._animator.SetInteger("status", 0);
 
+        // Store all recieved data
         this._networkData = new Dictionary<string, network_data>();
     }
 
@@ -38,10 +38,10 @@ public class logic_and : MonoBehaviour {
     }
 
     public void setTimeStatus(bool running) {
-        this._networkData.Clear();
+        this._networkData.Clear(); // Clear all recieved data
 
         this._animator.SetInteger("status", 0);
-        this._cable.setCableColor(Color.red);
+        this.setCableColor(Color.red);
     }
 
     /* ************* 
@@ -55,15 +55,15 @@ public class logic_and : MonoBehaviour {
         int data = Convert.ToInt32(msg[1]);
 
         string id = sender.GetInstanceID().ToString();
-
+        
         if (!this._networkData.ContainsKey(id.ToString())) {
             if (this._networkData.Count > this._maxSenders) return;
-            this._networkData.Add(id, new network_data() { sender = sender, data = data });
-            this.updateStatus();
+            this._networkData.Add(id, new network_data() { sender = sender, data = data }); // Create a new network data
         } else {
-            this._networkData[id].data = data; // Update data
-            this.updateStatus();
+            this._networkData[id].data = data; // Update existing data
         }
+
+        this.updateStatus();
     }
     
 
@@ -74,6 +74,8 @@ public class logic_and : MonoBehaviour {
         }
 
         List<string> keys = this._networkData.Keys.ToList();
+
+        // "AND" logic
         this.alertLogic(this._networkData[keys[0]].data == 1 && this._networkData[keys[1]].data == 1);
     }
 
@@ -85,7 +87,7 @@ public class logic_and : MonoBehaviour {
     private void alertLogic(bool isEnabled) {
         if (this.reciever == null) return;
 
-        this._cable.setCableColor(isEnabled ? Color.green: Color.red);
+        this.setCableColor(isEnabled ? Color.green: Color.red);
         this._animator.SetInteger("status", isEnabled ? 1 : 0);
         this.reciever.BroadcastMessage("onDataRecieved", new object[] { this.gameObject, isEnabled }, SendMessageOptions.DontRequireReceiver);
     }

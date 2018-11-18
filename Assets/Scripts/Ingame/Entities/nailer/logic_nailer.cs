@@ -29,37 +29,34 @@ public class logic_nailer : MonoBehaviour {
             "timed_object"
         };
 
-
+        #region Sound Loading
         this._audioSource = this.GetComponent<AudioSource>();
         this._audioSource.playOnAwake = false;
         this._audioSource.volume = 0.13f;
-
         this._audioClips = new AudioClip[] {
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_1"),
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_2"),
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_empty"),
         };
+        #endregion
     }
 
     /* ************* 
      * COLLISION
      ===============*/
     public void OnTriggerEnter2D(Collider2D collider) {
-        if (this._hasWon) return;
+        if (this._hasWon || !this._timeRunning) return;
 
         if (!this._allowedColliders.Contains(collider.tag)) return;
-        if (!this._timeRunning || this._colliders.Count > 0) return;
+        if (this._colliders.Count > 0 || this._colliders.Contains(collider)) return;
 
-        if (this._colliders.Contains(collider)) return;
         this._colliders.Add(collider);
 
         this.shootNail();
     }
 
     public void OnTriggerExit2D(Collider2D collider) {
-        if (!this._allowedColliders.Contains(collider.tag)) return;
         if (!this._colliders.Contains(collider)) return;
-
         this._colliders.Remove(collider);
     }
 
@@ -82,21 +79,24 @@ public class logic_nailer : MonoBehaviour {
 
     private void setTimeStatus(bool enabled) {
         if (this._hasWon) return;
-        if (!enabled && this._nails.Count > 0) {
-            foreach (GameObject obj in this._nails)
-                Destroy(obj);
 
-            this._nails.Clear();
-        }
-        
+        this.cleanNails(); // Cleanup the nails
         this._timeRunning = enabled;
     }
 
     /* ************* 
      * SHOOTING
      ===============*/
+    private void cleanNails() {
+        if (this._nails.Count > 0) return;
+        foreach (GameObject obj in this._nails)
+            Destroy(obj);
+
+        this._nails.Clear();
+    }
+
     private void shootNail() {
-        if (this._hasWon) return;
+        // Play empty "click" sound
         if (this._nails.Count >= shootCount) {
             this._audioSource.pitch = 1f;
             this._audioSource.clip = this._audioClips[this._audioClips.Length - 1];
@@ -114,9 +114,10 @@ public class logic_nailer : MonoBehaviour {
         nail.layer = this._isTimed ? 11 : 10;
 
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();
-        nailBody.AddForce(this.transform.right * 80, ForceMode2D.Impulse);
+        nailBody.AddForce(this.transform.right * 80, ForceMode2D.Impulse); // TODO : Fix
         nailBody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
+        // Play shooting sound
         this._audioSource.clip = this._audioClips[Random.Range(0, this._audioClips.Length - 1)];
         this._audioSource.Play();
         this._audioSource.pitch = Random.Range(0.9f, 1.2f);

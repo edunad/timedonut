@@ -54,6 +54,8 @@ public class logic_antiparadox : MonoBehaviour {
         this._lineRenderer.textureMode = LineTextureMode.Tile;
         this._lineRenderer.sortingLayerName = "Background";
         this._lineRenderer.sharedMaterial = lineMaterial;
+        this._lineRenderer.widthMultiplier = 0.2f;
+        this._lineRenderer.loop = true;
 
         Mesh paradoxMesh = this.buildMesh();
         this._filter.sharedMesh = paradoxMesh;
@@ -108,8 +110,6 @@ public class logic_antiparadox : MonoBehaviour {
 
         this._lineRenderer.positionCount = mesh.vertexCount;
         this._lineRenderer.SetPositions(mesh.vertices);
-        this._lineRenderer.loop = true;
-        this._lineRenderer.widthMultiplier = 0.2f;
     }
 
     private Mesh buildMesh() {

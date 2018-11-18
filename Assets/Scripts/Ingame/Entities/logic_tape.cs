@@ -68,7 +68,7 @@ public class logic_tape : MonoBehaviour {
         this._paradoxMaterial.setMaterial(new Material(Shader.Find("Paradox_outline_shader")));
 
         // Setup object
-        this.tag = "paradox_object";
+        this.tag = "ducktape_object";
         this.gameObject.layer = 11;
 
         // Create glue for static objects
@@ -103,16 +103,14 @@ public class logic_tape : MonoBehaviour {
         }
     }
 
-    public void Update() {
-        if (this._isTimeEnabled || this._hasWon) return;
+    public void OnMouseOver() {
+        if (this._drag.isDragging || this._hasWon) return;
+        this.setMaterialColor(this._hoverColor);
+    }
 
-        if (!this._drag.isDragging) {
-            if (this._drag.isMouseOnObject()) {
-                this.setMaterialColor(this._hoverColor);
-            } else {
-                this.setMaterialColor(this._defaultColor);
-            }
-        }
+    public void OnMouseExit() {
+        if (this._drag.isDragging || this._hasWon) return;
+        this.setMaterialColor(this._defaultColor);
     }
 
     public void OnMouseDown() {
@@ -124,7 +122,6 @@ public class logic_tape : MonoBehaviour {
 
         // Trigger paradox visibility
         this._core.setAntiParadoxVisiblity(true);
-
         this.setTapeAttach(false); // Reset tape
     }
 
@@ -155,13 +152,13 @@ public class logic_tape : MonoBehaviour {
     /* ************* 
      * ATTACHING
      ===============*/
-
     private bool canAttachTape() {
         if (this._hasWon || this._colliders.Count != 2) return false;
         foreach (Collider2D col in this._colliders) {
             if (!this._enabledStickingTags.Contains(col.tag)) return false;
         }
 
+        // Why would you attach the tape between 2 static objects
         if (this._colliders[0].tag == "static_object" && this._colliders[1].tag == "static_object") return false;
         return true;
     }
@@ -173,17 +170,18 @@ public class logic_tape : MonoBehaviour {
             this.attachSticker();
             this.disableAttachedDragging(true);
         } else {
-            if (this._stickJoint != null) {
+            // Destroy prev stick joint
+            if (this._stickJoint != null)
                 GameObject.Destroy(_stickJoint);
-            }
 
             this.disableAttachedDragging(false);
         }
 
         // Attach
         this.transform.parent = attach ? this._stickStart.gameObject.transform : null;
-        this.displayTape(attach);
         this._isAttached = attach;
+
+        this.displayTape(attach); // Display / hide tape
     }
 
 
@@ -211,6 +209,7 @@ public class logic_tape : MonoBehaviour {
         this._stickJoint.connectedBody = startBody;
     }
 
+    // Prevent dragging
     private void disableAttachedDragging(bool disabled) {
         if (this._stickStart == null || this._stickEnd == null) return;
 

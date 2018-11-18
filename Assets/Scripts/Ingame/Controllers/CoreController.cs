@@ -5,10 +5,14 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CoreController : MonoBehaviour {
+
     [Header("Scene timing")]
     public float maxSceneTime;
     public float sceneDeathTime;
-    
+
+    [Header("Scene settings")]
+    public float goldenDonutMoves;
+
     // Controllers
     public static HUDController HUDController;
     public static CameraController CameraController;
@@ -37,24 +41,29 @@ public class CoreController : MonoBehaviour {
     [HideInInspector]
     public bool paradoxVisible;
 
+    // Private vars
     private float _startTime;
 
     /* ************* 
      * CORE
     ===============*/
     public void Awake() {
+        #region Game_Settings
         Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-   
+        #endregion
+
         CoreController.HUDController = GameObject.Find("HUD_Camera").GetComponent<HUDController>();
         CoreController.CameraController = GameObject.Find("Camera").GetComponent<CameraController>();
     }
 
     public void Update() {
+        #region Game_Timeline
         if (this.timeRunning && !this.hasWon) {
             this.currentTime = Mathf.Clamp(Time.time - this._startTime, 0, this.maxSceneTime);
             if (this.currentTime >= this.maxSceneTime) this.onTimeLimitHit();
         }
+        #endregion
 
         util_timer.Update();
     }
@@ -67,6 +76,8 @@ public class CoreController : MonoBehaviour {
      * BUTTONS
     ===============*/
     public void OnUIClick(string elementID) {
+        if (!this.hasWon) return;
+
         if (elementID == "UI_RETRY_BTN") {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else if (elementID == "UI_NEXT_BTN") {
@@ -75,52 +86,52 @@ public class CoreController : MonoBehaviour {
     }
 
     /* ************* 
-     * WIN + LOSSE
+     * WINNING + LOSING
     ===============*/
     public void onTargetDeath() {
-        if (this.hasWon) return;
+        if (this.hasWon) return; // Already won, how can he losse?
 
         this.hasLost = true;
-        this.hasWon = false;
-        if (OnGameLosse != null) OnGameLosse();
+        if (OnGameLosse != null) OnGameLosse(); // Alert entities
     }
 
     private void onTimeLimitHit() {
-        if (this.hasWon || this.hasLost) return;
+        if (this.hasWon || this.hasLost) return; // Already won / lost?
 
         // Victory!
         this.hasWon = true;
-        this.hasLost = false;
+        CoreController.CameraController.canControlCamera = false; // Disable camera movement
 
-        CoreController.CameraController.canControlCamera = false;
-        if (OnGameWin != null) OnGameWin();
+        if (OnGameWin != null) OnGameWin(); // Alert entities
     }
 
     /* ************* 
      * TIME
     ===============*/
-    public void onTimeClick() {
-        this.setTimeStatus(!this.timeRunning);
+    public void toggleTime() {
+        this.setTimeStatus(!this.timeRunning); // Toggle time
     }
 
     private void setTimeStatus(bool start) {
-        if (this.hasWon) return;
-        this._startTime = Time.time;
-        this.timeRunning = start;
+        if (this.hasWon) return; // Already won, stop toggling time
 
+        this._startTime = Time.time; // Set start time to the current time
+        this.currentTime = 0; // Reset
+
+        this.timeRunning = start;
         this.hasLost = false;
 
-        if (start) this.setAntiParadoxVisiblity(false);
-        if (OnTimeChange != null) OnTimeChange(start);
+        if (start) this.setAntiParadoxVisiblity(false); // Hide paradoxes
+        if (OnTimeChange != null) OnTimeChange(start); // Alert entities
     }
 
     /* ************* 
      * OTHER
     ===============*/
     public void setAntiParadoxVisiblity(bool display) {
-        this.paradoxVisible = display;
-        if (OnAntiParadoxVisibility != null) OnAntiParadoxVisibility(display);
-    }
+        if (this.paradoxVisible == display) return;
 
-    
+        this.paradoxVisible = display;
+        if (OnAntiParadoxVisibility != null) OnAntiParadoxVisibility(display); // Alert all paradoxes
+    }
 }

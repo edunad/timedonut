@@ -24,19 +24,21 @@ public class CameraController : MonoBehaviour {
 
     public void Awake() {
         this._camera = GetComponent<Camera>();
-        this._camera.orthographicSize = maxZoom;
+        this._camera.orthographicSize = maxZoom; // Zoomout
     }
 
     public void Update() {
         if (this._camera == null) return;
 
-        // ZOOM
+        #region Zoom
         if (Input.GetAxis("Mouse ScrollWheel") != 0 && this.zoomEnabled && this.canControlCamera) {
             float currZoom = this._camera.orthographicSize + -Input.GetAxis("Mouse ScrollWheel") * sensitivity;
             currZoom = Mathf.Clamp(currZoom, this.minZoom, this.maxZoom);
             this._camera.orthographicSize = currZoom;
         }
+        #endregion
 
+        #region Movement
         if (this.canControlCamera && !util_drag.draggingObject) {
             Vector3 camPos = this._camera.transform.position;
 
@@ -54,12 +56,13 @@ public class CameraController : MonoBehaviour {
 
             this._camera.transform.position = camPos;
         }
-
+        #endregion
     }
 
     public void LateUpdate() {
         if (this._camera == null && this.playAreaEnabled) return;
 
+        // Prevent camera from going outside the bounds
         float minPlayX = this.playArea.x + this.playAreaOffset.x;
         float minPlayY = this.playArea.y + this.playAreaOffset.y;
 

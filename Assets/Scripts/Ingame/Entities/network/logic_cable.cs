@@ -5,6 +5,8 @@ using UnityEngine.Rendering;
 
 [RequireComponent(typeof(LineRenderer))]
 public class logic_cable : MonoBehaviour {
+
+    [Header("Cable settings")]
     public Transform endPoint;
     public float cableSize = 0.05f;
 
@@ -43,7 +45,6 @@ public class logic_cable : MonoBehaviour {
     }
 
     private void buildCable() {
-
         List<Vector3> points = new List<Vector3>() {
             this._startPoint
         };

@@ -11,13 +11,12 @@ public class logic_particle : MonoBehaviour {
     public void Awake() {
         this.tag = "particle_object";
 
-        this.spawnTime = Time.time;
+        this.spawnTime = Time.time + deathSeconds;
         this.canKill = true;
     }
 
     public void Update() {
-        if (!this.canKill || Time.time < this.spawnTime + deathSeconds) return;
-        Destroy(this.gameObject); // Todo : Shrink effect?
+        if (!this.canKill || Time.time < this.spawnTime) return;
+        Destroy(this.gameObject); // Todo : Shrink / Fade effect?
     }
-
 }

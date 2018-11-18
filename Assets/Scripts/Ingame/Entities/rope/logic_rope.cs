@@ -36,9 +36,11 @@ public class logic_rope : MonoBehaviour {
         this._endNode.setRopeController(this);
 
         // Store original pos
+        #region Old positions
         this._end_originalPosition = this.end.transform.position;
         this._end_originalLocalPosition = this.end.transform.localPosition;
         this._end_originalAngle = this.end.transform.rotation;
+        #endregion
 
         this.generateRope();
     }
@@ -77,13 +79,16 @@ public class logic_rope : MonoBehaviour {
     private void resetRope() {
         if (this._hasWon) return;
 
+        // Restore position
         this.end.transform.position = this._end_originalPosition;
         this.end.transform.localPosition = this._end_originalLocalPosition;
         this.end.transform.rotation = this._end_originalAngle;
 
+        // Cleanup
         for (int i = 0; i < this._ropeNodes.Count; i++) {
             logic_rope_node node = this._ropeNodes[i];
             if (node == null) continue;
+
             if (node.isTEMP) {
                 this._ropeNodes.Remove(node);
                 Destroy(node.gameObject);
@@ -302,7 +307,6 @@ public class logic_rope : MonoBehaviour {
     /* ************* 
      * DEBUG
      ===============*/
-
     public void OnDrawGizmos() {
         if (this.end == null) return;
 

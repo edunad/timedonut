@@ -37,7 +37,7 @@ public class logic_time : MonoBehaviour {
     ===============*/
     private void onWin() {
         this._hasWon = true; // Disable the script
-        this.setMovement(false);
+        this.setMovement(false); // Freeze object
     }
 
     public void OnEnable() {

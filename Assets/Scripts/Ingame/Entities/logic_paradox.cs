@@ -40,11 +40,8 @@ public class logic_paradox : MonoBehaviour {
         this._reset = GetComponent<util_resetable>();
         this._reset.saveObject();
 
-        this._body = GetComponent<Rigidbody2D>();
-
-        this._colliders = new List<Collider2D>();
-
         // Set default movement
+        this._body = GetComponent<Rigidbody2D>();
         this._body.bodyType = RigidbodyType2D.Kinematic;
         this._body.useFullKinematicContacts = true;
 
@@ -55,34 +52,26 @@ public class logic_paradox : MonoBehaviour {
         // SETUP game object
         this.tag = "paradox_object";
         this.gameObject.layer = 11;
+
+
+        this._colliders = new List<Collider2D>();
     }
 
     /* ************* 
      * Core
      ===============*/
     public void Update() {
-        if (!this.canControlObject() || this._hasWon) return;
+        if (!this.canControlObject() || this._hasWon || !this.drag.isDragging) return;
+        
+        // ROTATION
+        float speed = 15f;
+        if (Input.GetKey(KeyCode.LeftShift)) speed = 35f;
 
-        if (!this.drag.isDragging) {
-            if (this.drag.isMouseOnObject()) {
-                this.setMaterialColor(this._hoverColor);
-            } else {
-                this.setMaterialColor(this._defaultColor);
-            }
-
-        } else {
-
-            // ROTATION
-            float speed = 15f;
-            if (Input.GetKey(KeyCode.LeftShift)) speed = 35f;
-
-            if (Input.GetKey(KeyCode.A)) {
-                this.transform.Rotate(new Vector3(0, 0, 8) * Time.deltaTime * speed);
-            } else if (Input.GetKey(KeyCode.D)) {
-                this.transform.Rotate(new Vector3(0, 0, -8) * Time.deltaTime * speed);
-            }
+        if (Input.GetKey(KeyCode.A)) {
+            this.transform.Rotate(new Vector3(0, 0, 8) * Time.deltaTime * speed);
+        } else if (Input.GetKey(KeyCode.D)) {
+            this.transform.Rotate(new Vector3(0, 0, -8) * Time.deltaTime * speed);
         }
-
     }
 
     /* ************* 
@@ -96,6 +85,16 @@ public class logic_paradox : MonoBehaviour {
             this.setMaterialColor(this._errorColor);
             this.displayGlich(true);
         }
+    }
+
+    public void OnMouseOver() {
+        if (this.drag.isDragging || this._hasWon) return;
+        this.setMaterialColor(this._hoverColor);
+    }
+
+    public void OnMouseExit() {
+        if (this.drag.isDragging || this._hasWon) return;
+        this.setMaterialColor(this._defaultColor);
     }
 
     public void OnMouseDown() {
@@ -194,6 +193,16 @@ public class logic_paradox : MonoBehaviour {
         this.drag.OnDrag -= this.onDrag;
     }
 
+    private void setTimeStatus(bool started) {
+        if (this._hasWon) return;
+        if (!started) this.resetPosition();
+
+        this._timeEnabled = started;
+
+        this.setMovement(started);
+        this.displayParadox(!started);
+    }
+
     /* ************* 
      * PHYSICS
      ===============*/
@@ -203,17 +212,7 @@ public class logic_paradox : MonoBehaviour {
         this._body.angularVelocity = 0;
         this._body.freezeRotation = false;
     }
-
-    private void setTimeStatus(bool started) {
-        if (this._hasWon) return;
-        if (!started)  this.resetPosition();
-
-        this._timeEnabled = started;
-
-        this.setMovement(started);
-        this.displayParadox(!started);
-    }
-
+    
     private void resetPosition() {
         this._reset.resetObject();
     }
