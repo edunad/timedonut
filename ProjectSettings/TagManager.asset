@@ -10,6 +10,7 @@ TagManager:
   - static_object
   - ducktape_object
   - conveyor_object
+  - door_object
   layers:
   - Default
   - TransparentFX

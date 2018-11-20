@@ -84,12 +84,12 @@ public class CoreController : MonoBehaviour {
      * BUTTONS
     ===============*/
     public void OnUIClick(string elementID) {
-        if (!this.hasWon) return;
-
         if (elementID == "UI_RETRY_BTN") {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        } else if (elementID == "UI_NEXT_BTN") {
-
+        } else if (elementID == "UI_NEXT_BTN" && this.hasWon) {
+            // Load next level
+        } else if (elementID == "UI_QUIT_BTN" && this.hasWon) {
+            // Quit to mainmenu
         }
     }
 

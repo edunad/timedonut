@@ -13,6 +13,8 @@ public class HUDController : MonoBehaviour {
 
     [Header("HUD MENU Elements")]
     public GameObject winMenuObject;
+    public GameObject winUIPanel;
+    public GameObject pauseUIPanel;
 
     private readonly float WIDTH = 1024f;
     private readonly float HEIGHT = 768f;
@@ -25,7 +27,8 @@ public class HUDController : MonoBehaviour {
 
     private CoreController _core;
 
-    private ui_fade _fadeIntro;
+    private ui_intro _intro;
+
     private util_timer _rewindTimer;
 
     private float _currentTime;
@@ -33,10 +36,11 @@ public class HUDController : MonoBehaviour {
     private float _maxTimeZone;
 
     private bool _hasWon;
+    private bool _isPaused;
 
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
-        this._fadeIntro = this.GetComponentInChildren<ui_fade>();
+        this._intro = this.GetComponentInChildren<ui_intro>();
 
         this._processVolume = this.GetComponent<PostProcessVolume>();
         this._processVolume.profile.TryGetSettings(out _glichEffect);
@@ -49,16 +53,22 @@ public class HUDController : MonoBehaviour {
         this._maxTimeZone = this._core.maxSceneTime;
 
         this.winMenuObject.SetActive(false);
+        this.winUIPanel.SetActive(false);
+        this.pauseUIPanel.SetActive(false);
+
         this.setSkullPos();
     }
 
     public void Start() {
-        if (this._fadeIntro == null) return;
-        this._fadeIntro.triggerFade(true, new Vector3(0.728f, 0, 1f), new Vector3(-2.5f, 0, 1f));
+        if (this._intro == null) return;
+        this._intro.triggerFade(true, new Vector3(0.728f, 0, 1f), new Vector3(-2.5f, 0, 1f));
     }
     
     private void Update() {
         if (this._hasWon) return;
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            this.displayPauseMenu(!this._isPaused);
+        }
 
         this._currentTime = Mathf.Clamp(this._core.currentTime, 0, this._maxTimeZone);
         this.setPointerPos();
@@ -67,17 +77,21 @@ public class HUDController : MonoBehaviour {
     /* ************* 
     * MENU
     ===============*/
-    public void displayWinMenu() {
+
+    private void displayPauseMenu(bool display) {
+        this._isPaused = display;
+        this.pauseUIPanel.SetActive(display);
+    }
+
+    private void displayWinMenu() {
         if (this.winMenuObject == null || this._hasWon) return;
+
         this._hasWon = true;
-
-        this._glichEffect.scanLineJitter.value = 1f;
-        this._glichEffect.enabled.overrideState = true;
-
         this.winMenuObject.SetActive(true);
+        this.displayPauseMenu(false);
 
-        util_timer.Simple(0.2f, () => {
-            this._glichEffect.scanLineJitter.value = 0.03f;
+        util_timer.Simple(0.5f, () => {
+            this.winUIPanel.SetActive(true);
         });
     }
 

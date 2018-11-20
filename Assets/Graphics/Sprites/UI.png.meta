@@ -35,7 +35,8 @@ TextureImporter:
     21300060: UI_SPARKLE_5
     21300062: UI_SPARKLE_6
     21300064: UI_SPARKLE_7
-    21300066: UI_0
+    21300066: UI_QUIT
+    21300068: UI_MENU
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -800,13 +801,33 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_0
+      name: UI_MENU
       rect:
         serializedVersion: 2
         x: 128
-        y: 74
-        width: 64
-        height: 64
+        y: 118
+        width: 43
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c4f08604ca4469b4592e3a625c37cf6e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_QUIT
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 118
+        width: 38
+        height: 20
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -814,7 +835,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c246ca50da56a2d48b0befe3905bcf17
+      spriteID: ce4af912ffc65f74a9fd632e3c7aa5c5
       vertices: []
       indices: 
       edges: []

@@ -29,7 +29,7 @@ public class logic_light : MonoBehaviour {
      * LOGIC
      ===============*/
     public void onDataRecieved(network_data msg) {
-        if (msg == null) return;
+        if (msg == null || msg.header != "active") return;
         this._animator.SetInteger("status", msg.data);
     }
 }
