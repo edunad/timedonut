@@ -30,6 +30,9 @@ public class CoreController : MonoBehaviour {
     public delegate void onGameLosse();
     public static event onGameLosse OnGameLosse;
 
+    public delegate void onMovesUpdate(int moves);
+    public static event onMovesUpdate OnMovesUpdate;
+
     [HideInInspector]
     public bool hasLost = false;
     [HideInInspector]
@@ -120,11 +123,15 @@ public class CoreController : MonoBehaviour {
     public void onItemMoved(GameObject obj) {
         if (this._movedObjects.Contains(obj)) return;
         this._movedObjects.Add(obj); // TODO : Make undo
+
+        if (OnMovesUpdate != null) OnMovesUpdate(this._movedObjects.Count);
     }
 
     public void removeItemMoved(GameObject obj) {
         if (!this._movedObjects.Contains(obj)) return;
         this._movedObjects.Remove(obj);
+
+        if (OnMovesUpdate != null) OnMovesUpdate(this._movedObjects.Count);
     }
     /* ************* 
      * TIME

@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: -2.78, y: 0}
-  doorSpeed: 0
+  doorSpeed: 0.05
 --- !u!212 &212624368688010834
 SpriteRenderer:
   m_ObjectHideFlags: 1

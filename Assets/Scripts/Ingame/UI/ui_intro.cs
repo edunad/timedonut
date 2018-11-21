@@ -3,7 +3,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(SpriteRenderer))]
-[ExecuteInEditMode]
 public class ui_intro : MonoBehaviour {
     private SpriteRenderer _renderer;
     private Vector3 _fadeStart, _fadeEnd;
@@ -25,24 +24,13 @@ public class ui_intro : MonoBehaviour {
 
         this._audioSource = GetComponent<AudioSource>();
         this._audioSource.playOnAwake = false;
-        this._audioClips = new AudioClip[] {
-            AssetsController.GetResource<AudioClip>("Sounds/UI/intro_in"),
-            AssetsController.GetResource<AudioClip>("Sounds/UI/intro_out")
-        };
     }
 
-    public void Start() {
-        if (!Application.isPlaying) this._renderer.enabled = false;
-        else this._renderer.enabled = true;
-    }
-
-    public void triggerFade(bool fadeIn, Vector3 fadeStart, Vector3 fadeEnd, Action onComplete = null) {
+    public void triggerFade(string audio, bool fadeIn, Vector3 fadeStart, Vector3 fadeEnd, Action onComplete = null) {
         if (this._isFading) return;
 
         this._fadeStart = fadeStart;
         this._fadeEnd = fadeEnd;
-
-        this._renderer.flipX = fadeIn;
 
         this.transform.localPosition = fadeStart;
 
@@ -52,9 +40,7 @@ public class ui_intro : MonoBehaviour {
         this._onFadeComplete = onComplete;
         this._isFading = true;
 
-        if (fadeIn) this._audioSource.clip = this._audioClips[0];
-        else this._audioSource.clip = this._audioClips[1];
-
+        this._audioSource.clip = AssetsController.GetResource<AudioClip>(audio);
         this._audioSource.Play();
     }
 
