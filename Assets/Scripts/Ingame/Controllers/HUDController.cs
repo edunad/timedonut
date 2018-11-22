@@ -229,6 +229,7 @@ public class HUDController : MonoBehaviour {
     }
 
     public void OnUIClick(string element) {
+        if (this._playingIntro < 2) return;
         if (element != "ui_button_time" || this._rewindTimer != null || this._hasWon) return;
         this._core.toggleTime();
     }

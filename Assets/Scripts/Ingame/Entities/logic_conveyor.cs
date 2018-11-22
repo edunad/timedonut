@@ -39,7 +39,7 @@ public class logic_conveyor : MonoBehaviour {
 
         // Generate belt
         this._beltMaterial = new Material(Shader.Find("Conveyor_belt_shader"));
-        this.createBelt(this._beltMaterial, new Vector3(0.004f, 0.067f, 0), (this.conveyorSize - 0.1f), 0);
+        this.createBelt(this._beltMaterial, new Vector3(0f, 0.07f, 0), (this.conveyorSize - 0.11f), 0);
         this.createBelt(this.conveyorMaterial, Vector3.zero, this.conveyorSize, 1);
 
         // COLLISION
@@ -61,10 +61,8 @@ public class logic_conveyor : MonoBehaviour {
             fixedPoints.Add(new Vector2(val.x, val.y));
         }
 
-
         this._collision.points = fixedPoints.ToArray();
         this._collision.edgeRadius = (this.conveyorSize - 0.11f);
-
     }
 
     private void createBelt(Material mat, Vector3 offset, float size, int order) {
@@ -84,12 +82,14 @@ public class logic_conveyor : MonoBehaviour {
         _belt.textureMode = LineTextureMode.Tile;
         _belt.sortingLayerName = "Playground";
         _belt.sharedMaterial = mat;
-        _belt.numCapVertices = 2;
+        _belt.numCapVertices = 0;
         _belt.numCornerVertices = 2;
         _belt.sortingOrder = order;
 
         // Line render!
         List<Vector3> points = this.getPoints();
+        if(offset != Vector3.zero) points[points.Count - 1] -= new Vector3(0.06f, 0.03f);
+
         _belt.positionCount = points.Count;
         _belt.SetPositions(points.ToArray());
     }

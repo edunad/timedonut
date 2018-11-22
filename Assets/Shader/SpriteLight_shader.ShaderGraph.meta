@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 234a3f0a6eaf1dc46a1633f6ff76ffa5
+ScriptedImporter:
+  fileIDToRecycleName:
+    4800000: MainAsset
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 625f186215c104763be7675aa2d941aa, type: 3}

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(util_resetable))]
+[RequireComponent(typeof(util_material))]
+[RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class logic_tape : MonoBehaviour {
 
     private CoreController _core;

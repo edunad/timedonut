@@ -80,6 +80,8 @@ public class logic_antiparadox : MonoBehaviour {
      * Display Effect
      ===============*/
     public void setParadoxVisibility(bool display) {
+        if (this.lineMaterial == null) return;
+
         this.displayParadox = display;
         this._currentAlpha = Mathf.Abs(this.lineMaterial.GetFloat("_particle_alpha")); // Either one, does not matter
         this._lerpTime = 0;
