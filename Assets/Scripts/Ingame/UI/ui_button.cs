@@ -11,21 +11,26 @@ public class ui_button : MonoBehaviour {
     private float _tapCD;
     private bool _isEnabled;
 
+    private SpriteRenderer _renderer;
     private readonly Color32 _normalColor = new Color32(180, 180, 180, 255);
 
     public void Awake() {
-        this._text.color = this._normalColor;
+        if (_text == null) {
+            this._renderer = GetComponent<SpriteRenderer>();
+        }
+
+        this.setColor(this._normalColor);
         this._isEnabled = true;
     }
 
     public void OnMouseOver() {
-        if (this._text == null || !this._isEnabled) return;
-        this._text.color = Color.white;
+        if (!this._isEnabled) return;
+        this.setColor(Color.white);
     }
 
     public void OnMouseExit() {
-        if (this._text == null || !this._isEnabled) return;
-        this._text.color = this._normalColor;
+        if (!this._isEnabled) return;
+        this.setColor(this._normalColor);
     }
 
     public void OnMouseUp() {
@@ -38,5 +43,13 @@ public class ui_button : MonoBehaviour {
 
     public void isEnabled(bool enabled) {
         this._isEnabled = enabled;
+    }
+
+    private void setColor(Color cl) {
+        if (_text == null) {
+            this._renderer.color = cl;
+        } else {
+            this._text.color = cl;
+        }
     }
 }
