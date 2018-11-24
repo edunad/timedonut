@@ -19,10 +19,10 @@ MonoBehaviour:
   m_RequireOpaqueTexture: 0
   m_OpaqueDownsampling: 1
   m_SupportsHDR: 0
-  m_MSAA: 4
+  m_MSAA: 1
   m_RenderScale: 1
   m_SupportsDynamicBatching: 1
-  m_DirectionalShadowsSupported: 1
+  m_DirectionalShadowsSupported: 0
   m_ShadowAtlasResolution: 2048
   m_ShadowDistance: 50
   m_ShadowCascades: 2

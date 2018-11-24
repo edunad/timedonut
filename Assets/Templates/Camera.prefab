@@ -111,7 +111,7 @@ Camera:
   m_HDR: 0
   m_AllowMSAA: 0
   m_AllowDynamicResolution: 0
-  m_ForceIntoRT: 0
+  m_ForceIntoRT: 1
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -239,15 +239,15 @@ MonoBehaviour:
   zoomEnabled: 1
   sensitivity: 2
   minZoom: 2
-  maxZoom: 4.3
+  maxZoom: 4
   playAreaEnabled: 1
   playArea:
     serializedVersion: 2
-    x: -11.76
+    x: -11.75
     y: -4.96
-    width: 5
-    height: 4.68
-  playAreaOffset: {x: 3.4, y: -0.06, z: 0}
+    width: 5.97
+    height: 6.55
+  playAreaOffset: {x: 1.93, y: -0.06, z: 0}
   canControlCamera: 1
   controlSpeed: 0.1
 --- !u!114 &114800386456883718

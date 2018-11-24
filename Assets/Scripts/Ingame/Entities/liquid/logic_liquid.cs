@@ -67,7 +67,6 @@ public class logic_liquid : MonoBehaviour {
     private util_timer splashTimer;
 
     private List<GameObject> _insideLiquidObjs;
-    private bool _generated;
 
     void Start() {
         this._insideLiquidObjs = new List<GameObject>();
@@ -81,7 +80,6 @@ public class logic_liquid : MonoBehaviour {
         GenerateLiquid(transform.position.x, liquidSize.x, transform.position.y, transform.position.y + liquidSize.y);
 
         this.name = "logic_liquid";
-        this._generated = false;
     }
 
     public void Splash(int index, Vector3 pos, float force, GameObject obj = null) {
@@ -277,8 +275,6 @@ public class logic_liquid : MonoBehaviour {
                 Splash(indx, poss, Random.Range(0.01f, forceMultiply));
             });
         }
-
-        this._generated = true;
     }
 
     void OnDestroy() {
@@ -327,8 +323,6 @@ public class logic_liquid : MonoBehaviour {
 
     //Called regularly by Unity
     public void FixedUpdate() {
-        if (!this._generated) return;
-
         float sum = SumArray(velocities);
         if (sum <= 0) return;
 
