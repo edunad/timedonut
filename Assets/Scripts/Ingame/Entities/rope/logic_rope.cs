@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -140,6 +139,16 @@ public class logic_rope : MonoBehaviour {
         this.setRopeMass(ropeStart, 5f);
     }
 
+    public void cutRope() {
+        if (this._ropeNodes.Count <= 0) return;
+
+        logic_rope_node node = this._ropeNodes[1];
+        if (node == null) return;
+
+        Vector3 worldPos = node.col.transform.position;
+        this.onRopeCut(node, new Vector3(-0.1f, 0.1f, 0), worldPos);
+    }
+
     /* ************* 
      * ROPE UTIL
      ===============*/
@@ -155,7 +164,7 @@ public class logic_rope : MonoBehaviour {
      * CREATION
      ===============*/
 
-    public logic_rope_node createStartNode(GameObject originalNode, RigidbodyType2D bodyType) {
+    private logic_rope_node createStartNode(GameObject originalNode, RigidbodyType2D bodyType) {
         // CREATE A TEMP NODE
         int index = this._ropeNodes.Count;
 
@@ -180,7 +189,7 @@ public class logic_rope : MonoBehaviour {
         return node;
     }
 
-    public void generateRope() {
+    private void generateRope() {
         // GET TOTAL NODES
         int totalNodes = this.getTotalNodes();
 
@@ -196,18 +205,18 @@ public class logic_rope : MonoBehaviour {
             this._ropeNodes.Add(this.createRopeNode(prevNode, nodePos));
         }
 
-        // Fix last node
-        logic_rope_node lastNode = this._ropeNodes[totalNodes];
 
+        // Add last node
+        logic_rope_node lastNode = this._ropeNodes[totalNodes];
         HingeJoint2D joint = this.createJoint(lastNode.body, end);
-        joint.anchor = joint.anchor - new Vector2(0, ropeOffset.y);
+        joint.anchor = Vector3.zero;
 
         this._endNode.body = this._endBody;
         this._endNode.joint = joint;
 
+        this._ropeNodes.Add(this._endNode);
 
-        // Add end body
-        this._ropeNodes.Add(this._endNode); // Add start
+
         this.saveAndAssignNodes();
     }
     
@@ -291,7 +300,6 @@ public class logic_rope : MonoBehaviour {
         Vector3 startPos = this.transform.position;
         Vector3 endPos = end.transform.position + ropeOffset;
         Vector3 direction = (endPos - startPos);
-        if (index == this.getTotalNodes()) return endPos;
 
         return startPos + direction.normalized * (ropeNodeLength * index);
     }

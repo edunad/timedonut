@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class ui_button : MonoBehaviour {
 
-    [Header("Target settings")]
+    [Header("Button settings")]
     public GameObject targetObject;
-    
-    private SpriteRenderer _renderer;
+    public TextMesh _text;
 
     private float _tapCD;
     private bool _isEnabled;
@@ -15,19 +14,18 @@ public class ui_button : MonoBehaviour {
     private readonly Color32 _normalColor = new Color32(180, 180, 180, 255);
 
     public void Awake() {
-        this._renderer = GetComponent<SpriteRenderer>();
-        this._renderer.color = this._normalColor;
+        this._text.color = this._normalColor;
         this._isEnabled = true;
     }
 
     public void OnMouseOver() {
-        if (this._renderer == null || !this._isEnabled) return;
-        this._renderer.color = Color.white;
+        if (this._text == null || !this._isEnabled) return;
+        this._text.color = Color.white;
     }
 
     public void OnMouseExit() {
-        if (this._renderer == null || !this._isEnabled) return;
-        this._renderer.color = this._normalColor;
+        if (this._text == null || !this._isEnabled) return;
+        this._text.color = this._normalColor;
     }
 
     public void OnMouseUp() {

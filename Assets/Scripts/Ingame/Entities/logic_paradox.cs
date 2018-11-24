@@ -8,6 +8,7 @@ using UnityEngine;
 [RequireComponent(typeof(util_resetable))]
 public class logic_paradox : MonoBehaviour {
 
+    [HideInInspector]
     public util_drag drag;
 
     private Rigidbody2D _body;
@@ -31,6 +32,9 @@ public class logic_paradox : MonoBehaviour {
 
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
+        
+        // Collisions
+        this._colliders = new List<Collider2D>();
 
         // Set material
         this._paradoxMaterial = GetComponent<util_material>();
@@ -53,8 +57,7 @@ public class logic_paradox : MonoBehaviour {
         this.tag = "paradox_object";
         this.gameObject.layer = 11;
 
-
-        this._colliders = new List<Collider2D>();
+        this.setMaterialColor(this._defaultColor);
     }
 
     /* ************* 
@@ -88,12 +91,12 @@ public class logic_paradox : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (this.drag.isDragging || this._hasWon) return;
+        if (this._timeEnabled || this.drag.isDragging || this._hasWon) return;
         this.setMaterialColor(this._hoverColor);
     }
 
     public void OnMouseExit() {
-        if (this.drag.isDragging || this._hasWon) return;
+        if (this._timeEnabled || this.drag.isDragging || this._hasWon) return;
         this.setMaterialColor(this._defaultColor);
     }
 
@@ -143,7 +146,7 @@ public class logic_paradox : MonoBehaviour {
 
     private void displayParadox(bool visible) {
         if (this._paradoxMaterial == null) return;
-        this._paradoxMaterial.setMaterialFloat("_material_blend", visible ? 0.05f : 0f);
+        this._paradoxMaterial.setMaterialFloat("_material_blend", visible ? 1.6f : 20f);
     }
 
     private void displayGlich(bool visible) {
@@ -216,6 +219,7 @@ public class logic_paradox : MonoBehaviour {
     
     private void resetPosition() {
         this._reset.resetObject();
+        this.setMaterialColor(this._defaultColor);
     }
 
     private bool canControlObject() {

@@ -11,6 +11,7 @@ TagManager:
   - ducktape_object
   - conveyor_object
   - door_object
+  - target_object
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - TimeTarget
   - ParticleCollision
   - PostProcessing
-  - 
+  - Paralax
   - 
   - 
   - 

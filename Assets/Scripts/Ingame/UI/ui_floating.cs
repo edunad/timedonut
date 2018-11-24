@@ -19,7 +19,6 @@ public class ui_floating : MonoBehaviour {
 	private Vector3 _originalPos;
 
 	public void Awake () {
-		this._originalPos = this.transform.localPosition;
 		this.isEnabled = true;
 	}
 	
@@ -31,6 +30,6 @@ public class ui_floating : MonoBehaviour {
 		float y = Mathf.Sin((Time.time + timeOffset) * this.ySpeed) * this.yOffset;
 		float x = Mathf.Cos((Time.time + timeOffset) * this.xSpeed) * this.xOffset;
 
-		this.transform.localPosition = new Vector3(_originalPos.x + x, this._originalPos.y + y, pos.z);
+        this.transform.localPosition = new Vector3(pos.x + x, pos.y + y, pos.z);
 	}
 }

@@ -101,9 +101,6 @@ public class HUDController : MonoBehaviour {
     
     private void Update() {
         if (this._hasWon) return;
-        if (Input.GetKeyDown(KeyCode.Escape)) {
-            this.displayPauseMenu(!this._isPaused);
-        }
 
         // Wait for both effects to finish
         if (this._playingIntro < 2) {
@@ -111,6 +108,10 @@ public class HUDController : MonoBehaviour {
                 this._bloomEffect.intensity.value = this._bloomTarget.getVar();
             if (this._glichEffect != null)
                 this._glichEffect.scanLineJitter.value = this._tvTarget.getVar();
+        } else {
+            if (Input.GetKeyDown(KeyCode.Escape)) {
+                this.displayPauseMenu(!this._isPaused);
+            }
         }
 
         this._currentTime = Mathf.Clamp(this._core.currentTime, 0, this._maxTimeZone);

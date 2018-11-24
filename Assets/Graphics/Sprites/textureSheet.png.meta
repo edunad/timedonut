@@ -23,7 +23,7 @@ TextureImporter:
     21300036: tx_nailgun_2
     21300038: tx_ducktape
     21300040: tx_ducktape_tape
-    21300042: tx_donut
+    21300042: tx_donut_1
     21300044: tx_pic_president
     21300046: tx_ground_3
     21300048: tx_vent_1
@@ -58,6 +58,36 @@ TextureImporter:
     21300106: tx_wall_middle_s_end
     21300108: tx_wall_middle_s_3
     21300110: tx_wall_middle_s_4
+    21300112: tx_wheel_1
+    21300114: tx_clock
+    21300116: tx_wheel_2
+    21300118: tx_rolo_de_papel
+    21300120: tx_beam_smaller
+    21300122: tx_temptarget
+    21300124: tx_donut_2
+    21300126: tx_paralax_1
+    21300128: tx_paralax_2
+    21300130: tx_paralax_3
+    21300132: tx_paralax_4
+    21300134: tx_paralax_nocolor_1
+    21300136: tx_paralax_nocolor_2
+    21300138: tx_paralax_nocolor_3
+    21300140: tx_paralax_nocolor_4
+    21300142: tx_paralax_nocolor_5
+    21300144: tx_paralax_nocolor_6
+    21300146: tx_paralax_nocolor_7
+    21300148: tx_paralax_nocolor_8
+    21300150: tx_paralax_nocolor_9
+    21300152: tx_paralax_nocolor_10
+    21300154: tx_paralax_nocolor_11
+    21300156: tx_skybox
+    21300158: tx_crate_1
+    21300160: tx_crate_2
+    21300162: tx_crate_3
+    21300164: tx_crate_brk_1
+    21300166: tx_crate_brk_2
+    21300168: tx_crate_brk_3
+    21300170: tx_barrel
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -582,10 +612,10 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tx_donut
+      name: tx_donut_1
       rect:
         serializedVersion: 2
-        x: 248
+        x: 241
         y: 807
         width: 17
         height: 18
@@ -885,8 +915,8 @@ TextureImporter:
       name: tx_black
       rect:
         serializedVersion: 2
-        x: 273
-        y: 807
+        x: 241
+        y: 774
         width: 32
         height: 32
       alignment: 0
@@ -1277,6 +1307,606 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 6f75f1f27c5aa954d90d4c5e9c6558d3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_wheel_1
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 848
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77114f9bf702fea4e8972b8eda68e33f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_clock
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 848
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91e9eb94329b0fc47959404243e88bad
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_wheel_2
+      rect:
+        serializedVersion: 2
+        x: 310
+        y: 816
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a97a4d8b17e7548a51e675d6b9921b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_rolo_de_papel
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 816
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 588a1163b7902f241af2b39a0ffc3872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_beam_smaller
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 795
+        width: 11
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f18ab41f9c15098448e4114d7b5dde0b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_temptarget
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 800
+        width: 33
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89a7e00f70a21a642884e3ce27ca54ca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_donut_2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 807
+        width: 5
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f705a2132e7058438f4540e9c0778a0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 272
+        width: 68
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 735b624bfb0ec364a859893d2742e6d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_2
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 272
+        width: 66
+        height: 71
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8426e491e0638c543b3de0e0deb87af2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_3
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 272
+        width: 18
+        height: 104
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 909def2ac799fc14981891a835e99765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_4
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 272
+        width: 115
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ed2db78c7c3cd44eb65fa4f1bdac756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_1
+      rect:
+        serializedVersion: 2
+        x: 309
+        y: 174
+        width: 66
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 12ec8e9f0e6b387448ce5a646abf98b7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_2
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 174
+        width: 28
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b655bc6543858b84185ea6daae096b41
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_3
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 182
+        width: 54
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: decdaf19a8886f24da5b50c846cbccd0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_4
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 174
+        width: 89
+        height: 81
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 555b4537ec727ac4483e78f6370197d9
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_5
+      rect:
+        serializedVersion: 2
+        x: 226
+        y: 182
+        width: 34
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e3d95d679e362b49b5a930831b3635e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_6
+      rect:
+        serializedVersion: 2
+        x: 377
+        y: 63
+        width: 34
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6180f6c1447b9644aacc997b84569c2f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_7
+      rect:
+        serializedVersion: 2
+        x: 436
+        y: 63
+        width: 34
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 821e76347e649f845820f71a0b9e7f40
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_8
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 183
+        width: 56
+        height: 68
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5928751dee6d4c54bbb257c245737b61
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_9
+      rect:
+        serializedVersion: 2
+        x: 313
+        y: 63
+        width: 60
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4239bf60fc97154da895fd0f819855d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_10
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 66
+        width: 46
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 99cee4d1f7ddb384a9ba4ad1c15d33ac
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_paralax_nocolor_11
+      rect:
+        serializedVersion: 2
+        x: 418
+        y: 63
+        width: 16
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afd4920054eece14a861f1fd47bc29bf
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_skybox
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 384
+        width: 160
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1f39da1946446240a6ff833ef721d6f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_1
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 952
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3eb93c4c45efb14a8757fe7e7bbc44b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_2
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 924
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be2c19f496176ec41a57982b455a54f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_3
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 896
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ffab1a7110f39342ae20f595810825b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_brk_1
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 952
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e26e917ed29c7c43b987408d9dceeff
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_brk_2
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 923
+        width: 32
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db41e9ece8632ba4d890f588600b8052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_brk_3
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 896
+        width: 32
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7bfabe3e46061d44bcaa02dca9c360e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_barrel
+      rect:
+        serializedVersion: 2
+        x: 405
+        y: 896
+        width: 34
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 810a7b29c38d6fa43b1cdb5d6852d016
       vertices: []
       indices: 
       edges: []

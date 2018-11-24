@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4378259410522420}
   - component: {fileID: 114687344743754278}
   - component: {fileID: 114593426894113854}
+  - component: {fileID: 114937836056625724}
   m_Layer: 0
   m_Name: Core
   m_TagString: GameController
@@ -71,11 +72,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90ec247c051ec554aa6b16989081a30f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSceneTime: 6
-  sceneDeathTime: 4
-  goldenDonutMoves: 1
+  maxSceneTime: 6.5
+  sceneDeathTime: 4.92
+  goldenDonutMoves: 3
   hasLost: 0
   hasWon: 0
   timeRunning: 0
   currentTime: 0
   paradoxVisible: 0
+--- !u!114 &114937836056625724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1212651079338752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d27d58725b2259b4aa8d9776b446f03f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
