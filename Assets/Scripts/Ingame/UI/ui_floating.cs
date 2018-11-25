@@ -7,7 +7,7 @@ public class ui_floating : MonoBehaviour {
 
 	[Header("Timing Y")]
 	public float ySpeed = 2f;
-	public float yOffset = 0.005f;
+	public float yOffset = 0.0005f;
 
 	[Header("Timing X")]
 	public float xSpeed = 2f;

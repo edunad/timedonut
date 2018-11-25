@@ -90,9 +90,9 @@ public class CoreController : MonoBehaviour {
         if (elementID == "UI_RETRY_BTN") {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else if (elementID == "UI_NEXT_BTN" && this.hasWon) {
-            // Load next level
+            this.loadNextLevel(); // Load next level
         } else if (elementID == "UI_QUIT_BTN" && this.hasWon) {
-            // Quit to mainmenu
+            this.quitToMainMenu(); // Quit to mainmenu
         }
     }
 
@@ -115,6 +115,17 @@ public class CoreController : MonoBehaviour {
         CoreController.RatingController.calculateRating(this._movedObjects.Count, this.goldenDonutMoves);
 
         if (OnGameWin != null) OnGameWin(); // Alert entities
+    }
+
+    private void loadNextLevel() {
+        int sceneID = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("loading_scene_index", sceneID + 1);
+        SceneManager.LoadScene("level-loader", LoadSceneMode.Single);
+    }
+
+    private void quitToMainMenu() {
+        PlayerPrefs.SetInt("loading_scene_index", -1); // reset
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
     /* ************* 

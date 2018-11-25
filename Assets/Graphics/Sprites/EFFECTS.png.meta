@@ -24,6 +24,18 @@ TextureImporter:
     21300038: EFFECTS_GEAR
     21300040: EFFECTS_FADER
     21300042: EFFECTS_0
+    21300044: EFFECTS_DONUT_1
+    21300046: EFFECTS_DONUT_2
+    21300048: EFFECTS_DONUT_3
+    21300050: EFFECTS_DONUT_4
+    21300052: EFFECTS_DONUT_5
+    21300054: EFFECTS_DONUT_6
+    21300056: EFFECTS_DONUT_7
+    21300058: EFFECTS_DONUT_8
+    21300060: EFFECTS_DONUT_9
+    21300062: EFFECTS_DONUT_10
+    21300064: EFFECTS_DONUT_11
+    21300066: EFFECTS_DONUT_12
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -428,86 +440,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EFFECTS_BG_GEAR_1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 712
-        width: 404
-        height: 176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bdc4f50225547e044892e5756616245e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EFFECTS_BG_GEAR_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 536
-        width: 404
-        height: 176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7c5b167bef1cb5a46814a3c21856e768
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EFFECTS_BG_GEAR_2
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 712
-        width: 404
-        height: 176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1c0ec80e7bd701041ad159bcbe8dc527
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: EFFECTS_BG_GEAR_4
-      rect:
-        serializedVersion: 2
-        x: 404
-        y: 536
-        width: 404
-        height: 176
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 354efc85e1e8f92438153d35fa02448e
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: EFFECTS_GEAR
       rect:
         serializedVersion: 2
@@ -556,13 +488,253 @@ TextureImporter:
         width: 808
         height: 176
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: d0d939afea1c7cc42a74910ab3bab058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7d4889d16e74ba943b4af3aa56462bc7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_2
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d63ad1507fcf4047bb35266fdf2830a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_3
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51fbae3cd9203d74fbb42dbf1778cfbd
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_4
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3d82085106b19344b3ef671c080e9a3
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_5
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a614ea6400a53974f96bac71c6ca36fa
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_6
+      rect:
+        serializedVersion: 2
+        x: 110
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e496187e58fac8b449c84687aeeacaf4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_7
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c066cdffe1879d64c8a78eb56551c6e4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_8
+      rect:
+        serializedVersion: 2
+        x: 154
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea53378419905b4387279972cd72530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_9
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 284c6228b1d9fc248afb471421f78f1b
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_10
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bac0bb7ae469247a36ef0cf7c5428d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_11
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d210bcf64f4e5ce409e814a00bd919d5
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_DONUT_12
+      rect:
+        serializedVersion: 2
+        x: 242
+        y: 828
+        width: 22
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ba79751ce34b9488c8c9684d5dcb11
       vertices: []
       indices: 
       edges: []

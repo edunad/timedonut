@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 5c8abf34df0218443afef210db3e0fa5
+  - enabled: 1
+    path: Assets/Scenes/Ingame/Levels/level-loader.unity
+    guid: 7623878b8637d2143a5284052549d7e4
+  - enabled: 1
     path: Assets/Scenes/Ingame/Levels/level-1.unity
     guid: 26ed8b808da4b694883066cd638fa55e
   - enabled: 1
     path: Assets/Scenes/Ingame/Levels/level-2.unity
     guid: 8d5aa1ec57dc8a5429a563545daa3414
+  - enabled: 1
+    path: Assets/Scenes/Ingame/Levels/level-3.unity
+    guid: aeb27b3b750e3814e8933a88d2d66119
   m_configObjects: {}
