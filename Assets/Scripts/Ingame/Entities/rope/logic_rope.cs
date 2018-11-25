@@ -33,7 +33,7 @@ public class logic_rope : MonoBehaviour {
 
         this._endNode = this.end.AddComponent<logic_rope_node>();
         this._endNode.setRopeController(this);
-
+        
         // Store original pos
         #region Old positions
         this._end_originalPosition = this.end.transform.position;
@@ -207,10 +207,12 @@ public class logic_rope : MonoBehaviour {
 
 
         // Add last node
+        
         logic_rope_node lastNode = this._ropeNodes[totalNodes];
         HingeJoint2D joint = this.createJoint(lastNode.body, end);
-        joint.anchor = Vector3.zero;
+        joint.anchor -= new Vector2(0, ropeOffset.y);
 
+       
         this._endNode.body = this._endBody;
         this._endNode.joint = joint;
 
@@ -317,11 +319,10 @@ public class logic_rope : MonoBehaviour {
      ===============*/
     public void OnDrawGizmos() {
         if (this.end == null) return;
-
         int totalNodes = this.getTotalNodes();
 
         Gizmos.color = Color.blue;
-        for(int i = 0; i <= totalNodes; i++)
+        for(int i = 0; i < totalNodes; i++)
             Gizmos.DrawCube(this.getNodePosition(i), new Vector3(0.1f,0.1f,0));
 
         Gizmos.color = Color.red;
@@ -329,6 +330,7 @@ public class logic_rope : MonoBehaviour {
         Vector3 D = this.end.transform.position + ropeOffset;
 
         Gizmos.DrawLine(A, D);
+        Gizmos.DrawCube(D, new Vector3(0.1f, 0.1f, 0));
         Gizmos.DrawIcon(this.transform.position, "gizmo_rope");
     }
 }

@@ -207,6 +207,7 @@ public class logic_paradox : MonoBehaviour {
         if (!started) this.resetPosition();
 
         this._timeEnabled = started;
+        this._colliders.Clear();
 
         this.setMovement(started);
         this.displayParadox(!started);

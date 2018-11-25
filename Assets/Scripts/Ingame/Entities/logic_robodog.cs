@@ -75,6 +75,7 @@ public class logic_robodog : MonoBehaviour {
         this._isTimeRunning = started;
         this._active = false;
         this._animator.SetInteger("status", 0);
+        this._colliders.Clear();
 
         if (started && this.activeByDefault) {
             this.activateBot();

@@ -14,6 +14,7 @@ public class logic_nailer : MonoBehaviour {
     private AudioClip[] _audioClips;
 
     private AudioSource _audioSource;
+    private SpriteRenderer _sprite;
 
     private bool _timeRunning = false;
     private bool _isTimed = false;
@@ -39,6 +40,9 @@ public class logic_nailer : MonoBehaviour {
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_empty"),
         };
         #endregion
+
+        // Get the sprite
+        this._sprite = this.GetComponent<SpriteRenderer>();
     }
 
     /* ************* 
@@ -88,11 +92,12 @@ public class logic_nailer : MonoBehaviour {
      * SHOOTING
      ===============*/
     private void cleanNails() {
-        if (this._nails.Count > 0) return;
+        if (this._nails.Count <= 0) return;
         foreach (GameObject obj in this._nails)
             Destroy(obj);
 
         this._nails.Clear();
+        this._colliders.Clear();
     }
 
     private void shootNail() {
@@ -108,13 +113,14 @@ public class logic_nailer : MonoBehaviour {
         GameObject nail = GameObject.Instantiate(nailInstance);
         nail.name = "nail_instance_" + this._nails.Count;
 
-        Vector3 shootPos = this.transform.TransformPoint(Vector3.right * 0.2f) + new Vector3(0.1f, 0.1f, 0);
+        Vector3 shootDir = this._sprite.flipX ? Vector3.left : Vector3.right;
+        Vector3 shootPos = this.transform.TransformPoint(shootDir * 0.2f) + new Vector3(0.1f, 0.1f, 0);
         nail.transform.position = new Vector3(shootPos.x, shootPos.y, this.transform.position.z);
         nail.transform.rotation = this.transform.rotation;
         nail.layer = this._isTimed ? 11 : 10;
 
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();
-        nailBody.AddForce(this.transform.right * 80, ForceMode2D.Impulse); // TODO : Fix
+        nailBody.AddForce(shootDir * 80, ForceMode2D.Impulse); // TODO : Fix
         nailBody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         // Play shooting sound

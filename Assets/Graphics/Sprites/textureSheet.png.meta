@@ -99,6 +99,11 @@ TextureImporter:
     21300188: tx_painting_2
     21300190: tx_board_hotjam
     21300192: tx_robodog_on
+    21300194: tx_board_holder
+    21300196: tx_board_corner
+    21300198: tx_board_side
+    21300200: tx_board_stripes
+    21300202: tx_board_electro
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -2138,6 +2143,46 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1c12c1f1eda61dc4fbb5799ce47ff32e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_board_holder
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 878
+        width: 9
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73ffa1686d56f1b4f811a611dccf3312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_board_electro
+      rect:
+        serializedVersion: 2
+        x: 292
+        y: 874
+        width: 84
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31391ce8e0c43d14babf592416ddd6fe
       vertices: []
       indices: 
       edges: []

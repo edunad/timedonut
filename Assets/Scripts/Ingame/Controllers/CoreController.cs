@@ -91,7 +91,7 @@ public class CoreController : MonoBehaviour {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         } else if (elementID == "UI_NEXT_BTN" && this.hasWon) {
             this.loadNextLevel(); // Load next level
-        } else if (elementID == "UI_QUIT_BTN" && this.hasWon) {
+        } else if (elementID == "UI_QUIT_BTN" && !this.hasWon) {
             this.quitToMainMenu(); // Quit to mainmenu
         }
     }
