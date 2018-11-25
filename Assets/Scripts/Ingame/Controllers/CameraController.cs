@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour {
 
     [Header("Camera zoom settings")]
@@ -25,6 +26,20 @@ public class CameraController : MonoBehaviour {
     public void Awake() {
         this._camera = GetComponent<Camera>();
         this._camera.orthographicSize = maxZoom; // Zoomout
+    }
+
+    public bool isObjectInsidePlayArea(GameObject obj) {
+        Vector3 pos = obj.transform.position;
+
+        float minPlayX = this.playArea.x + this.playAreaOffset.x;
+        float minPlayY = this.playArea.y + this.playAreaOffset.y;
+
+        float maxPlayX = this.playArea.width + this.playAreaOffset.x;
+        float maxPlayY = this.playArea.height + this.playAreaOffset.y;
+         
+        if (pos.y < minPlayY || pos.y > maxPlayY) return false;
+        if (pos.x < minPlayX || pos.x > maxPlayX) return false;
+        return true;
     }
 
     public void Update() {

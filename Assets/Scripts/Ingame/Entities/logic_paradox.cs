@@ -121,7 +121,7 @@ public class logic_paradox : MonoBehaviour {
         // Hide Glich
         this.displayGlich(false);
 
-        if (!this.canPlaceObject()) {
+        if (!this.canPlaceObject() || !this.isInsidePlayArea()) {
             this.resetPosition();
         } else {
             this._core.onItemMoved(this.gameObject); // Add it to the moved objects for rating
@@ -172,6 +172,11 @@ public class logic_paradox : MonoBehaviour {
 
     private bool canPlaceObject() {
         return this._colliders.Count <= 0;
+    }
+
+    private bool isInsidePlayArea() {
+        if (CoreController.CameraController == null) return false;
+        return CoreController.CameraController.isObjectInsidePlayArea(this.gameObject);
     }
 
     /* ************* 

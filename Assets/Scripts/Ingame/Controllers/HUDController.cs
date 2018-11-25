@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 
 public class HUDController : MonoBehaviour {
     // Texture
@@ -11,6 +12,7 @@ public class HUDController : MonoBehaviour {
     public Animator timeSprite;
     public GameObject skullObject;
     public GameObject currTimeObject;
+
     public TextMesh currentMovesText;
 
     [Header("HUD MENU Elements")]
@@ -73,7 +75,7 @@ public class HUDController : MonoBehaviour {
         this.setSkullPos();
     }
 
-    public void Start() {
+    public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         this.playIntro();
     }
 
@@ -94,7 +96,7 @@ public class HUDController : MonoBehaviour {
             this._playingIntro++;
         });
 
-        this._intro.triggerFade("Sounds/UI/time_fadein", true, new Vector3(1.98f, 0, 1f), new Vector3(-8.5f, 0, 1f), () => {
+        this._intro.triggerFade(true, new Vector3(1.98f, 0, 1f), new Vector3(-8.5f, 0, 1f), () => {
             this._intro.gameObject.SetActive(false);
         });
     }
@@ -189,6 +191,8 @@ public class HUDController : MonoBehaviour {
         CoreController.OnGameWin += this.displayWinMenu;
         CoreController.OnGameLosse += this.onGameLosse;
         CoreController.OnMovesUpdate += this.updateTotalMoves;
+
+        SceneManager.sceneLoaded += OnLevelFinishedLoading;
     }
 
     public void OnDisable() {
@@ -196,6 +200,8 @@ public class HUDController : MonoBehaviour {
         CoreController.OnGameWin -= this.displayWinMenu;
         CoreController.OnGameLosse -= this.onGameLosse;
         CoreController.OnMovesUpdate -= this.updateTotalMoves;
+
+        SceneManager.sceneLoaded -= OnLevelFinishedLoading;
     }
 
     private void onGameLosse() {

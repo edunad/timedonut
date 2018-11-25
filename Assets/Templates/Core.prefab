@@ -59,8 +59,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  donutOK: {fileID: 21300016, guid: 2d0e7aab6054837408fa6fb1b27e31dc, type: 3}
-  donutNOPE: {fileID: 21300018, guid: 2d0e7aab6054837408fa6fb1b27e31dc, type: 3}
+  donutOK: {fileID: 21300178, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
+  donutNOPE: {fileID: 21300184, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
 --- !u!114 &114687344743754278
 MonoBehaviour:
   m_ObjectHideFlags: 1

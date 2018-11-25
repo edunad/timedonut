@@ -8,8 +8,6 @@ public class ui_intro : MonoBehaviour {
     private Vector3 _fadeStart, _fadeEnd;
     private AudioSource _audioSource;
 
-    private AudioClip[] _audioClips;
-
     private bool _isFading;
     private float _journeyLength;
     private float _startTime;
@@ -26,7 +24,7 @@ public class ui_intro : MonoBehaviour {
         this._audioSource.playOnAwake = false;
     }
 
-    public void triggerFade(string audio, bool fadeIn, Vector3 fadeStart, Vector3 fadeEnd, Action onComplete = null) {
+    public void triggerFade(bool fadeIn, Vector3 fadeStart, Vector3 fadeEnd, Action onComplete = null) {
         if (this._isFading) return;
 
         this._fadeStart = fadeStart;
@@ -40,7 +38,7 @@ public class ui_intro : MonoBehaviour {
         this._onFadeComplete = onComplete;
         this._isFading = true;
 
-        this._audioSource.clip = AssetsController.GetResource<AudioClip>(audio);
+        //this._audioSource.clip = AssetsController.GetResource<AudioClip>(audio);
         this._audioSource.Play();
     }
 

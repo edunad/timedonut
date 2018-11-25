@@ -16,8 +16,13 @@ public class RatingController : MonoBehaviour {
 
         for (int i = 0; i < this.spriteDonuts.Count; i++) {
             if (this.spriteDonuts[i] == null) continue;
-            if (i < rating) this.spriteDonuts[i].sprite = donutOK;
-            else this.spriteDonuts[i].sprite = donutNOPE;
+            if (i < rating) {
+                this.spriteDonuts[i].sprite = donutOK;
+                this.spriteDonuts[i].color = Color.white;
+            } else {
+                this.spriteDonuts[i].sprite = donutNOPE;
+                this.spriteDonuts[i].color = new Color32(56, 56, 56, 255);
+            }
         }
     }
 }
