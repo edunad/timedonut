@@ -24,16 +24,21 @@ public class logic_target : MonoBehaviour {
 	// Update is called once per frame
 	public void OnTriggerEnter2D(Collider2D collision) {
 		if (collision == null || !this._timeRunning || this._isDisabled) return;
-		Debug.Log("DEATH : <color='red'>" + this._core.currentTime + "</color>"); // For death_time
+        this.killPlayer();
+
+    }
+
+    public void killPlayer() {
+        Debug.Log("DEATH : <color='red'>" + this._core.currentTime + "</color>"); // For death_time
 
         this._core.onTargetDeath();
         this._isDisabled = true;
-	}
+    }
 
-	/* ************* 
+    /* ************* 
 	 * EVENTS + TIME
 	===============*/
-	private void onWin() {
+    private void onWin() {
 		this._isDisabled = true; // Disable the script
 	}
 

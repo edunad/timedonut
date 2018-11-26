@@ -4,6 +4,7 @@ using TMPro;
 using UnityEngine;
 
 public class ui_hintscroller : MonoBehaviour {
+
     [Header("Hint settings")]
     public string text = "";
     public float speed = 0.2f;

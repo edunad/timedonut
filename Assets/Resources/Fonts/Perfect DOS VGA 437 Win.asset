@@ -11,19 +11,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Perfect DOS VGA 437 Win
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1149088773
   material: {fileID: 21318682563823384}
-  materialHashCode: 0
+  materialHashCode: 456488720
   fontAssetType: 2
   m_fontInfo:
     Name: Perfect DOS VGA 437 Win
     PointSize: 87
-    Scale: 0
+    Scale: 1
     CharacterCount: 96
     LineHeight: 87
     Baseline: 0
     Ascender: 65
-    CapHeight: 0
+    CapHeight: 54
     Descender: -22
     CenterLine: 0
     SuperscriptOffset: 65
@@ -33,7 +33,7 @@ MonoBehaviour:
     UnderlineThickness: 5.4375
     strikethrough: 15.636364
     strikethroughThickness: 5.4375
-    TabWidth: 0
+    TabWidth: 480
     Padding: 5
     AtlasWidth: 512
     AtlasHeight: 512
@@ -42,10 +42,10 @@ MonoBehaviour:
   - id: 32
     x: 5
     y: 507
-    width: 0
-    height: 0
+    width: 48
+    height: 87
     xOffset: 0
-    yOffset: 0
+    yOffset: 65
     xAdvance: 48
     scale: 1
   - id: 33
@@ -972,7 +972,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: Perfect DOS VGA 437 Win Material
   m_Shader: {fileID: 4800000, guid: 128e987d567d4e2c824d754223b3f3b0, type: 3}
-  m_ShaderKeywords: 
+  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0

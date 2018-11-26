@@ -25,7 +25,7 @@ public class LoadingController : MonoBehaviour {
 
         while (!this._asyncOp.isDone) {
             if (this._asyncOp.progress == 0.9f) {
-                util_timer.Simple(2f, () => {
+                util_timer.Simple(1f, () => {
                     this._asyncOp.allowSceneActivation = true;
                     PlayerPrefs.SetInt("loading_scene_index", -1); // Reset
                 });

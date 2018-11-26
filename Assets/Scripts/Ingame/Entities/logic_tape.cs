@@ -77,6 +77,8 @@ public class logic_tape : MonoBehaviour {
         // Create glue for static objects
         this.createTempGlue();
         this.displayTape(false); // Hide tape
+
+        this.setMaterialColor(this._defaultColor);
     }
 
     private void createTempGlue() {
@@ -107,12 +109,12 @@ public class logic_tape : MonoBehaviour {
     }
 
     public void OnMouseOver() {
-        if (this._drag.isDragging || this._hasWon) return;
+        if (this._isTimeEnabled || this._drag.isDragging || this._hasWon) return;
         this.setMaterialColor(this._hoverColor);
     }
 
     public void OnMouseExit() {
-        if (this._drag.isDragging || this._hasWon) return;
+        if (this._isTimeEnabled || this._drag.isDragging || this._hasWon) return;
         this.setMaterialColor(this._defaultColor);
     }
 
@@ -149,7 +151,10 @@ public class logic_tape : MonoBehaviour {
             this._stickEnd = this._colliders[1];
 
             this.setTapeAttach(true);
-        } else this._reset.resetObject();
+        } else {
+            this.setMaterialColor(this._defaultColor);
+            this._reset.resetObject();
+        }
     }
 
     /* ************* 
@@ -279,11 +284,16 @@ public class logic_tape : MonoBehaviour {
             this._collision.enabled = true;
 
             if (!this._isAttached) this._reset.resetObject();
+
             this.setMovement(false);
         }
 
-        this.displayParadox(!started);
+
+        this._colliders.Clear();
         this._isTimeEnabled = started;
+
+        this.displayParadox(!started);
+        this.setMaterialColor(this._defaultColor);
     }
 
     /* ************* 
@@ -320,6 +330,6 @@ public class logic_tape : MonoBehaviour {
 
     private void displayParadox(bool visible) {
         if (this._paradoxMaterial == null) return;
-        this._paradoxMaterial.setMaterialFloat("_material_blend", visible ? 0.05f : 0f);
+        this._paradoxMaterial.setMaterialFloat("_material_blend", visible ? 1.6f : 20f);
     }
 }

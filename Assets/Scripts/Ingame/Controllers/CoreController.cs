@@ -44,7 +44,6 @@ public class CoreController : MonoBehaviour {
     public float currentTime;
     [HideInInspector]
     public bool paradoxVisible;
-    
 
     // Private vars
     private float _startTime;

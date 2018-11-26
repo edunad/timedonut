@@ -29,9 +29,11 @@ public class logic_cable : MonoBehaviour {
         this._cable.useWorldSpace = true;
         this._cable.textureMode = LineTextureMode.DistributePerSegment;
         this._cable.sortingLayerName = "Foreground";
+        this._cable.sortingOrder = 30;
         this._cable.sharedMaterial = this._material;
 
         this._startPoint = this.transform.position;
+        this._startPoint.z = 0.1f;
 
         this.name = "logic_cable";
         this.tag = "particle_object";
@@ -55,7 +57,11 @@ public class logic_cable : MonoBehaviour {
             points.Add(pos);
         }
 
-        points.Add(this.endPoint.position);
+
+        Vector3 end = this.endPoint.position;
+        end.z = 0.1f;
+
+        points.Add(end);
 
         // Line render!
         this._cable.positionCount = points.Count;

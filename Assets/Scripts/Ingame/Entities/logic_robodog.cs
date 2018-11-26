@@ -9,6 +9,7 @@ public class logic_robodog : MonoBehaviour {
     public float speed = 10;
     public float activeTime = 1;
     public bool activeByDefault = false;
+    public LayerMask groundLayer;
 
     private AudioSource _audio;
     private Rigidbody2D _body;
@@ -32,8 +33,6 @@ public class logic_robodog : MonoBehaviour {
             "paradox_object",
             "timed_object"
         };
-
-        if (this.activeByDefault) this.activateBot();
     }
 
     public void OnEnable() {
@@ -62,7 +61,9 @@ public class logic_robodog : MonoBehaviour {
 
     public void Update() {
         if (!this._isTimeRunning || !this._active || Time.time > this._timer) return;
-        this._body.AddForce(Vector2.right * speed, ForceMode2D.Impulse);
+        if (!this.IsGrounded()) return;
+
+        this._body.velocity = new Vector2(transform.localScale.x * speed, _body.velocity.y);
     }
 
     private void onGameWin() {
@@ -90,5 +91,9 @@ public class logic_robodog : MonoBehaviour {
         this._audio.Play();
 
         this._animator.SetInteger("status", 1);
+    }
+
+    public bool IsGrounded() {
+        return Physics2D.Raycast(transform.position, -Vector3.up, 0.01f, this.groundLayer);
     }
 }

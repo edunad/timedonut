@@ -1,5 +1,4 @@
 ﻿using Assets.Scripts.models;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +6,10 @@ using UnityEngine;
 public class logic_button : MonoBehaviour {
     [Header("Button settings")]
     public bool isPreasured;
+
+    [Header("Sprite settings")]
+    public Sprite offSprite;
+    public Sprite onSprite;
 
     [Header("Networking settings")]
     public GameObject reciever;
@@ -23,12 +26,17 @@ public class logic_button : MonoBehaviour {
 
     private AudioSource _audioSource;
     private AudioClip[] _audioClips;
-
+    private SpriteRenderer _spriteRender;
+    
     private bool _hasWon = false;
 
     public void Awake() {
         if (this.reciever == null) throw new UnityException("logic_button missing a reciever");
         this._cable = this.GetComponent<logic_cable>();
+
+        this._spriteRender = this.GetComponent<SpriteRenderer>();
+        this._spriteRender.sprite = this.offSprite;
+
 
         this._colliders = new List<Collider2D>();
         this._allowedColliders = new List<string>() {
@@ -92,6 +100,7 @@ public class logic_button : MonoBehaviour {
         }
 
         if (this._cable != null) this._cable.setCableColor(pressed ? Color.green : Color.red);
+        this._spriteRender.sprite = pressed ? this.onSprite : this.offSprite;
     }
 
     /* ************* 

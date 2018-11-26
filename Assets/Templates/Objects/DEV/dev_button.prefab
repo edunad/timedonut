@@ -21,12 +21,11 @@ GameObject:
   - component: {fileID: 4594285948390340}
   - component: {fileID: 212665076190031848}
   - component: {fileID: 114420518853136684}
-  - component: {fileID: 50456494360903758}
   - component: {fileID: 61250104831023510}
   - component: {fileID: 61352425353361178}
   - component: {fileID: 120075321393404504}
-  - component: {fileID: 114715996262470934}
   - component: {fileID: 82577793573859062}
+  - component: {fileID: 114618354608760196}
   m_Layer: 8
   m_Name: dev_button
   m_TagString: static_object
@@ -41,32 +40,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110799278269296}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03, y: -1.083, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -15.853554, y: 2.7405567, z: 0}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &50456494360903758
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1110799278269296}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!61 &61250104831023510
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -79,18 +58,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.039669454}
+  m_Offset: {x: 0.0007920265, y: -0.048386216}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.328125, y: 0.140625}
+    oldSize: {x: 0.25, y: 0.21875}
     newSize: {x: 0.328125, y: 0.140625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.328125, y: 0.06128609}
+  m_Size: {x: 0.25363636, y: 0.12309575}
   m_EdgeRadius: 0
 --- !u!61 &61352425353361178
 BoxCollider2D:
@@ -104,18 +83,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.000000059604645, y: 0.039669454}
+  m_Offset: {x: -0.000000059604645, y: 0.062649965}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.328125, y: 0.140625}
+    oldSize: {x: 0.25, y: 0.21875}
     newSize: {x: 0.328125, y: 0.140625}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.20205212, y: 0.06128609}
+  m_Size: {x: 0.20205212, y: 0.09773779}
   m_EdgeRadius: 0
 --- !u!82 &82577793573859062
 AudioSource:
@@ -224,10 +203,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPreasured: 0
+  offSprite: {fileID: 21300234, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
+  onSprite: {fileID: 21300232, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
   reciever: {fileID: 0}
   dataHeader: active
   isPressed: 0
---- !u!114 &114715996262470934
+--- !u!114 &114618354608760196
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,11 +220,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   endPoint: {fileID: 0}
-  cableSize: 0.06
-  cableOffset:
-  - {x: 0, y: 0.45, z: 0}
-  - {x: 0.3, y: 0, z: 0}
-  - {x: 0, y: 0.18, z: 0}
+  cableSize: 0.05
+  cableOffset: []
 --- !u!120 &120075321393404504
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -351,7 +329,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f176c16b6979b424f8023358b3f148e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -368,10 +346,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300034, guid: 1877fa82faa4099459cb1ed9bbe0b72c, type: 3}
+  m_SortingLayerID: -1887232601
+  m_SortingLayer: 2
+  m_SortingOrder: 20
+  m_Sprite: {fileID: 21300234, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

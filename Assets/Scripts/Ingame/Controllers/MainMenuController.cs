@@ -20,6 +20,8 @@ public class MainMenuController : MonoBehaviour {
     public void OnUIClick(string elementID) {
         if (elementID == "test_btn") {
             this.loadLevel(2); // 2 = level-1
+        }else if(elementID == "test_btn_lvl2") {
+            this.loadLevel(5); // 2 = level-1
         }
     }
 

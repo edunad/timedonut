@@ -104,6 +104,22 @@ TextureImporter:
     21300198: tx_board_side
     21300200: tx_board_stripes
     21300202: tx_board_electro
+    21300204: tx_counter
+    21300206: tx_counter_digital_1
+    21300208: tx_counter_digital_2
+    21300210: tx_wall_broken_start
+    21300212: tx_wall_broken_middle
+    21300214: tx_wall_broken_end
+    21300216: tx_crate_big
+    21300218: tx_vent_grid
+    21300220: tx_vent_fan
+    21300222: tx_gate
+    21300224: tx_pressure_on
+    21300226: tx_pressure_off
+    21300228: tx_vent_bg_off
+    21300230: tx_vent_bg_on
+    21300232: tx_btn_on
+    21300234: tx_btn_off
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -532,9 +548,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 215
-        y: 838
+        y: 854
         width: 52
-        height: 58
+        height: 42
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -2176,13 +2192,333 @@ TextureImporter:
         width: 84
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 31391ce8e0c43d14babf592416ddd6fe
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_counter
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 837
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d61bc30290a1920418220d417795b267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_counter_digital_1
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 640
+        width: 14
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a84968b63577e948aaaf1d4c9b4d5d7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_wall_broken_start
+      rect:
+        serializedVersion: 2
+        x: 337
+        y: 304
+        width: 32
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 112f6e28db4ce1444b13846fc2a822d0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_wall_broken_middle
+      rect:
+        serializedVersion: 2
+        x: 385
+        y: 304
+        width: 32
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 993e10fba48d7ea488f86ba156760710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_wall_broken_end
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 304
+        width: 32
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f5e3f0a33483c64986e49e529464f36
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_crate_big
+      rect:
+        serializedVersion: 2
+        x: 335
+        y: 979
+        width: 32
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b452bdd10cab6744974dacae77763ed
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_vent_grid
+      rect:
+        serializedVersion: 2
+        x: 289
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92260bb979b8a034bba1dbc24eae7698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_vent_fan
+      rect:
+        serializedVersion: 2
+        x: 257
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ae13413622999e4ab27da126dbba54c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_gate
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 448
+        width: 36
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f94200d3930bce4db0aed353b57a8d8
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_pressure_on
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 464
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebca2fbae665b9e41af29c9a601757c0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_pressure_off
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 480
+        width: 26
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a83126250a4c3a14d85917b5b4ed9142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_vent_bg_off
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 377
+        width: 41
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd8aa99e2ee1fe647a3f82d1a77bf901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_vent_bg_on
+      rect:
+        serializedVersion: 2
+        x: 287
+        y: 336
+        width: 41
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7730c0cd1b99cdb49a2cda20b9ada1f2
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_btn_on
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 496
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b5358b63bdfd2c4d94a3e207c9ac1f7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_btn_off
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 512
+        width: 8
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58cb7d7f4275a7c4c88ffcdef99b8322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_counter_digital_2
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 875
+        width: 24
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20ccb010e05104f49b1c07155ff5e9ab
       vertices: []
       indices: 
       edges: []
