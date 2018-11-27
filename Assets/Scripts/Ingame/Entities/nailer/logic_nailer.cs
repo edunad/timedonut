@@ -20,6 +20,8 @@ public class logic_nailer : MonoBehaviour {
     private bool _isTimed = false;
     private bool _hasWon = false;
 
+    private float _originalVolume;
+
     public void Awake() {
         this._colliders = new List<Collider2D>();
         this._nails = new List<GameObject>();
@@ -33,7 +35,8 @@ public class logic_nailer : MonoBehaviour {
         #region Sound Loading
         this._audioSource = this.GetComponent<AudioSource>();
         this._audioSource.playOnAwake = false;
-        this._audioSource.volume = 0.13f;
+        this._originalVolume = 0.45f;
+
         this._audioClips = new AudioClip[] {
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_1"),
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_2"),
@@ -101,6 +104,9 @@ public class logic_nailer : MonoBehaviour {
     }
 
     private void shootNail() {
+        // Update volume
+        this._audioSource.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * this._originalVolume, 0f, 1f);
+
         // Play empty "click" sound
         if (this._nails.Count >= shootCount) {
             this._audioSource.pitch = 1f;

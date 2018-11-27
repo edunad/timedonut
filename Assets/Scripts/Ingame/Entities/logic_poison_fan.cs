@@ -27,6 +27,9 @@ public class logic_poison_fan : MonoBehaviour {
     private SpriteRenderer _poisonHUD;
     private SpriteRenderer _ventRender;
 
+    private AudioSource _audioSource;
+    private float _originalVolume;
+
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
         this._target = GameObject.Find("logic_target").GetComponent<logic_target>();
@@ -34,14 +37,17 @@ public class logic_poison_fan : MonoBehaviour {
 
         this._ventRender = this.spriteObject.GetComponent<SpriteRenderer>();
 
+        this._audioSource = GetComponent<AudioSource>();
+        this._audioSource.playOnAwake = false;
+        this._originalVolume = 0.35f;
+
         this._counter = GetComponentInChildren<ui_counter>();
         this._fanSpinner = GetComponentInChildren<ui_spinning>();
+
         this._fanSpinner.spinSpeed = 0;
 
         this._poisonHUD.color = poisonColor;
         this._ventRender.sprite = this.offSprite;
-
-        this.setPoison(0);
     }
 
     public void OnEnable() {
@@ -96,6 +102,10 @@ public class logic_poison_fan : MonoBehaviour {
 
         this._fanSpinner.spinSpeed = enabled ? 800f : 0f;
         this._ventRender.sprite = enabled ? this.onSprite : this.offSprite;
+
+        // Update volume
+        this._audioSource.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * this._originalVolume, 0f, 1f);
+        if (enabled) this._audioSource.Play();
     }
 
     /* ************* 

@@ -1,9 +1,9 @@
-﻿using System.Collections;
+﻿
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(AudioSource))]
 public class CoreController : MonoBehaviour {
 
     [Header("Scene timing")]
@@ -12,6 +12,7 @@ public class CoreController : MonoBehaviour {
 
     [Header("Scene settings")]
     public int goldenDonutMoves;
+    public AudioClip backgroundMusic;
 
     // Controllers
     public static HUDController HUDController;
@@ -49,6 +50,9 @@ public class CoreController : MonoBehaviour {
     private float _startTime;
     private List<GameObject> _movedObjects;
 
+    private AudioSource _audioSource;
+    private float _originalVolume;
+
     /* ************* 
      * CORE
     ===============*/
@@ -65,8 +69,44 @@ public class CoreController : MonoBehaviour {
         #endregion
 
         this._movedObjects = new List<GameObject>();
+        this._audioSource = GetComponent<AudioSource>();
+        this._audioSource.playOnAwake = false;
+        this._audioSource.clip = this.backgroundMusic;
+
+        this._originalVolume = 0.25f;
+        this.updateMusicVolume();
     }
 
+    /* ************* 
+     * MUSIC STUFF
+     ===============*/
+    public void updateMusicVolume() {
+        this._audioSource.volume = Mathf.Clamp(OptionsController.musicVolume / 1f * this._originalVolume, 0f, 1f);
+    }
+
+    public void stopMusic() {
+        if (this.backgroundMusic == null) return;
+        this._audioSource.Stop();
+    }
+
+    public void playMusic() {
+        if (this.backgroundMusic == null) return;
+        this._audioSource.Play();
+    }
+
+    public void pauseMusic() {
+        if (this.backgroundMusic == null) return;
+        this._audioSource.Pause();
+    }
+
+    public void unPauseMusic() {
+        if (this.backgroundMusic == null) return;
+        this._audioSource.UnPause();
+    }
+
+    /* ************* 
+     * TIMELINE
+     ===============*/
     public void Update() {
         #region Game_Timeline
         if (this.timeRunning && !this.hasWon) {
@@ -110,8 +150,13 @@ public class CoreController : MonoBehaviour {
 
         // Victory!
         this.hasWon = true;
+
         CoreController.CameraController.canControlCamera = false; // Disable camera movement
-        CoreController.RatingController.calculateRating(this._movedObjects.Count, this.goldenDonutMoves);
+        int rating = CoreController.RatingController.calculateAndRenderRating(this._movedObjects.Count, this.goldenDonutMoves);
+
+        // Save the level rating
+        PlayerPrefs.GetInt("lvl-" + SceneManager.GetActiveScene().buildIndex, rating);
+        PlayerPrefs.Save();
 
         if (OnGameWin != null) OnGameWin(); // Alert entities
     }
@@ -143,6 +188,7 @@ public class CoreController : MonoBehaviour {
 
         if (OnMovesUpdate != null) OnMovesUpdate(this._movedObjects.Count);
     }
+
     /* ************* 
      * TIME
     ===============*/

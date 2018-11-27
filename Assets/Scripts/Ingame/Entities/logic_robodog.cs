@@ -23,10 +23,16 @@ public class logic_robodog : MonoBehaviour {
     private bool _isTimeRunning;
     private bool _active;
 
+    private float _originalVolume;
+
     public void Awake () {
         this._body = GetComponent<Rigidbody2D>();
-        this._audio = GetComponent<AudioSource>();
         this._animator = GetComponent<Animator>();
+
+        // Setup audio
+        this._audio = GetComponent<AudioSource>();
+        this._audio.playOnAwake = false;
+        this._originalVolume = 0.35f;
 
         this._colliders = new List<Collider2D>();
         this._allowedColliders = new List<string>() {
@@ -88,12 +94,23 @@ public class logic_robodog : MonoBehaviour {
 
         this._active = true;
         this._timer = Time.time + this.activeTime;
+
+        this._audio.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * this._originalVolume, 0f, 1f);
         this._audio.Play();
 
         this._animator.SetInteger("status", 1);
     }
 
     public bool IsGrounded() {
-        return Physics2D.Raycast(transform.position, -Vector3.up, 0.01f, this.groundLayer);
+        return true;
+        // TODO : Improve me senpai
+        /*RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, -Vector3.up, 0.3f, groundLayer);
+
+        foreach (RaycastHit2D hit in hits) {
+            if (!hit || hit.collider.gameObject == this.gameObject) continue;
+            return true;
+        }
+
+        return false;*/
     }
 }

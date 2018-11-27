@@ -28,6 +28,9 @@ public class CameraController : MonoBehaviour {
         this._camera.orthographicSize = maxZoom; // Zoomout
     }
 
+    /* ************* 
+     * Object validation
+     ===============*/
     public bool isObjectInsidePlayArea(GameObject obj) {
         Vector3 pos = obj.transform.position;
 
@@ -42,6 +45,9 @@ public class CameraController : MonoBehaviour {
         return true;
     }
 
+    /* ************* 
+     * CAMERA CONTROLS
+     ===============*/
     public void Update() {
         if (this._camera == null) return;
 
@@ -54,7 +60,7 @@ public class CameraController : MonoBehaviour {
         #endregion
 
         #region Movement
-        if (this.canControlCamera && !util_drag.draggingObject) {
+        if (this.canControlCamera) {
             Vector3 camPos = this._camera.transform.position;
 
             if (Input.GetKey(KeyCode.D)) {
@@ -99,6 +105,9 @@ public class CameraController : MonoBehaviour {
         this._camera.transform.position = new Vector3(camX, camY, this._camera.transform.position.z);
     }
 
+    /* ************* 
+     * EDITOR
+     ===============*/
     public void OnDrawGizmos() {
         Gizmos.color = Color.red;
         

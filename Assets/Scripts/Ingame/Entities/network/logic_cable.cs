@@ -41,6 +41,9 @@ public class logic_cable : MonoBehaviour {
         this.buildCable();
     }
 
+    /* ************* 
+     * RENDERING
+     ===============*/
     public void setCableColor(Color col) {
         if (this._material == null) return;
         this._material.SetColor("_cable_color", col);

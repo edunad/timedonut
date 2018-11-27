@@ -70,9 +70,9 @@ public class logic_paradox : MonoBehaviour {
         float speed = 15f;
         if (Input.GetKey(KeyCode.LeftShift)) speed = 35f;
 
-        if (Input.GetKey(KeyCode.A)) {
+        if (Input.GetKey(KeyCode.Q)) {
             this.transform.Rotate(new Vector3(0, 0, 8) * Time.deltaTime * speed);
-        } else if (Input.GetKey(KeyCode.D)) {
+        } else if (Input.GetKey(KeyCode.E)) {
             this.transform.Rotate(new Vector3(0, 0, -8) * Time.deltaTime * speed);
         }
     }

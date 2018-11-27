@@ -22,12 +22,13 @@ GameObject:
   - component: {fileID: 212727136642525712}
   - component: {fileID: 61314843562692432}
   - component: {fileID: 114384662663076674}
+  - component: {fileID: 95812364704910602}
   m_Layer: 12
   m_Name: logic_target
   m_TagString: target_object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4697730666732940
 Transform:
@@ -35,8 +36,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1384255181922134}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.358221, y: -0.6129863, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.744, y: -1.965, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,22 +52,40 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.25330457, y: -0.10811782}
+  m_Offset: {x: 0.2802692, y: -0.28283262}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.03125, y: 2.03125}
+    oldSize: {x: 1.0625, y: 2.375}
     newSize: {x: 1.03125, y: 2.03125}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.52464086, y: 1.8150144}
+  m_Size: {x: 0.5197382, y: 1.7989655}
   m_EdgeRadius: 0
+--- !u!95 &95812364704910602
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1384255181922134}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb9974c74d1029847bafd59acc2e9525, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114384662663076674
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26357818b860fe0429d12bdaa55f6c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shirtColor: {r: 0.46431115, g: 0.494807, b: 0.6981132, a: 1}
+  pantsColor: {r: 0.31764707, g: 0.34117648, b: 0.4862745, a: 1}
 --- !u!212 &212727136642525712
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -93,7 +114,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: f176c16b6979b424f8023358b3f148e3, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -113,7 +134,7 @@ SpriteRenderer:
   m_SortingLayerID: -1887232601
   m_SortingLayer: 2
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300122, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b288f11ac99dff8449f5f4c3a7d6d624, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

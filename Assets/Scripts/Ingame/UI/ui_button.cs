@@ -7,9 +7,13 @@ public class ui_button : MonoBehaviour {
     [Header("Button settings")]
     public GameObject targetObject;
     public TextMesh _text;
+    public float cooldown = 0.3f;
+    public bool canHoldMouse = false;
+
 
     private float _tapCD;
     private bool _isEnabled;
+    private bool _mouseDown;
 
     private SpriteRenderer _renderer;
     private readonly Color32 _normalColor = new Color32(180, 180, 180, 255);
@@ -33,9 +37,20 @@ public class ui_button : MonoBehaviour {
         this.setColor(this._normalColor);
     }
 
+    public void OnMouseDown() {
+        this._mouseDown = true;
+    }
+
     public void OnMouseUp() {
-        if (this.targetObject == null || !this._isEnabled) return;
-        if (this._tapCD > Time.time - 0.3f) return;
+        this._mouseDown = false;
+    }
+
+    public void Update() {
+        if (!this._mouseDown || !this._isEnabled) return;
+        if (this._tapCD > Time.time - this.cooldown) return;
+
+        // Stop pressing
+        if (!this.canHoldMouse) this._mouseDown = false; 
 
         this._tapCD = Time.time; // Prevent spamming
         this.targetObject.SendMessage("OnUIClick", this.name, SendMessageOptions.DontRequireReceiver);

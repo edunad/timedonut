@@ -29,6 +29,7 @@ public class logic_button : MonoBehaviour {
     private SpriteRenderer _spriteRender;
     
     private bool _hasWon = false;
+    private float _originalVolume;
 
     public void Awake() {
         if (this.reciever == null) throw new UnityException("logic_button missing a reciever");
@@ -46,7 +47,7 @@ public class logic_button : MonoBehaviour {
 
         this._audioSource = GetComponent<AudioSource>();
         this._audioSource.playOnAwake = false;
-        this._audioSource.volume = 0.13f;
+        this._originalVolume = 0.45f;
 
         this._audioClips = new AudioClip[] {
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Button/button_normal"),
@@ -81,6 +82,9 @@ public class logic_button : MonoBehaviour {
         this._timeRunning = running;
     }
 
+    /* ************* 
+     * CORE
+     ===============*/
     public void setPressed(bool pressed, bool skipSound = false) {
         if (this.isPressed == pressed || this._hasWon) return;
         this.isPressed = pressed;
@@ -94,6 +98,8 @@ public class logic_button : MonoBehaviour {
             }
 
             if(clip != null) {
+                // Update volume
+                this._audioSource.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * this._originalVolume, 0f, 1f);
                 this._audioSource.clip = clip;
                 this._audioSource.Play();
             }
@@ -106,7 +112,6 @@ public class logic_button : MonoBehaviour {
     /* ************* 
      * PHYSICS
      ===============*/
-
     public void OnTriggerEnter2D(Collider2D collider) {
         if (collider == null) return;
 

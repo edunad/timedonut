@@ -10,8 +10,9 @@ public class RatingController : MonoBehaviour {
     public Sprite donutOK;
     public Sprite donutNOPE;
 
-    public void calculateRating(int movedItems, int totalGoldenMoves) {
-        if (this.spriteDonuts == null || this.spriteDonuts.Count <= 0) return;
+    // Sadly there was no time to put the ratings in good use
+    public int calculateAndRenderRating(int movedItems, int totalGoldenMoves) {
+        if (this.spriteDonuts == null || this.spriteDonuts.Count <= 0) return 0;
         int rating = Mathf.Clamp(this.spriteDonuts.Count - (movedItems - totalGoldenMoves), 0, 5);
 
         for (int i = 0; i < this.spriteDonuts.Count; i++) {
@@ -24,5 +25,7 @@ public class RatingController : MonoBehaviour {
                 this.spriteDonuts[i].color = new Color32(56, 56, 56, 255);
             }
         }
+
+        return rating;
     }
 }

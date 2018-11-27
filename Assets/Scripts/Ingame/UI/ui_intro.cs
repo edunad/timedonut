@@ -4,6 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 [RequireComponent(typeof(SpriteRenderer))]
 public class ui_intro : MonoBehaviour {
+    [Header("Intro settings")]
+    public float fadeSpeed;
+
     private SpriteRenderer _renderer;
     private Vector3 _fadeStart, _fadeEnd;
     private AudioSource _audioSource;
@@ -12,9 +15,8 @@ public class ui_intro : MonoBehaviour {
     private float _journeyLength;
     private float _startTime;
     private Action _onFadeComplete;
-
-    public float fadeSpeed;
-
+    private float _originalVolume;
+    
     public void Awake() {
         this.name = "ui_intro";
 
@@ -22,6 +24,8 @@ public class ui_intro : MonoBehaviour {
 
         this._audioSource = GetComponent<AudioSource>();
         this._audioSource.playOnAwake = false;
+        this._originalVolume = 0.35f;
+
     }
 
     public void triggerFade(bool fadeIn, Vector3 fadeStart, Vector3 fadeEnd, Action onComplete = null) {
@@ -37,8 +41,8 @@ public class ui_intro : MonoBehaviour {
 
         this._onFadeComplete = onComplete;
         this._isFading = true;
-
-        //this._audioSource.clip = AssetsController.GetResource<AudioClip>(audio);
+        
+        this._audioSource.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * this._originalVolume, 0f, 1f);
         this._audioSource.Play();
     }
 

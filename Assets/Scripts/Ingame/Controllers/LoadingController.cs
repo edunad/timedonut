@@ -9,7 +9,7 @@ public class LoadingController : MonoBehaviour {
     private AsyncOperation _asyncOp;
 
 	public void Start () {
-        this._loadIndex = PlayerPrefs.GetInt("loading_scene_index");
+        this._loadIndex = PlayerPrefs.GetInt("loading_scene_index"); // There is probably a better way ¯\_(ツ)_/¯
         if (this._loadIndex == -1) throw new UnityException("Invalid scene index");
 
         StartCoroutine(this.startLoading());
@@ -25,7 +25,7 @@ public class LoadingController : MonoBehaviour {
 
         while (!this._asyncOp.isDone) {
             if (this._asyncOp.progress == 0.9f) {
-                util_timer.Simple(1f, () => {
+                util_timer.Simple(1f, () => { // Small delay
                     this._asyncOp.allowSceneActivation = true;
                     PlayerPrefs.SetInt("loading_scene_index", -1); // Reset
                 });
