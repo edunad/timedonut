@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 114450163472571370}
   - component: {fileID: 114598406637224854}
   - component: {fileID: 114320498414658162}
+  - component: {fileID: 114426127147650070}
   m_Layer: 14
   m_Name: HUD_Camera
   m_TagString: Untagged
@@ -4018,7 +4019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d70e9bbb4461a48a94133a486b04c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 0}
+  targetObject: {fileID: 1361138628196270}
   _text: {fileID: 102681470189153298}
   cooldown: 0.08
   canHoldMouse: 1
@@ -4127,6 +4128,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sortingLayer: PANEL
   orderSortingLayer: 111
+--- !u!114 &114426127147650070
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1361138628196270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfed7ea2158781a4b9fc185671969f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WIDTH: 1024
+  HEIGHT: 768
 --- !u!114 &114426189865421790
 MonoBehaviour:
   m_ObjectHideFlags: 1

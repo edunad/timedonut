@@ -37,6 +37,15 @@ TextureImporter:
     21300064: UI_SPARKLE_7
     21300066: UI_QUIT
     21300068: UI_MENU
+    21300070: UI_TITLE
+    21300072: UI_DONUT
+    21300074: UI_LVL-1
+    21300076: UI_LVL-2
+    21300078: UI_LVL-3
+    21300080: UI_LVL-4
+    21300082: UI_LVL-LOCKED
+    21300084: UI_LVL-5
+    21300086: UI_LVL-6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -416,6 +425,166 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 4ab07ef24be8b1348917d7db27c8ddc0
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_DONUT
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 118
+        width: 30
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb02ee1a5eec4cf489187943ef518216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-1
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 203
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07d57f51155d9184da331a30f1af6ad4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 203
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1565ba4e9edd0845b9dadcedcf1e521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-3
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 203
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b204856ea1f4ebb4886c1f35df4d22d1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-4
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 203
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea1aab9ca8d777c46a4145d749ea7289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-LOCKED
+      rect:
+        serializedVersion: 2
+        x: 189
+        y: 203
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68eb854a12763ae47878e626a95c531a
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-5
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 168
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32cb55520a7eff149aefc4e87c87908e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-6
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 168
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7ba72fa121821144bc2246ffca568ef
       vertices: []
       indices: 
       edges: []

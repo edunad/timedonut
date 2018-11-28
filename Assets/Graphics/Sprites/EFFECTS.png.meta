@@ -23,7 +23,7 @@ TextureImporter:
     21300036: EFFECTS_BG_GEAR_4
     21300038: EFFECTS_GEAR
     21300040: EFFECTS_FADER
-    21300042: EFFECTS_0
+    21300042: EFFECTS_FADER_BG
     21300044: EFFECTS_DONUT_1
     21300046: EFFECTS_DONUT_2
     21300048: EFFECTS_DONUT_3
@@ -40,6 +40,12 @@ TextureImporter:
     21300070: EFFECTS_LIGHT_2
     21300072: EFFECTS_LIGHT_3
     21300074: EFFECTS_LIGHT_4
+    21300076: EFFECTS_INTRO_1
+    21300078: EFFECTS_INTRO_2
+    21300080: EFFECTS_INTRO_4
+    21300082: EFFECTS_INTRO_3
+    21300084: EFFECTS_INTRO_5
+    21300086: EFFECTS_INTRO_6
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -447,8 +453,8 @@ TextureImporter:
       name: EFFECTS_GEAR
       rect:
         serializedVersion: 2
-        x: 808
-        y: 360
+        x: 806
+        y: 174
         width: 176
         height: 176
       alignment: 0
@@ -468,9 +474,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 360
-        width: 808
-        height: 176
+        y: 175
+        width: 806
+        height: 174
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -484,13 +490,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EFFECTS_0
+      name: EFFECTS_FADER_BG
       rect:
         serializedVersion: 2
         x: 0
-        y: 184
-        width: 808
-        height: 176
+        y: 0
+        width: 806
+        height: 174
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -752,7 +758,7 @@ TextureImporter:
         width: 22
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -772,7 +778,7 @@ TextureImporter:
         width: 22
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -792,7 +798,7 @@ TextureImporter:
         width: 22
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -812,13 +818,133 @@ TextureImporter:
         width: 22
         height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 833460bb2bfadcf4196a447965f2c03e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_INTRO_1
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 632
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92f9b4ffac7919b4e8be9d161a6ec8f1
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_INTRO_2
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 632
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d809448543689e44bd1d34ccdaff0cb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_INTRO_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 376
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e706b80af8850f4c9e9d943f054a33f
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_INTRO_3
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 376
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7eb7d654a484a846a661789f992b538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_INTRO_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 376
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc553a0617c053245ad55880f670aa0c
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EFFECTS_INTRO_6
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 376
+        width: 256
+        height: 256
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aa2f1fc40ed9b34eadf1404b14a1bd0
       vertices: []
       indices: 
       edges: []
@@ -831,7 +957,7 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-  spritePackingTag: dev-texture
+  spritePackingTag: UI
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
   userData: 

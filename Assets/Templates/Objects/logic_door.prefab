@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4088374315052718}
   - component: {fileID: 114324769284981670}
   - component: {fileID: 212624368688010834}
-  - component: {fileID: 50585806391220156}
   - component: {fileID: 61993957463386228}
   m_Layer: 8
   m_Name: logic_door
@@ -36,33 +35,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1273460823820776}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -4, y: 0.13, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -2.888, y: 1.021, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
---- !u!50 &50585806391220156
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1273460823820776}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 1
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!61 &61993957463386228
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -75,18 +54,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.004492879, y: 0.0014975667}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.203125, y: 1}
+    oldSize: {x: 1.125, y: 0.1875}
     newSize: {x: 0.203125, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.203125, y: 1}
+  m_Size: {x: 1.1346538, y: 0.18828213}
   m_EdgeRadius: 0
 --- !u!114 &114324769284981670
 MonoBehaviour:
@@ -99,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce21cdc2d7fc5844899bd9d3e1806fd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: -2.78, y: 0}
+  offset: {x: 0, y: 2.03}
   doorSpeed: 0.05
 --- !u!212 &212624368688010834
 SpriteRenderer:
@@ -116,7 +95,7 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f176c16b6979b424f8023358b3f148e3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -133,10 +112,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300056, guid: 1877fa82faa4099459cb1ed9bbe0b72c, type: 3}
+  m_SortingLayerID: 434742993
+  m_SortingLayer: 3
+  m_SortingOrder: 30
+  m_Sprite: {fileID: 21300222, guid: e4aceec680c37874298858a3e24c6a04, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

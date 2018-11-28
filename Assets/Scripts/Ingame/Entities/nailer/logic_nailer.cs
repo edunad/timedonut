@@ -7,6 +7,7 @@ public class logic_nailer : MonoBehaviour {
 
     public GameObject nailInstance;
     public int shootCount;
+    public Transform shootPos;
 
     private List<Collider2D> _colliders;
     private List<GameObject> _nails;
@@ -119,14 +120,13 @@ public class logic_nailer : MonoBehaviour {
         GameObject nail = GameObject.Instantiate(nailInstance);
         nail.name = "nail_instance_" + this._nails.Count;
 
-        Vector3 shootDir = this._sprite.flipX ? Vector3.left : Vector3.right;
-        Vector3 shootPos = this.transform.TransformPoint(shootDir * 0.2f) + new Vector3(0.1f, 0.1f, 0);
-        nail.transform.position = new Vector3(shootPos.x, shootPos.y, this.transform.position.z);
-        nail.transform.rotation = this.transform.rotation;
+        Vector3 shootPOS = shootPos.position;
+
+        nail.transform.position = shootPOS;
         nail.layer = this._isTimed ? 11 : 10;
 
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();
-        nailBody.AddForce(shootDir * 80, ForceMode2D.Impulse); // TODO : Fix
+        nailBody.AddForce(this.transform.right * 80 , ForceMode2D.Impulse); // TODO : Fix
         nailBody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 
         // Play shooting sound
@@ -135,5 +135,10 @@ public class logic_nailer : MonoBehaviour {
         this._audioSource.pitch = Random.Range(0.9f, 1.2f);
 
         this._nails.Add(nail);
+    }
+
+    public void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(shootPos.position, new Vector3(0.1f, 0.1f, 0.1f));
     }
 }

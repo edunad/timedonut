@@ -16,11 +16,20 @@ public class ui_button : MonoBehaviour {
     private bool _mouseDown;
 
     private SpriteRenderer _renderer;
+    private AudioSource _audioSource;
+    private float _originalVolume;
+
     private readonly Color32 _normalColor = new Color32(180, 180, 180, 255);
 
     public void Awake() {
         if (_text == null) {
             this._renderer = GetComponent<SpriteRenderer>();
+        }
+
+        this._audioSource = GetComponent<AudioSource>();
+        if (this._audioSource != null) {
+            this._audioSource.playOnAwake = false;
+            this._originalVolume = 0.85f;
         }
 
         this.setColor(this._normalColor);
@@ -50,7 +59,14 @@ public class ui_button : MonoBehaviour {
         if (this._tapCD > Time.time - this.cooldown) return;
 
         // Stop pressing
-        if (!this.canHoldMouse) this._mouseDown = false; 
+        if (!this.canHoldMouse) {
+            this._mouseDown = false;
+
+            if (this._audioSource != null) {
+                this._audioSource.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * this._originalVolume, 0f, 1f);
+                this._audioSource.Play();
+            }
+        }
 
         this._tapCD = Time.time; // Prevent spamming
         this.targetObject.SendMessage("OnUIClick", this.name, SendMessageOptions.DontRequireReceiver);

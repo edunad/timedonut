@@ -33,7 +33,8 @@ public class OptionsController : MonoBehaviour {
         PlayerPrefs.SetFloat("musicVolume", musicVolume);
 
         // Update the volume
-        this._core.updateMusicVolume();
+        if(this._core != null)
+            this._core.updateMusicVolume();
     }
 
     public void setEffectsVolume(float vol) {

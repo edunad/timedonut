@@ -72,6 +72,7 @@ public class CoreController : MonoBehaviour {
         this._audioSource = GetComponent<AudioSource>();
         this._audioSource.playOnAwake = false;
         this._audioSource.clip = this.backgroundMusic;
+        this._audioSource.loop = true;
 
         this._originalVolume = 0.25f;
         this.updateMusicVolume();
@@ -155,7 +156,10 @@ public class CoreController : MonoBehaviour {
         int rating = CoreController.RatingController.calculateAndRenderRating(this._movedObjects.Count, this.goldenDonutMoves);
 
         // Save the level rating
-        PlayerPrefs.GetInt("lvl-" + SceneManager.GetActiveScene().buildIndex, rating);
+        int sceneId = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("lvl-" + sceneId, rating);
+        PlayerPrefs.SetInt("lvl-" + (sceneId + 1), 0); // Unlock next level
+        Debug.Log("lvl-" + (sceneId + 1));
         PlayerPrefs.Save();
 
         if (OnGameWin != null) OnGameWin(); // Alert entities

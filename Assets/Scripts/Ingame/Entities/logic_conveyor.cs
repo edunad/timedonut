@@ -1,11 +1,10 @@
 ﻿using Assets.Scripts.models;
-using System;
+
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(EdgeCollider2D))]
-[RequireComponent(typeof(Rigidbody2D))]
 public class logic_conveyor : MonoBehaviour {
 
     [Header("Conveyor settings")]
@@ -14,6 +13,8 @@ public class logic_conveyor : MonoBehaviour {
     [Header("Conveyor rendering")]
     public float conveyorSize = 0.3f;
     public Material conveyorMaterial;
+    public Texture beltTexture;
+    public Vector3 beltOffset = Vector3.zero;
 
     [SerializeField]
     public List<Vector3> conveyorOffset = new List<Vector3>();
@@ -21,6 +22,7 @@ public class logic_conveyor : MonoBehaviour {
     private bool _isActive;
     private float _originalSpeed;
     private EdgeCollider2D _collision;
+
     private Material _beltMaterial;
 
     private List<Collider2D> _colliders;
@@ -39,8 +41,10 @@ public class logic_conveyor : MonoBehaviour {
 
         // Generate belt
         this._beltMaterial = new Material(Shader.Find("Conveyor_belt_shader"));
-        this.createBelt(this._beltMaterial, new Vector3(0f, 0.07f, 0), (this.conveyorSize - 0.11f), 0);
-        this.createBelt(this.conveyorMaterial, Vector3.zero, this.conveyorSize, 1);
+        this._beltMaterial.mainTexture = this.beltTexture;
+
+        this.createBelt(this._beltMaterial, new Vector3(0f, 0.07f, 0) + beltOffset, (this.conveyorSize - 0.11f), 9);
+        this.createBelt(this.conveyorMaterial, Vector3.zero, this.conveyorSize, 10);
 
         // COLLISION
         this._originalSpeed = speed;
@@ -57,7 +61,7 @@ public class logic_conveyor : MonoBehaviour {
 
         Vector3 val = Vector3.zero;
         foreach (Vector3 point in this.conveyorOffset) {
-            val += point / 2;
+            val += point;
             fixedPoints.Add(new Vector2(val.x, val.y));
         }
 
@@ -80,7 +84,7 @@ public class logic_conveyor : MonoBehaviour {
         _belt.reflectionProbeUsage = ReflectionProbeUsage.Off;
         _belt.useWorldSpace = false;
         _belt.textureMode = LineTextureMode.Tile;
-        _belt.sortingLayerName = "Playground";
+        _belt.sortingLayerName = "PlayArea";
         _belt.sharedMaterial = mat;
         _belt.numCapVertices = 0;
         _belt.numCornerVertices = 2;
@@ -88,7 +92,6 @@ public class logic_conveyor : MonoBehaviour {
 
         // Line render!
         List<Vector3> points = this.getPoints();
-        if(offset != Vector3.zero) points[points.Count - 1] -= new Vector3(0.06f, 0.03f);
 
         _belt.positionCount = points.Count;
         _belt.SetPositions(points.ToArray());
@@ -118,6 +121,7 @@ public class logic_conveyor : MonoBehaviour {
     public void OnCollisionEnter2D(Collision2D collision) {
         Collider2D col = collision.collider;
         if (col == null || this._colliders.Contains(col)) return;
+
         this._colliders.Add(col);
         this._collidersBodies.Add(col.GetComponent<Rigidbody2D>());
     }
@@ -125,6 +129,7 @@ public class logic_conveyor : MonoBehaviour {
     public void OnCollisionExit2D(Collision2D collision) {
         Collider2D col = collision.collider;
         if (col == null || !this._colliders.Contains(col)) return;
+
         this._collidersBodies.Remove(col.GetComponent<Rigidbody2D>());
         this._colliders.Remove(col);
     }
@@ -161,10 +166,12 @@ public class logic_conveyor : MonoBehaviour {
     private void setTimeStatus(bool running) {
         this._collidersBodies.Clear();
         this._colliders.Clear();
-        this._isActive = false;
-        this.speed = this._originalSpeed; // Reset speed
 
-        this.setBelt(false);
+        if (!running) {
+            this._isActive = false;
+            this.speed = this._originalSpeed; // Reset speed
+            this.setBelt(false);
+        }
     }
 
 

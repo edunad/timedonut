@@ -1,21 +1,20 @@
 ﻿using Assets.Scripts.models;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(BoxCollider2D))]
 public class logic_door : MonoBehaviour {
 
     [Header("Door settings")]
     public Vector2 offset;
     public float doorSpeed;
+    public float openTime = 0f;
 
     private Vector3 _originalPos;
     private Vector3 _endPos;
 
     private float _startTime;
     private bool _enabled;
+    private util_timer _timer;
 
     public void Awake () {
         this.name = "logic_door";
@@ -34,6 +33,8 @@ public class logic_door : MonoBehaviour {
 
         this._startTime = 0f;
         this._enabled = false;
+
+        if (this._timer != null) this._timer.Stop();
     }
 
     public void OnEnable() {
@@ -49,7 +50,16 @@ public class logic_door : MonoBehaviour {
      ===============*/
     public void onDataRecieved(network_data msg) {
         if (msg == null || msg.header != "active") return;
-        this._enabled = msg.data == 1;
+        bool enabled = msg.data == 1;
+
+        if (enabled && openTime > 0) {
+            if (this._timer != null) this._timer.Stop();
+            this._timer = util_timer.Simple(openTime, () => {
+                this._enabled = false;
+            });
+        }
+
+        this._enabled = enabled;
     }
 
     public void Update() {

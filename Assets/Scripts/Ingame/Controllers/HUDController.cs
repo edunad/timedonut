@@ -20,9 +20,6 @@ public class HUDController : MonoBehaviour {
     public GameObject winUIPanel;
     public GameObject pauseUIPanel;
 
-    private readonly float WIDTH = 1024f;
-    private readonly float HEIGHT = 768f;
-
     private readonly float MIN_TIME_OFFSET = -0.4f;
     private readonly float MAX_TIME_OFFSET = 0.4f;
    
@@ -61,10 +58,6 @@ public class HUDController : MonoBehaviour {
         // Vars
         this._bloomTarget = new util_variableTransition(40f);
         this._tvTarget = new util_variableTransition(0.86f);
-
-        // Keep aspect ratio
-        Camera _hudCamera = this.GetComponent<Camera>();
-        _hudCamera.aspect = WIDTH / HEIGHT;
 
         this._deathTimeZone = this._core.sceneDeathTime;
         this._maxTimeZone = this._core.maxSceneTime;

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Ingame/Levels/level-loader.unity
     guid: 7623878b8637d2143a5284052549d7e4
   - enabled: 1
+    path: Assets/Scenes/Ingame/intro-scene.unity
+    guid: ac53bfa800588f64aa00c7e6361ca1fe
+  - enabled: 1
     path: Assets/Scenes/Ingame/Levels/level-1.unity
     guid: 26ed8b808da4b694883066cd638fa55e
   - enabled: 1
@@ -23,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ingame/Levels/level-4.unity
     guid: 441ebf8739db89d4f8dae96ee0c2e1fa
+  - enabled: 1
+    path: Assets/Scenes/Ingame/Levels/level-5.unity
+    guid: b77d5067d83cd6f40bb5a335903769f3
+  - enabled: 1
+    path: Assets/Scenes/Ingame/Levels/level-6.unity
+    guid: 62d882d8017493f478db1823eabcad0c
+  - enabled: 1
+    path: Assets/Scenes/Ingame/Levels/level-7.unity
+    guid: 55ffffd31d7e3814ab5f10f93db3baf7
   m_configObjects: {}
