@@ -5,12 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class LoadingController : MonoBehaviour {
 
+    public GameObject loading;
+
     private int _loadIndex;
     private AsyncOperation _asyncOp;
 
 	public void Start () {
-        this._loadIndex = PlayerPrefs.GetInt("loading_scene_index"); // There is probably a better way ¯\_(ツ)_/¯
+        this._loadIndex = PlayerPrefs.GetInt("loading_scene_index", -1); // There is probably a better way ¯\_(ツ)_/¯
         if (this._loadIndex == -1) throw new UnityException("Invalid scene index");
+
+        // Should show load?
+        bool hideLoad = PlayerPrefs.GetInt("loading_noLoad", 0) == 1;
+        this.loading.SetActive(!hideLoad);
 
         StartCoroutine(this.startLoading());
 	}
@@ -28,6 +34,7 @@ public class LoadingController : MonoBehaviour {
                 util_timer.Simple(1f, () => { // Small delay
                     this._asyncOp.allowSceneActivation = true;
                     PlayerPrefs.SetInt("loading_scene_index", -1); // Reset
+                    PlayerPrefs.GetInt("loading_noLoad", 0);
                 });
             }
 

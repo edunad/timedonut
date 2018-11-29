@@ -18,14 +18,16 @@ public class ui_timedtext : MonoBehaviour {
     private bool _enabled;
     private int _currentIndex;
     private bool _readingWait;
+
     private Action _callback;
+    private Action _trigger;
 
 	public void Awake () {
         this._text = GetComponent<TextMesh>();
         this._text.text = "";
     }
 
-    public void startText(Action onComplete) {
+    public void startText(Action onComplete, Action trigger = null) {
         if (this._enabled) return;
 
         this._timeDelay = Time.time + startDelay;
@@ -37,6 +39,7 @@ public class ui_timedtext : MonoBehaviour {
 
         this._text.text = "";
         this._callback = onComplete;
+        this._trigger = trigger;
     }
 
     public void Update() {
@@ -52,27 +55,35 @@ public class ui_timedtext : MonoBehaviour {
         }
 
         string currentTxt = this.dialog[this._currentIndex];
-        if (this._text.text.Length >= currentTxt.Length) {
+        if (currentTxt.IndexOf("<trigger>") != -1) {
+            this.onEndOfSentence();
+            if (this._trigger != null) this._trigger();
 
-            this._currentIndex++;
-            if (this._currentIndex >= this.dialog.Count) {
-                this._enabled = false;
-
-                util_timer.Simple(this.readDelay, () => {
-                    this._text.text = "";
-                    if (this._callback != null) this._callback();
-                });
-            } else {
-                this._readingWait = true;
-                this._timeDelay = Time.time + readDelay;
-            }
-
+            return;
+        }else if (this._text.text.Length >= currentTxt.Length) {
+            this.onEndOfSentence();
             return;
         }
 
         if (Time.time > this._charDelay) {
             this._text.text += currentTxt[this._text.text.Length];
             this._charDelay = Time.time + this.charPerSec;
+        }
+    }
+
+    private void onEndOfSentence() {
+        this._currentIndex++;
+
+        if (this._currentIndex >= this.dialog.Count) {
+            this._enabled = false;
+
+            util_timer.Simple(this.readDelay, () => {
+                this._text.text = "";
+                if (this._callback != null) this._callback();
+            });
+        } else {
+            this._readingWait = true;
+            this._timeDelay = Time.time + readDelay;
         }
     }
 }

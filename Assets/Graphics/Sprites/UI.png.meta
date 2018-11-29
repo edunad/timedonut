@@ -46,6 +46,7 @@ TextureImporter:
     21300082: UI_LVL-LOCKED
     21300084: UI_LVL-5
     21300086: UI_LVL-6
+    21300088: UI_LVL-7
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -558,7 +559,7 @@ TextureImporter:
         width: 46
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -578,13 +579,33 @@ TextureImporter:
         width: 46
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: b7ba72fa121821144bc2246ffca568ef
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_LVL-7
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 168
+        width: 46
+        height: 34
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9411956fe6f36d54db1b4a4537d61dc3
       vertices: []
       indices: 
       edges: []

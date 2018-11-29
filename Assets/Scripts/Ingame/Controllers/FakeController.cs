@@ -4,21 +4,25 @@ using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
-public class IntroController : MonoBehaviour {
+public class FakeController : MonoBehaviour {
 
     public ui_timedtext _timeText;
-    
+
     private AnalogGlitch _glichEffect;
     private PostProcessVolume _processVolume;
     private AudioSource _audio;
-
-    private bool _endIntro;
+    private AudioSource _dundunAudio;
 
     public void Awake() {
         this._audio = GetComponent<AudioSource>();
         this._audio.loop = true;
         this._audio.playOnAwake = false;
-        this._audio.volume = Mathf.Clamp(OptionsController.effectsVolume / 1f * 0.7f, 0f, 1f);
+        this._audio.volume = Mathf.Clamp(OptionsController.musicVolume / 1f * 0.7f, 0f, 1f);
+
+        this._dundunAudio = GameObject.Find("sfx_dun").GetComponent<AudioSource>(); ;
+        this._dundunAudio.loop = false;
+        this._dundunAudio.playOnAwake = false;
+        this._dundunAudio.volume = Mathf.Clamp(OptionsController.musicVolume / 1f * 0.4f, 0f, 1f);
 
         this._processVolume = GameObject.Find("Camera").GetComponent<PostProcessVolume>();
         this._processVolume.profile.TryGetSettings(out _glichEffect);
@@ -28,9 +32,11 @@ public class IntroController : MonoBehaviour {
     public void OnLevelFinishedLoading(Scene scene, LoadSceneMode mode) {
         this._audio.Play();
         this._timeText.startText(() => {
-            this._endIntro = true;
+
+        },() => {
+            this._dundunAudio.Play();
         });
-    } 
+    }
 
     /* ************* 
     * EVENTS + TIMER
@@ -44,30 +50,10 @@ public class IntroController : MonoBehaviour {
     }
 
     public void Update() {
-        if (this._endIntro) {
-            if (this._glichEffect.scanLineJitter.value < 1) {
-                this._glichEffect.scanLineJitter.value += 0.02f;
-            } else {
-                this._endIntro = false;
-                this.loadNextLevel();
-            }
-
-        }
-
         util_timer.Update();
     }
 
     public void OnDestroy() {
         util_timer.Clear();
-    }
-
-    private void loadNextLevel() {
-        int sceneID = SceneManager.GetActiveScene().buildIndex;
-
-        PlayerPrefs.SetInt("lvl-" + sceneID, 5);
-        PlayerPrefs.Save();
-
-        PlayerPrefs.SetInt("loading_scene_index", sceneID + 1);
-        SceneManager.LoadScene("level-loader", LoadSceneMode.Single);
     }
 }

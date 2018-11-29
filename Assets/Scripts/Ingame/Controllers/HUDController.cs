@@ -45,13 +45,19 @@ public class HUDController : MonoBehaviour {
     private util_variableTransition _bloomTarget;
     private util_variableTransition _tvTarget;
 
+    private GameObject _tutorialScreen;
+    private GameObject _bagelScreen;
+
     public void Awake() {
         this._core = GameObject.Find("Core").GetComponent<CoreController>();
+        this._tutorialScreen = GameObject.Find("ui_tutorial");
+        this._bagelScreen = GameObject.Find("ui_evilbagel");
+
         this._intro = this.GetComponentInChildren<ui_intro>();
 
         this._skullAnimator = this.skullObject.GetComponent<Animator>();
 
-        this._processVolume = this.GetComponent<PostProcessVolume>();
+        this._processVolume = GameObject.Find("Camera").GetComponent<PostProcessVolume>();
         this._processVolume.profile.TryGetSettings(out _glichEffect);
         this._processVolume.profile.TryGetSettings(out _bloomEffect);
 
@@ -68,6 +74,33 @@ public class HUDController : MonoBehaviour {
 
         this.updateTotalMoves(0); // Get the total moves
         this.setSkullPos();
+
+        // Show the HUD tutorial if it's there
+        this.setTutorialStatus(true);
+    }
+
+    private void setTutorialStatus(bool active) {
+        if (this._tutorialScreen == null) return;
+        this._tutorialScreen.SetActive(active);
+    }
+
+    private void startBagelMusicAndText() {
+        if (this._bagelScreen == null) return;
+        this._core.stopMusic();
+
+        AudioSource src = this._bagelScreen.GetComponent<AudioSource>();
+        src.volume = Mathf.Clamp(OptionsController.musicVolume / 1f * 0.9f, 0f, 1f);
+        src.Play();
+
+        this._bagelScreen.GetComponentInChildren<ui_timedtext>().startText(() => {
+            this._glichEffect.scanLineJitter.value = 1f;
+            this._glichEffect.verticalJump.value = 1f;
+            this._glichEffect.horizontalShake.value = 1f;
+
+            util_timer.Simple(2f, () => {
+                this._core.loadNextLevel(false);
+            });
+        });
     }
 
     /* ************* 
@@ -215,11 +248,67 @@ public class HUDController : MonoBehaviour {
     }
 
     /* ************* 
+    * DRAMATIC TWISTTTT
+    ===============*/
+    private void displayBagelRevenge() {
+        this._hasWon = true;
+        this._glichEffect.enabled.overrideState = true;
+        this.startBagelMusicAndText();
+
+        // Timer-san the ultimate wall
+        util_timer.Simple(1f, () => {
+            this._glichEffect.scanLineJitter.value = 1f;
+            this._glichEffect.verticalJump.value = 1f;
+            this._glichEffect.horizontalShake.value = 1f;
+
+            util_timer.Simple(0.2f, () => {
+                this._glichEffect.scanLineJitter.value = 0.3f;
+                this._glichEffect.verticalJump.value = 0f;
+                this._glichEffect.horizontalShake.value = 0f;
+
+                util_timer.Simple(3f, () => {
+                    this._glichEffect.scanLineJitter.value = 1f;
+                    this._glichEffect.verticalJump.value = 1f;
+                    this._glichEffect.horizontalShake.value = 1f;
+
+                    util_timer.Simple(0.6f, () => {
+                        this._glichEffect.scanLineJitter.value = 0.3f;
+                        this._glichEffect.verticalJump.value = 0f;
+                        this._glichEffect.horizontalShake.value = 0f;
+
+                        util_timer.Simple(4f, () => {
+                            this._glichEffect.scanLineJitter.value = 1f;
+                            this._glichEffect.verticalJump.value = 1f;
+                            this._glichEffect.horizontalShake.value = 1f;
+
+                            util_timer.Simple(0.3f, () => {
+                                this._glichEffect.scanLineJitter.value = 0.3f;
+                                this._glichEffect.verticalJump.value = 0f;
+                                this._glichEffect.horizontalShake.value = 0f;
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    }
+    
+
+    /* ************* 
     * EVENTS + TIME
     ===============*/
+    private void onGameWin() {
+        string lvlName = SceneManager.GetActiveScene().name;
+        if (lvlName != "level-7") {
+            this.displayWinMenu();
+        } else {
+            this.displayBagelRevenge();
+        }
+    }
+
     public void OnEnable() {
         CoreController.OnTimeChange += this.setTimeStatus;
-        CoreController.OnGameWin += this.displayWinMenu;
+        CoreController.OnGameWin += this.onGameWin;
         CoreController.OnGameLosse += this.onGameLosse;
         CoreController.OnMovesUpdate += this.updateTotalMoves;
 
@@ -228,7 +317,7 @@ public class HUDController : MonoBehaviour {
 
     public void OnDisable() {
         CoreController.OnTimeChange -= this.setTimeStatus;
-        CoreController.OnGameWin -= this.displayWinMenu;
+        CoreController.OnGameWin -= this.onGameWin;
         CoreController.OnGameLosse -= this.onGameLosse;
         CoreController.OnMovesUpdate -= this.updateTotalMoves;
 
@@ -261,8 +350,12 @@ public class HUDController : MonoBehaviour {
     * UI
     ===============*/
     public void OnUIClick(string element) {
-        if (this._playingIntro < 1) return;
-        if (element != "ui_button_time" || this._rewindTimer != null || this._hasWon) return;
-        this._core.toggleTime();
+        if (this._playingIntro < 1 || this._hasWon) return;
+
+        if (element == "UI_OK_TUT_BTN") {
+            this.setTutorialStatus(false);
+        } else if (element == "ui_button_time" && this._rewindTimer == null) {
+            this._core.toggleTime();
+        }
     }
 }

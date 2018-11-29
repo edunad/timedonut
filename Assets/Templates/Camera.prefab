@@ -41,6 +41,7 @@ GameObject:
   - component: {fileID: 114800386456883718}
   - component: {fileID: 114274079053977978}
   - component: {fileID: 114745693257057940}
+  - component: {fileID: 114694397470524238}
   m_Layer: 14
   m_Name: Camera
   m_TagString: MainCamera
@@ -225,6 +226,22 @@ MonoBehaviour:
       PublicKeyToken=null
   - assemblyQualifiedName: Kino.DigitalGlitch, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
+--- !u!114 &114694397470524238
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1935601120065552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 48349cf1033c2d7439b85341abfcfc0a, type: 2}
+  isGlobal: 1
+  blendDistance: 45.2
+  weight: 1
+  priority: 1
 --- !u!114 &114745693257057940
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -238,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zoomEnabled: 1
   sensitivity: 2
-  minZoom: 2
+  minZoom: 1.5
   maxZoom: 4
   playAreaEnabled: 1
   playArea:
@@ -264,8 +281,8 @@ MonoBehaviour:
   m_AssetsPPU: 32
   m_RefResolutionX: 320
   m_RefResolutionY: 180
-  m_UpscaleRT: 1
-  m_PixelSnapping: 0
+  m_UpscaleRT: 0
+  m_PixelSnapping: 1
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0

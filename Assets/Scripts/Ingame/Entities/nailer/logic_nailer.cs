@@ -15,7 +15,6 @@ public class logic_nailer : MonoBehaviour {
     private AudioClip[] _audioClips;
 
     private AudioSource _audioSource;
-    private SpriteRenderer _sprite;
 
     private bool _timeRunning = false;
     private bool _isTimed = false;
@@ -44,9 +43,6 @@ public class logic_nailer : MonoBehaviour {
             AssetsController.GetResource<AudioClip>("Sounds/Ingame/Objects/Nailgun/nailgun_shoot_empty"),
         };
         #endregion
-
-        // Get the sprite
-        this._sprite = this.GetComponent<SpriteRenderer>();
     }
 
     /* ************* 
@@ -119,10 +115,8 @@ public class logic_nailer : MonoBehaviour {
 
         GameObject nail = GameObject.Instantiate(nailInstance);
         nail.name = "nail_instance_" + this._nails.Count;
-
-        Vector3 shootPOS = shootPos.position;
-
-        nail.transform.position = shootPOS;
+        nail.transform.position = shootPos.position;
+        nail.transform.rotation = shootPos.rotation;
         nail.layer = this._isTimed ? 11 : 10;
 
         Rigidbody2D nailBody = nail.GetComponent<Rigidbody2D>();

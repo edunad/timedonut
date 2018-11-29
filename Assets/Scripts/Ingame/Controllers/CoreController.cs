@@ -13,7 +13,7 @@ public class CoreController : MonoBehaviour {
     [Header("Scene settings")]
     public int goldenDonutMoves;
     public AudioClip backgroundMusic;
-
+    
     // Controllers
     public static HUDController HUDController;
     public static CameraController CameraController;
@@ -165,8 +165,10 @@ public class CoreController : MonoBehaviour {
         if (OnGameWin != null) OnGameWin(); // Alert entities
     }
 
-    private void loadNextLevel() {
+    public void loadNextLevel(bool showLoading = true) {
         int sceneID = SceneManager.GetActiveScene().buildIndex;
+        if (!showLoading) PlayerPrefs.SetInt("loading_noLoad", 1);
+
         PlayerPrefs.SetInt("loading_scene_index", sceneID + 1);
         SceneManager.LoadScene("level-loader", LoadSceneMode.Single);
     }

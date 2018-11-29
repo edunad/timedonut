@@ -83,5 +83,5 @@ Material:
     - _Color: {r: 0.5, g: 0.5, b: 0.5, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
-    - _pantsColor: {r: 0.31764707, g: 0.34117648, b: 0.4862745, a: 0}
-    - _shirtColor: {r: 0.5176471, g: 0.5411765, b: 0.69803923, a: 1}
+    - _pantsColor: {r: 1, g: 1, b: 1, a: 0}
+    - _shirtColor: {r: 1, g: 0.98813146, b: 0.5518868, a: 1}

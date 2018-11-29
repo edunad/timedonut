@@ -82,7 +82,7 @@ MonoBehaviour:
     overrideState: 1
     value: 0
   horizontalShake:
-    overrideState: 0
+    overrideState: 1
     value: 0
   colorDrift:
     overrideState: 0
