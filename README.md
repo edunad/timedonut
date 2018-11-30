@@ -1,4 +1,3 @@
-# TimeDonut
 ![](./Assets/Resources/logo.png)
 
 The quest to prevent donuts from being banned in the future.
