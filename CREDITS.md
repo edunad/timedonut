@@ -12,6 +12,7 @@
 ---
 Other Credits :
 
+- Digital / Analog glich shader : Keijiro Takahashi
 - Bent and Broken.ogg : Kevin MacLeod
 - Comfortable Mystery 4.ogg : Kevin MacLeod
 - Decline.ogg : Kevin MacLeod
