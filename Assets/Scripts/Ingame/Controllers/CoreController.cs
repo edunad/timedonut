@@ -159,7 +159,6 @@ public class CoreController : MonoBehaviour {
         int sceneId = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("lvl-" + sceneId, rating);
         PlayerPrefs.SetInt("lvl-" + (sceneId + 1), 0); // Unlock next level
-        Debug.Log("lvl-" + (sceneId + 1));
         PlayerPrefs.Save();
 
         if (OnGameWin != null) OnGameWin(); // Alert entities
@@ -167,8 +166,8 @@ public class CoreController : MonoBehaviour {
 
     public void loadNextLevel(bool showLoading = true) {
         int sceneID = SceneManager.GetActiveScene().buildIndex;
-        if (!showLoading) PlayerPrefs.SetInt("loading_noLoad", 1);
 
+        PlayerPrefs.SetInt("loading_noLoad", showLoading ? 0 : 1);
         PlayerPrefs.SetInt("loading_scene_index", sceneID + 1);
         SceneManager.LoadScene("level-loader", LoadSceneMode.Single);
     }

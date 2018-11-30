@@ -15,7 +15,7 @@ public class LoadingController : MonoBehaviour {
         if (this._loadIndex == -1) throw new UnityException("Invalid scene index");
 
         // Should show load?
-        bool hideLoad = PlayerPrefs.GetInt("loading_noLoad", 0) == 1;
+        bool hideLoad = (PlayerPrefs.GetInt("loading_noLoad", 0) == 1);
         this.loading.SetActive(!hideLoad);
 
         StartCoroutine(this.startLoading());
@@ -34,7 +34,7 @@ public class LoadingController : MonoBehaviour {
                 util_timer.Simple(1f, () => { // Small delay
                     this._asyncOp.allowSceneActivation = true;
                     PlayerPrefs.SetInt("loading_scene_index", -1); // Reset
-                    PlayerPrefs.GetInt("loading_noLoad", 0);
+                    PlayerPrefs.SetInt("loading_noLoad", 0);
                 });
             }
 

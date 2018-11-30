@@ -20,14 +20,22 @@ public class ui_timedtext : MonoBehaviour {
     private bool _readingWait;
 
     private Action _callback;
-    private Action _trigger;
+
+
+    public delegate void onTrigger(string evt);
+    private onTrigger _trigger;
 
 	public void Awake () {
         this._text = GetComponent<TextMesh>();
         this._text.text = "";
     }
 
-    public void startText(Action onComplete, Action trigger = null) {
+    public void stopText() {
+        this._text.text = "";
+        this.enabled = false;
+    }
+
+    public void startText(Action onComplete, onTrigger trigger = null) {
         if (this._enabled) return;
 
         this._timeDelay = Time.time + startDelay;
@@ -56,28 +64,43 @@ public class ui_timedtext : MonoBehaviour {
 
         string currentTxt = this.dialog[this._currentIndex];
         if (currentTxt.IndexOf("<trigger>") != -1) {
-            this.onEndOfSentence();
-            if (this._trigger != null) this._trigger();
+            if (this._trigger != null) this._trigger(currentTxt.Replace("<trigger>", ""));
 
+            this.onEndOfSentence(0);
             return;
-        }else if (this._text.text.Length >= currentTxt.Length) {
+        } else if (currentTxt.IndexOf("<delay>") != -1) {
+            float delay = Convert.ToSingle(currentTxt.Replace("<delay>", ""));
+            this.onEndOfSentence(delay);
+            return;
+        } else if (currentTxt.IndexOf("<loop>") != -1) {
+            this._currentIndex = 0;
+            this.onEndOfSentence(0);
+            return;
+        } else if (currentTxt.IndexOf("<speed>") != -1) {
+            float newSpeed = Convert.ToSingle(currentTxt.Replace("<speed>", ""));
+            this.charPerSec = newSpeed;
+
+            this.onEndOfSentence(0);
+            return;
+        } else if (this._text.text.Length >= currentTxt.Length) {
             this.onEndOfSentence();
             return;
         }
-
+        
         if (Time.time > this._charDelay) {
             this._text.text += currentTxt[this._text.text.Length];
             this._charDelay = Time.time + this.charPerSec;
         }
     }
 
-    private void onEndOfSentence() {
+    private void onEndOfSentence(float delay = -1) {
         this._currentIndex++;
 
         if (this._currentIndex >= this.dialog.Count) {
             this._enabled = false;
 
-            util_timer.Simple(this.readDelay, () => {
+            if (delay < 0) delay = this.readDelay;
+            util_timer.Simple(delay, () => {
                 this._text.text = "";
                 if (this._callback != null) this._callback();
             });

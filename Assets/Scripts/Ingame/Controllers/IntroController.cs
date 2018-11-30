@@ -67,6 +67,7 @@ public class IntroController : MonoBehaviour {
         PlayerPrefs.SetInt("lvl-" + sceneID, 5);
         PlayerPrefs.Save();
 
+        PlayerPrefs.SetInt("loading_noLoad", 0);
         PlayerPrefs.SetInt("loading_scene_index", sceneID + 1);
         SceneManager.LoadScene("level-loader", LoadSceneMode.Single);
     }

@@ -36,6 +36,7 @@ public class ui_levelselect : MonoBehaviour {
      * LEVEL LOADING
     ===============*/
     public void loadLevel(int indx) {
+        PlayerPrefs.SetInt("loading_noLoad", 0);
         PlayerPrefs.SetInt("loading_scene_index", indx);
         SceneManager.LoadScene("level-loader", LoadSceneMode.Single);
     }

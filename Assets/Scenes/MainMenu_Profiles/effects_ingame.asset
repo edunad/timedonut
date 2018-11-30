@@ -9,15 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
-  m_Name: Camera Profile 1
+  m_Name: effects_ingame
   m_EditorClassIdentifier: 
   settings:
-  - {fileID: 114067384449611352}
-  - {fileID: 114709500187957924}
-  - {fileID: 114201297366541722}
-  - {fileID: 114928075226575602}
-  - {fileID: 114450279648069362}
---- !u!114 &114067384449611352
+  - {fileID: 114581937653487178}
+  - {fileID: 114834009456451702}
+  - {fileID: 114650132702886728}
+  - {fileID: 114969861979448788}
+--- !u!114 &114581937653487178
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -34,7 +33,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 3.46
+    value: 1.94
   threshold:
     overrideState: 1
     value: 0.91
@@ -63,7 +62,7 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
---- !u!114 &114201297366541722
+--- !u!114 &114650132702886728
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,10 +88,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.402
+    value: 0.438
   smoothness:
     overrideState: 1
-    value: 0.417
+    value: 0.179
   roundness:
     overrideState: 0
     value: 1
@@ -106,40 +105,7 @@ MonoBehaviour:
   opacity:
     overrideState: 0
     value: 1
---- !u!114 &114450279648069362
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
-  m_Name: LensDistortion
-  m_EditorClassIdentifier: 
-  active: 1
-  enabled:
-    overrideState: 1
-    value: 1
-  intensity:
-    overrideState: 1
-    value: -22
-  intensityX:
-    overrideState: 0
-    value: 1
-  intensityY:
-    overrideState: 0
-    value: 1
-  centerX:
-    overrideState: 0
-    value: 0
-  centerY:
-    overrideState: 0
-    value: -0.04
-  scale:
-    overrideState: 0
-    value: 0.5
---- !u!114 &114709500187957924
+--- !u!114 &114834009456451702
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,11 +126,11 @@ MonoBehaviour:
     defaultState: 1
   intensity:
     overrideState: 1
-    value: 1
+    value: 0.027
   fastMode:
-    overrideState: 0
+    overrideState: 1
     value: 1
---- !u!114 &114928075226575602
+--- !u!114 &114969861979448788
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -181,9 +147,9 @@ MonoBehaviour:
     value: 1
   scanLineJitter:
     overrideState: 1
-    value: 0
+    value: 0.036
   verticalJump:
-    overrideState: 1
+    overrideState: 0
     value: 0
   horizontalShake:
     overrideState: 0

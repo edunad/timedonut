@@ -1,6 +1,5 @@
 ﻿
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour {
     [Header("MainMenu panels")]
