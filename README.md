@@ -11,6 +11,6 @@ The quest to prevent donuts from being banned in the future.
 ## Download (soon)
 
 ## How to build
-- Install unity
+- Install unity 2018
 - Clone repo
-- Done! :)
+- Open it on unity, done!
