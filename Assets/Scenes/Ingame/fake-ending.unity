@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialog:
   - Wait
-  - Where are you going
+  - Where are you going?
   - <trigger>closedoor
   - Come back!
   - 
