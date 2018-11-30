@@ -137,12 +137,13 @@ public class logic_conveyor : MonoBehaviour {
     /* ************* 
      * Push objects
      ===============*/
-    public void Update() {
+    public void FixedUpdate() {
         if (!this._isActive) return;
         if (this._colliders == null || this._colliders.Count <= 0) return;
         foreach (Rigidbody2D body in _collidersBodies) {
             if (body == null || body.bodyType != RigidbodyType2D.Dynamic) continue;
-            body.MovePosition(body.position + Vector2.left * speed * Time.deltaTime);
+            body.MovePosition(body.position + Vector2.left * speed * 0.016f); 
+            // 0.016f was my deltaTime, by accident i had that. But to prevent puzzles from breaking i added the average
         }
     }
 
