@@ -10,15 +10,15 @@ public class logic_target : MonoBehaviour {
 
     [Header("Gameobjects")]
     public GameObject deathObject;
+    public SpriteRenderer hatRenderer;
 
-	private CoreController _core;
+    private CoreController _core;
 	private BoxCollider2D _boxCollider;
     private Animator _animator;
     private Animator _deathAnimator;
 
     private Material _material;
     private SpriteRenderer _renderer;
-
 
     private bool _timeRunning;
     private bool _isDisabled = false;
@@ -29,7 +29,7 @@ public class logic_target : MonoBehaviour {
 
         this._renderer = GetComponent<SpriteRenderer>();
         this._renderer.sharedMaterial = this._material;
-
+        
         this._animator = GetComponent<Animator>();
         if(this._animator != null) this._animator.speed = 0f;
 
@@ -68,6 +68,9 @@ public class logic_target : MonoBehaviour {
     private void setDeathAnim(bool isDead) {
         this._deathAnimator.SetInteger("isDead", isDead ? 1 : 0);
         this._renderer.color = isDead ? new Color(1f, 1f, 1f, 0f) : Color.white;
+
+        if(this.hatRenderer != null)
+            this.hatRenderer.color = isDead ? new Color(1f, 1f, 1f, 0f) : Color.white;
     }
 
     /* ************* 

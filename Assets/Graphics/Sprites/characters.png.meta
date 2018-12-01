@@ -89,6 +89,14 @@ TextureImporter:
     21300168: donut_evil_40
     21300170: donut_evil_41
     21300172: donut_evil_idle
+    21300174: characters_eat_1
+    21300176: characters_eat_2
+    21300178: characters_eat_3
+    21300180: characters_eat_4
+    21300182: characters_eat_5
+    21300184: characters_eat_6
+    21300186: characters_eat_7
+    21300188: characters_eat_8
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1921,13 +1929,173 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: ebd7d517e4b4eb84da7f9125050b06a4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_1
+      rect:
+        serializedVersion: 2
+        x: 164
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f95b35b312f635448504b4b2d58ab24
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_2
+      rect:
+        serializedVersion: 2
+        x: 198
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f12c7ce237a4fe847a029b89f93a24bb
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_3
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8905870a0d26ab14ca6d1b3736b23778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_4
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c9894caca1867f4e984c7d5f15c43a7
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_5
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c649fe75a301044d9dfd9aa1d248213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_6
+      rect:
+        serializedVersion: 2
+        x: 334
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9715551fe46dea34cbf63762fcda3fa4
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_7
+      rect:
+        serializedVersion: 2
+        x: 368
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92edf5d745ac41341b9cbf404c07a719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: characters_eat_8
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 810
+        width: 27
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a8e1748e6d80b344aa7404532a1b18c
       vertices: []
       indices: 
       edges: []

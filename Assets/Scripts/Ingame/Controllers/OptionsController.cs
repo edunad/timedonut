@@ -9,10 +9,10 @@ public class OptionsController : MonoBehaviour {
     public static float musicVolume = 1f;
     public static float effectsVolume = 1f;
 
-    private CoreController _core;
+    private GameObject _core;
 
     public void Awake () {
-        this._core = GameObject.Find("Core").GetComponent<CoreController>();
+        this._core = GameObject.Find("Core");
 
         // Get vars
         musicVolume = PlayerPrefs.GetFloat("musicVolume", 1f);
@@ -34,7 +34,7 @@ public class OptionsController : MonoBehaviour {
 
         // Update the volume
         if(this._core != null)
-            this._core.updateMusicVolume();
+            this._core.SendMessage("updateMusicVolume", SendMessageOptions.DontRequireReceiver);
     }
 
     public void setEffectsVolume(float vol) {

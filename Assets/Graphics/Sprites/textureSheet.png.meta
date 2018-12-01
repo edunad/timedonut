@@ -120,6 +120,12 @@ TextureImporter:
     21300230: tx_vent_bg_on
     21300232: tx_btn_on
     21300234: tx_btn_off
+    21300236: tx_pic_cowboy
+    21300238: tx_donutmachine
+    21300240: tx_worker_hat
+    21300242: tx_mew_1
+    21300244: tx_mew_2
+    21300246: tx_mew_3
   externalObjects: {}
   serializedVersion: 7
   mipmaps:
@@ -1444,26 +1450,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tx_temptarget
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 800
-        width: 33
-        height: 65
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 89a7e00f70a21a642884e3ce27ca54ca
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: tx_donut_2
       rect:
         serializedVersion: 2
@@ -2512,13 +2498,133 @@ TextureImporter:
         width: 24
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
       spriteID: 20ccb010e05104f49b1c07155ff5e9ab
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_pic_cowboy
+      rect:
+        serializedVersion: 2
+        x: 473
+        y: 382
+        width: 33
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e3044771a994707419a2fc87f3532e3e
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_donutmachine
+      rect:
+        serializedVersion: 2
+        x: 481
+        y: 336
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1479bbfb8d89b240b53b4c8a40dffca
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_worker_hat
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 320
+        width: 14
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 55f0914bc8a0b574cb723ced5ed9b80d
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_mew_1
+      rect:
+        serializedVersion: 2
+        x: 435
+        y: 416
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6fa647244bbd868498d430874620ee20
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_mew_2
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 416
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0844e91673fdd040a4e7664b81e2096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tx_mew_3
+      rect:
+        serializedVersion: 2
+        x: 459
+        y: 416
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1297f13265fd80c44841259d14a5b7f1
       vertices: []
       indices: 
       edges: []

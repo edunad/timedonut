@@ -6,11 +6,25 @@ public class MainMenuController : MonoBehaviour {
     public GameObject levelMenu;
     public GameObject optionsMenu;
 
+    private AudioSource _audioSource;
+
     public void Awake() {
+        this._audioSource = GetComponent<AudioSource>();
+        this._audioSource.playOnAwake = false;
+        this._audioSource.loop = true;
+        this._audioSource.volume = Mathf.Clamp(OptionsController.musicVolume / 1f * 0.5f, 0f, 1f);
+        this._audioSource.Play();
 
         // Hide panels by default
         this.optionsMenu.SetActive(false);
         this.levelMenu.SetActive(false);
+    }
+    
+    /* ************* 
+     * MUSIC STUFF
+     ===============*/
+    public void updateMusicVolume() {
+        this._audioSource.volume = Mathf.Clamp(OptionsController.musicVolume / 1f * 0.5f, 0f, 1f);
     }
 
     /* ************* 
