@@ -39,7 +39,7 @@ public class logic_rope_cutter : MonoBehaviour {
         this._enabled = start;
     }
 
-    public void Update() {
+    public void FixedUpdate() {
         if (Time.time < this._timer || this._hasCut || !this._enabled) return;
         
         // Cut the rope
